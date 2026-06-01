@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aspire Institute | México Foundry</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        aspire: {
+                            red: '#a32035',
+                            redDark: '#851a2b',
+                            gold: '#fcd116',
+                            goldHover: '#e0b910',
+                            charcoal: '#333132',
+                            slate: '#4b5563',
+                            green: '#008a00',
+                            bgSection: '#4a413c'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .scrollbar-hide::-webkit-scrollbar {
+            display: none;
+        }
+        .scrollbar-hide {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        .snap-x {
+            scroll-snap-type: x mandatory;
+        }
+        .snap-center {
+            scroll-snap-align: center;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-aspire-charcoal font-sans antialiased selection:bg-aspire-red selection:text-white">
+
+    <!-- Top Banner -->
+    <div class="bg-aspire-red text-white py-2.5 px-4 text-center text-xs sm:text-sm font-medium tracking-wide relative z-50">
+        <div class="container mx-auto flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-4">
+            <span>¡Ya está abierto el plazo de solicitud para el Programa de Líderes Aspire 2026!</span>
+            <a href="#aplicar" class="bg-aspire-gold text-aspire-charcoal hover:bg-aspire-goldHover px-4 py-1.5 rounded-sm text-xs font-bold uppercase tracking-wider transition-colors shadow-sm inline-block">
+                ¡Solicita ahora!
+            </a>
+        </div>
+    </div>
+
+    <!-- Header Translucido (Efecto Ejecutivo) -->
+    <header class="sticky top-0 bg-white/80 backdrop-blur-lg shadow-sm border-b border-white/20 z-40 transition-all duration-300">
+        <div class="container mx-auto px-4 lg:px-8 h-20 flex items-center justify-between">
+            <a href="#" class="flex flex-col group">
+                <span class="text-3xl font-serif font-bold text-aspire-red tracking-tight leading-none group-hover:text-aspire-redDark transition-colors">Aspire</span>
+                <span class="text-[9px] font-bold tracking-[0.35em] text-aspire-slate uppercase pl-0.5 mt-1">Institute</span>
+            </a>
+
+            <nav class="hidden lg:flex items-center space-x-6 xl:space-x-8">
+                <a href="#acerca" class="text-sm font-semibold text-aspire-charcoal hover:text-aspire-red transition-colors">¿Qué es Aspire?</a>
+                <a href="#programas" class="text-sm font-semibold text-aspire-charcoal hover:text-aspire-red transition-colors">Convocatoria 2026</a>
+                <a href="#oportunidades" class="text-sm font-semibold text-aspire-charcoal hover:text-aspire-red transition-colors">Alumni & Grants</a>
+                <a href="#galeria" class="text-sm font-semibold text-aspire-charcoal hover:text-aspire-red transition-colors">Galería</a>
+                <a href="#contacto" class="text-sm font-semibold text-aspire-charcoal hover:text-aspire-red transition-colors">Contacto</a>
+            </nav>
+
+            <div class="hidden lg:flex items-center space-x-6">
+                <a href="https://engage.aspireleaders.org/" class="text-xs font-semibold text-aspire-slate hover:text-aspire-charcoal flex items-center gap-1.5 transition-colors">
+                    <i class="fa-solid fa-user-circle text-sm text-aspire-red"></i> Portal Aspire
+                </a>
+            </div>
+
+            <!-- Botón Hamburguesa Mejorado -->
+            <button id="mobile-menu-btn" class="lg:hidden p-2 text-aspire-charcoal hover:text-aspire-red transition-colors rounded-lg hover:bg-gray-100" aria-label="Abrir menú">
+                <i class="fa-solid fa-bars-staggered text-2xl"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Menú Móvil Deslizable (Off-canvas) -->
+    <div id="menu-overlay" class="fixed inset-0 bg-black/50 z-50 hidden backdrop-blur-sm transition-opacity"></div>
+    <div id="mobile-menu" class="fixed top-0 right-0 h-full w-4/5 max-w-sm bg-white shadow-2xl z-50 transform translate-x-full transition-transform duration-300 ease-in-out flex flex-col">
+        <div class="p-6 border-b border-gray-100 flex justify-between items-center bg-gray-50/50">
+            <span class="text-xl font-serif font-bold text-aspire-red">Menú</span>
+            <button id="close-menu-btn" class="p-2 text-gray-500 hover:text-aspire-red bg-white rounded-full shadow-sm" aria-label="Cerrar menú">
+                <i class="fa-solid fa-xmark text-xl"></i>
+            </button>
+        </div>
+        <div class="p-6 flex flex-col space-y-6 overflow-y-auto">
+            <a href="#acerca" class="mobile-link flex items-center gap-4 text-base font-medium text-aspire-charcoal hover:text-aspire-red transition-colors">
+                <div class="w-8 h-8 rounded-full bg-red-50 text-aspire-red flex items-center justify-center"><i class="fa-solid fa-circle-info"></i></div>
+                ¿Qué es Aspire?
+            </a>
+            <a href="#programas" class="mobile-link flex items-center gap-4 text-base font-medium text-aspire-charcoal hover:text-aspire-red transition-colors">
+                <div class="w-8 h-8 rounded-full bg-red-50 text-aspire-red flex items-center justify-center"><i class="fa-solid fa-calendar-check"></i></div>
+                Convocatoria 2026
+            </a>
+            <a href="#oportunidades" class="mobile-link flex items-center gap-4 text-base font-medium text-aspire-charcoal hover:text-aspire-red transition-colors">
+                <div class="w-8 h-8 rounded-full bg-red-50 text-aspire-red flex items-center justify-center"><i class="fa-solid fa-graduation-cap"></i></div>
+                Alumni & Grants
+            </a>
+            <a href="#galeria" class="mobile-link flex items-center gap-4 text-base font-medium text-aspire-charcoal hover:text-aspire-red transition-colors">
+                <div class="w-8 h-8 rounded-full bg-red-50 text-aspire-red flex items-center justify-center"><i class="fa-solid fa-images"></i></div>
+                Galería
+            </a>
+            <a href="#contacto" class="mobile-link flex items-center gap-4 text-base font-medium text-aspire-charcoal hover:text-aspire-red transition-colors">
+                <div class="w-8 h-8 rounded-full bg-red-50 text-aspire-red flex items-center justify-center"><i class="fa-solid fa-envelope"></i></div>
+                Contacto
+            </a>
+            
+            <div class="mt-auto pt-8 border-t border-gray-100">
+                <a href="https://engage.aspireleaders.org/" class="flex items-center justify-center gap-2 bg-gray-900 text-white py-3 rounded-lg font-medium">
+                    <i class="fa-solid fa-user-circle"></i> Portal Aspire
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hero Section con Cuenta Regresiva -->
+    <section class="relative bg-aspire-charcoal overflow-hidden flex items-center min-h-[85vh]">
+        <div class="absolute inset-0 z-0">
+            <div class="absolute inset-0 bg-gradient-to-r from-black/80 via-black/60 to-transparent z-10"></div>
+            <img src="./files/heroimg.jpg" alt="Estudiantes Aspire" class="w-full h-full object-cover object-center transform scale-105 filter grayscale-[20%]">
+        </div>
+
+        <div class="container mx-auto px-4 lg:px-8 relative z-20 py-16">
+            <div class="max-w-3xl">
+                <h1 class="text-4xl sm:text-5xl lg:text-6xl font-serif font-bold text-white tracking-tight leading-tight mb-6">
+                    Líderes con impacto real
+                </h1>
+                <p class="text-lg sm:text-xl text-gray-200 leading-relaxed font-light mb-10 max-w-2xl">
+                    Empoderamos a estudiantes universitarios de primera generación para que desarrollen su potencial de liderazgo. Conectamos la ambición con la oportunidad, formando a los agentes de cambio del mañana en México.
+                </p>
+                
+                <!-- Countdown Timer -->
+                <div class="bg-white/10 backdrop-blur-md border border-white/20 rounded-lg p-6 mb-8 inline-block shadow-xl">
+                    <p class="text-aspire-gold text-xs font-bold uppercase tracking-widest mb-3">Cierre Cohort 3: 10 de Julio 2026</p>
+                    <div class="flex gap-4 sm:gap-6 text-center" id="countdown">
+                        <div class="flex flex-col">
+                            <span class="text-3xl sm:text-4xl font-serif font-bold text-white" id="cd-days">00</span>
+                            <span class="text-[10px] sm:text-xs text-gray-300 uppercase font-medium mt-1">Días</span>
+                        </div>
+                        <span class="text-2xl text-white/50 font-serif">:</span>
+                        <div class="flex flex-col">
+                            <span class="text-3xl sm:text-4xl font-serif font-bold text-white" id="cd-hours">00</span>
+                            <span class="text-[10px] sm:text-xs text-gray-300 uppercase font-medium mt-1">Horas</span>
+                        </div>
+                        <span class="text-2xl text-white/50 font-serif">:</span>
+                        <div class="flex flex-col">
+                            <span class="text-3xl sm:text-4xl font-serif font-bold text-white" id="cd-minutes">00</span>
+                            <span class="text-[10px] sm:text-xs text-gray-300 uppercase font-medium mt-1">Min</span>
+                        </div>
+                        <span class="text-2xl text-white/50 font-serif hidden sm:block">:</span>
+                        <div class="flex flex-col hidden sm:flex">
+                            <span class="text-3xl sm:text-4xl font-serif font-bold text-white" id="cd-seconds">00</span>
+                            <span class="text-[10px] sm:text-xs text-gray-300 uppercase font-medium mt-1">Seg</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <a href="https://www.aspireleaders.org/" class="bg-aspire-gold hover:bg-aspire-goldHover text-aspire-charcoal px-8 py-4 rounded-sm font-bold uppercase tracking-wider text-sm text-center shadow-lg transition-all inline-block">
+                        Aplicar ahora
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Impacto Local Section -->
+    <section class="py-16 bg-white border-b border-gray-100">
+        <div class="container mx-auto px-4 lg:px-8">
+            <h2 class="text-4xl font-serif font-bold text-aspire-charcoal text-center mb-12">Impacto local</h2>
+            
+            <div class="flex overflow-x-auto snap-x md:grid md:grid-cols-3 gap-6 pb-6 md:pb-0 scrollbar-hide">
+                <div class="snap-center shrink-0 w-[80vw] sm:w-[300px] md:w-auto relative group overflow-hidden rounded-lg aspect-video md:aspect-square lg:aspect-video shadow-md">
+                    <img src="https://images.unsplash.com/photo-1529390079861-591de354faf5?auto=format&fit=crop&w=800&q=80" alt="Aprendices" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 filter brightness-50">
+                    <div class="absolute inset-0 flex flex-col items-center justify-center p-6 text-center">
+                        <div class="text-5xl lg:text-6xl font-bold text-white mb-2 tracking-tight">4,000+</div>
+                        <div class="text-base text-white/90 font-medium tracking-wider">Aprendices</div>
+                    </div>
+                </div>
+                
+                <div class="snap-center shrink-0 w-[80vw] sm:w-[300px] md:w-auto relative group overflow-hidden rounded-lg aspect-video md:aspect-square lg:aspect-video shadow-md">
+                    <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=800&q=80" alt="Antiguos Alumnos" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 filter brightness-50">
+                    <div class="absolute inset-0 flex flex-col items-center justify-center p-6 text-center">
+                        <div class="text-5xl lg:text-6xl font-bold text-white mb-2 tracking-tight">850</div>
+                        <div class="text-base text-white/90 font-medium tracking-wider">Antiguos alumnos</div>
+                    </div>
+                </div>
+                
+                <div class="snap-center shrink-0 w-[80vw] sm:w-[300px] md:w-auto relative group overflow-hidden rounded-lg aspect-video md:aspect-square lg:aspect-video shadow-md">
+                    <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=800&q=80" alt="Crecimiento" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 filter brightness-50">
+                    <div class="absolute inset-0 flex flex-col items-center justify-center p-6 text-center">
+                        <div class="text-5xl lg:text-6xl font-bold text-white mb-2 tracking-tight">523 %</div>
+                        <div class="text-base text-white/90 font-medium leading-tight max-w-[200px] mx-auto">Crecimiento solicitudes 2024 a 2025</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Resto de secciones (¿Qué es Aspire?, Oportunidades, Galería) permanecen igual de optimizadas -->
+    <section id="acerca" class="py-20 bg-gray-50">
+        <!-- Contenido idéntico a la versión anterior... -->
+        <div class="container mx-auto px-4 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                <div>
+                    <h2 class="text-xs font-bold tracking-widest text-aspire-red uppercase mb-3">Conoce nuestra misión</h2>
+                    <h3 class="text-3xl md:text-4xl font-serif font-bold text-aspire-charcoal mb-6">¿Qué es Aspire?</h3>
+                    <p class="text-aspire-slate leading-relaxed mb-6">Fundada en 2017 por docentes de la Escuela de Negocios de Harvard, acompañamos a estudiantes universitarios de primera generación y egresados recientes de contextos con desigualdades económicas, para que se conviertan en agentes de cambio en sus comunidades. En 2026, a través de Mosaico A.C., Aspire llega a México.</p>
+                    <h4 class="text-xl font-serif font-bold text-aspire-charcoal mb-3">Estructura del programa</h4>
+                    <p class="text-aspire-slate leading-relaxed mb-6">El Aspire Leaders Program (ALP) es en línea, gratuito y autofinanciado, impartido en inglés (solo se requiere comprensión lectora básica). Dura 9 semanas combinando actividades a tu propio ritmo con sesiones en vivo.</p>
+                </div>
+                <div class="relative">
+                  <img src="./files/thx.jpg" alt="Estudiantes trabajando" 
+     style="width: 67%; height: auto;" 
+     class="rounded-lg shadow-xl relative z-10">
+                    <div class="absolute -bottom-6 -left-6 w-24 h-24 bg-aspire-gold rounded-full z-0 opacity-70"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="oportunidades" class="py-20 bg-white border-y border-gray-100">
+        <!-- Carrusel horizontal oportunidades igual de optimizado -->
+        <div class="container mx-auto px-4 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-14">
+                <h2 class="text-xs font-bold tracking-widest text-aspire-red uppercase mb-2">Más allá del programa</h2>
+                <h3 class="text-3xl font-serif font-bold text-aspire-charcoal">Oportunidades y Financiamiento</h3>
+            </div>
+            <div class="flex overflow-x-auto snap-x gap-6 pb-8 md:grid md:grid-cols-2 lg:grid-cols-4 md:pb-0 scrollbar-hide">
+                <!-- Cards Oportunidades... -->
+                <div class="snap-center shrink-0 w-[80vw] sm:w-[300px] md:w-auto bg-gray-50 p-6 rounded-xl border border-gray-100 flex flex-col">
+                    <div class="w-12 h-12 bg-blue-100 text-blue-600 rounded-lg flex items-center justify-center mb-4 text-xl"><i class="fa-solid fa-comments"></i></div>
+                    <h4 class="text-xl font-bold font-serif text-aspire-charcoal mb-2">English Corner</h4>
+                    <p class="text-sm text-aspire-slate flex-grow">Práctica gratuita de inglés sin presión. 24 sesiones al año para mejorar tu fluidez en entrevistas y networking.</p>
+                </div>
+                <div class="snap-center shrink-0 w-[80vw] sm:w-[300px] md:w-auto bg-gray-50 p-6 rounded-xl border border-gray-100 flex flex-col">
+                    <div class="w-12 h-12 bg-green-100 text-green-600 rounded-lg flex items-center justify-center mb-4 text-xl"><i class="fa-solid fa-seedling"></i></div>
+                    <h4 class="text-xl font-bold font-serif text-aspire-charcoal mb-2">Seed Funds</h4>
+                    <p class="text-sm text-aspire-slate flex-grow">Fondo inicial de $200 a $500 USD para egresados que deseen convertir una idea en un proyecto concreto.</p>
+                </div>
+                 <div class="snap-center shrink-0 w-[85vw] sm:w-[350px] md:w-auto bg-gray-50 p-6 rounded-xl border border-gray-100 hover:shadow-lg transition-all flex flex-col">
+
+                    <div class="w-12 h-12 bg-purple-100 text-purple-600 rounded-lg flex items-center justify-center mb-4 text-xl">
+
+                        <i class="fa-solid fa-book-open-reader"></i>
+
+                    </div>
+
+                    <h4 class="text-xl font-bold font-serif text-aspire-charcoal mb-2">Academic Grants</h4>
+
+                    <p class="text-sm text-aspire-slate flex-grow">Becas para apoyar tu formación continua: certificaciones profesionales, exámenes especializados y rutas de aprendizaje avanzadas.</p>
+
+                </div>
+
+
+
+                <div class="snap-center shrink-0 w-[85vw] sm:w-[350px] md:w-auto bg-gray-50 p-6 rounded-xl border border-gray-100 hover:shadow-lg transition-all flex flex-col">
+
+                    <div class="w-12 h-12 bg-aspire-gold/20 text-yellow-700 rounded-lg flex items-center justify-center mb-4 text-xl">
+
+                        <i class="fa-solid fa-trophy"></i>
+
+                    </div>
+
+                    <h4 class="text-xl font-bold font-serif text-aspire-charcoal mb-2">Community Action Awards</h4>
+
+                    <p class="text-sm text-aspire-slate flex-grow">Premio de hasta $5,000 USD para escalar proyectos exitosos que previamente recibieron financiamiento semilla.</p>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Voces de la Comunidad (CENTRADAS) -->
+    <section class="py-20 bg-white">
+        <div class="container mx-auto px-4 lg:px-8">
+            <div class="max-w-3xl mx-auto text-center mb-12 border-b-2 border-aspire-red pb-6">
+                <h3 class="text-4xl font-serif font-bold text-aspire-red mb-4">Voces de la comunidad</h3>
+                <p class="text-lg text-aspire-charcoal leading-relaxed font-light">
+                    Cada historia de Aspire México es un reflejo de resiliencia, crecimiento y transformación. Escucha a nuestros exalumnos que están liderando el cambio, una comunidad a la vez.
+                </p>
+            </div>
+
+            <!-- Carrusel Horizontal en Móvil, Grid en Desktop -->
+            <div class="flex overflow-x-auto snap-x gap-8 pb-8 md:grid md:grid-cols-2 lg:grid-cols-2 md:pb-0 scrollbar-hide">
+                <div class="snap-center shrink-0 w-[85vw] md:w-auto flex flex-col md:flex-row gap-6 bg-gray-50 rounded-xl overflow-hidden shadow-sm border border-gray-100 p-6">
+                    <img src="./files/zarekmtz.jpeg" alt="Zarek Martínez" class="w-full md:w-48 h-64 md:h-auto object-cover rounded-lg">
+                    <div class="flex flex-col justify-center">
+                        <h4 class="font-bold text-lg text-aspire-charcoal mb-1">Zarek Martínez, ALP' 21, México</h4>
+                        <div class="mt-4 text-sm text-aspire-slate italic leading-relaxed space-y-3 font-light">
+                            <p>“Antes de entrar al programa tenía muchas dudas sobre mi trayectoria, hacia dónde iba a dirigir mi carrera. Cuando entré, cambió todo mi panorama.”</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="snap-center shrink-0 w-[85vw] md:w-auto flex flex-col md:flex-row gap-6 bg-gray-50 rounded-xl overflow-hidden shadow-sm border border-gray-100 p-6">
+                    <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=300&q=80" alt="Alumni Example" class="w-full md:w-48 h-64 md:h-auto object-cover rounded-lg">
+                    <div class="flex flex-col justify-center">
+                        <h4 class="font-bold text-lg text-aspire-charcoal mb-1">María Fernanda, ALP' 22, México</h4>
+                        <div class="mt-4 text-sm text-aspire-slate italic leading-relaxed space-y-3 font-light">
+                            <p>“Aspire me dio las herramientas no solo para creer en mis proyectos, sino para estructurarlos. La red global es increíble, nunca estás solo en este camino.”</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Equipo Aspire (TEXTOS CENTRADOS Y CARDS MEJORADAS) -->
+    <section class="py-20 bg-gray-50 border-t border-gray-200">
+        <div class="container mx-auto px-4 lg:px-8">
+            <div class="max-w-3xl mx-auto text-center mb-12 border-b border-gray-300 pb-8">
+                <h3 class="text-4xl font-serif font-bold text-aspire-charcoal mb-4">Conozca al equipo</h3>
+                <p class="text-lg text-aspire-charcoal leading-relaxed font-light">
+                    Aspire México Foundry está impulsada por líderes visionarios comprometidos con la creación de un acceso equitativo a oportunidades de liderazgo en todo el país.
+                </p>
+            </div>
+
+            <!-- Scroll Horizontal Móvil con Pequeñas Tarjetas de Perfil -->
+            <div class="flex overflow-x-auto snap-x justify-start md:justify-center gap-6 pb-8 md:grid md:grid-cols-2 md:gap-8 max-w-4xl mx-auto md:pb-0 scrollbar-hide">
+                
+                <!-- Card Ana -->
+                <div class="snap-center shrink-0 w-[65vw] sm:w-[250px] md:w-auto bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex flex-col items-center text-center hover:shadow-md transition-shadow">
+                    <div class="w-20 h-20 bg-aspire-red/10 text-aspire-red rounded-full flex items-center justify-center text-3xl mb-4 border-4 border-white shadow-sm">
+                        <i class="fa-solid fa-user-tie"></i>
+                    </div>
+                    <h4 class="font-bold text-xl text-aspire-charcoal">Ana Flores</h4>
+                    <p class="text-sm text-aspire-slate mt-2">Directora Nacional,<br>Aspire Mexico Foundry</p>
+                </div>
+
+                <!-- Card Erika -->
+                <div class="snap-center shrink-0 w-[65vw] sm:w-[250px] md:w-auto bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex flex-col items-center text-center hover:shadow-md transition-shadow">
+                    <div class="w-20 h-20 bg-aspire-gold/20 text-yellow-700 rounded-full flex items-center justify-center text-3xl mb-4 border-4 border-white shadow-sm">
+                        <i class="fa-solid fa-user-group"></i>
+                    </div>
+                    <h4 class="font-bold text-xl text-aspire-charcoal">Erika Pérez</h4>
+                    <p class="text-sm text-aspire-slate mt-2">Coordinadora de Divulgación,<br>Aspire Mexico Foundry</p>
+                </div>
+
+            </div>
+        </div>
+        
+        <!-- Banner Reclutamiento Centrado -->
+        <div class="bg-aspire-gold mt-12 py-10 px-4 lg:px-8 text-center">
+            <div class="container mx-auto max-w-2xl">
+                <i class="fa-solid fa-briefcase text-3xl text-aspire-charcoal/50 mb-3"></i>
+                <h4 class="font-bold text-2xl text-aspire-charcoal mb-2">Aspire México busca personal para cubrir puestos vacantes.</h4>
+                <p class="text-base text-aspire-charcoal font-medium uppercase tracking-widest bg-white/40 inline-block px-4 py-1 rounded-full mt-2">¡Próxima apertura!</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Responsivo (Mejorado para móvil estilo PC) -->
+    <footer id="contacto" class="bg-aspire-charcoal text-white pt-20 pb-8 border-t border-white/5 relative overflow-hidden">
+        <div class="container mx-auto px-4 lg:px-8 relative z-10">
+            <!-- Cambié grid-cols-1 a grid-cols-2 en sm para que se distribuya mejor en móviles y parezca PC -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-12 mb-16">
+                
+                <!-- Contáctanos (Toma todo el ancho en móviles muy chicos, o 2 columnas en medianos) -->
+                <div class="sm:col-span-2 bg-white/5 p-6 sm:p-8 rounded-xl border border-white/10">
+                    <h3 class="text-3xl font-serif font-bold mb-4 text-white">Contáctanos</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed mb-6">
+                        ¿Tienes dudas sobre las postulaciones, los fondos semilla o quieres colaborar institucionalmente con Aspire México? Estamos aquí para escucharte.
+                    </p>
+                    <a href="mailto:[PON_TU_CORREO_AQUI]" class="inline-flex items-center justify-center gap-2 bg-aspire-red hover:bg-aspire-redDark text-white text-sm font-bold uppercase tracking-wider px-8 py-4 rounded transition-colors shadow-lg w-full sm:w-auto">
+                        <i class="fa-solid fa-envelope"></i> Enviar correo
+                    </a>
+                </div>
+
+                <!-- Info Comercial -->
+                <div>
+                    <h4 class="text-lg font-bold text-white mb-4">Horario comercial</h4>
+                    <p class="text-sm text-gray-300 leading-relaxed mb-4">Lun – Vie: 9 am – 5 pm ET<br>(Nueva York, EE. UU.)</p>
+                    <p class="text-sm text-gray-300 leading-relaxed font-mono">255 Main St, 8.º piso<br>Cambridge, MA 02142</p>
+                    
+                    <div class="flex flex-wrap gap-3 mt-6">
+                        <a href="#" class="w-9 h-9 bg-white/10 flex items-center justify-center rounded hover:bg-aspire-red transition-colors"><i class="fa-brands fa-youtube"></i></a>
+                        <a href="#" class="w-9 h-9 bg-white/10 flex items-center justify-center rounded hover:bg-aspire-red transition-colors"><i class="fa-brands fa-twitter"></i></a>
+                        <a href="#" class="w-9 h-9 bg-white/10 flex items-center justify-center rounded hover:bg-aspire-red transition-colors"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#" class="w-9 h-9 bg-white/10 flex items-center justify-center rounded hover:bg-aspire-red transition-colors"><i class="fa-brands fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+
+                <!-- Enlaces rápidos juntos en móvil usando subgrid -->
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <h4 class="text-lg font-bold text-white mb-4">Enlaces</h4>
+                        <ul class="space-y-3 text-sm text-gray-400 font-bold uppercase text-[10px] sm:text-[11px] tracking-wider">
+                            <li><a href="#acerca" class="hover:text-aspire-gold transition-colors">Nosotros</a></li>
+                            <li><a href="#programas" class="hover:text-aspire-gold transition-colors">Programas</a></li>
+                            <li><a href="#oportunidades" class="hover:text-aspire-gold transition-colors">Grants</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="text-lg font-bold text-white mb-4 invisible">.</h4>
+                        <ul class="space-y-3 text-sm text-gray-400 font-bold uppercase text-[10px] sm:text-[11px] tracking-wider">
+                            <li><a href="#galeria" class="hover:text-aspire-gold transition-colors">Historias</a></li>
+                            <li><a href="#aplicar" class="hover:text-aspire-gold transition-colors">Aplicar</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="border-t border-white/10 pt-8 text-center text-xs text-gray-500 flex flex-col md:flex-row justify-between items-center gap-4">
+                <p>&copy; 2026 Aspire Institute Inc. - Todos los derechos reservados.</p>
+                <div class="flex gap-4">
+                    <a href="#" class="hover:text-gray-300">Política de privacidad</a>
+                    <span>|</span>
+                    <a href="#" class="hover:text-gray-300">Cookies</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Lógica del Menú Móvil Deslizable
+        const menuBtn = document.getElementById('mobile-menu-btn');
+        const closeBtn = document.getElementById('close-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const overlay = document.getElementById('menu-overlay');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        function toggleMenu() {
+            // Animación de entrada/salida
+            mobileMenu.classList.toggle('translate-x-full');
+            // Fondo oscuro (overlay)
+            overlay.classList.toggle('hidden');
+        }
+
+        // Eventos para abrir y cerrar
+        menuBtn.addEventListener('click', toggleMenu);
+        closeBtn.addEventListener('click', toggleMenu);
+        overlay.addEventListener('click', toggleMenu); // Cierra tocando fuera
+
+        // Cierra el menú al tocar un enlace
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', toggleMenu);
+        });
+
+        // Lógica de la Cuenta Regresiva
+        const countDownDate = new Date("Jul 10, 2026 23:59:59").getTime();
+
+        const timer = setInterval(function() {
+            const now = new Date().getTime();
+            const distance = countDownDate - now;
+
+            if (distance < 0) {
+                clearInterval(timer);
+                document.getElementById("countdown").innerHTML = "<span class='text-aspire-gold font-bold'>¡La convocatoria ha cerrado!</span>";
+                return;
+            }
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById("cd-days").innerText = days.toString().padStart(2, '0');
+            document.getElementById("cd-hours").innerText = hours.toString().padStart(2, '0');
+            document.getElementById("cd-minutes").innerText = minutes.toString().padStart(2, '0');
+            document.getElementById("cd-seconds").innerText = seconds.toString().padStart(2, '0');
+        }, 1000);
+    </script>
+</body>
+</html>
