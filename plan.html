@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Plan de Estudios · Aspire Leaders Program</title>
+    <meta name="description" content="Conoce el plan de estudios del programa de liderazgo Aspire: 9 semanas, tres módulos, formación integral." />
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎓</text></svg>" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap" rel="stylesheet" />
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        aspire: {
+                            red: '#a32035',
+                            redDark: '#851a2b',
+                            gold: '#fcd116',
+                            goldHover: '#e0b910',
+                            charcoal: '#333132',
+                            slate: '#4b5563',
+                            green: '#008a00',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Estilos mínimos reutilizados del sitio original */
+        .section-badge {
+            display: inline-block;
+            background: rgba(163, 32, 53, 0.08);
+            color: #a32035;
+            padding: 0.25rem 1rem;
+            border-radius: 9999px;
+            font-size: 0.65rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            border: 1px solid rgba(163, 32, 53, 0.15);
+        }
+        .card-premium {
+            background: #ffffff;
+            border-radius: 1.25rem;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04), 0 1px 3px rgba(0, 0, 0, 0.03);
+            transition: box-shadow 0.3s ease, transform 0.25s ease;
+        }
+        .card-premium:hover {
+            box-shadow: 0 12px 40px -8px rgba(0, 0, 0, 0.10);
+            transform: translateY(-4px);
+        }
+        .card-premium .card-top-line {
+            height: 4px;
+            border-radius: 1.25rem 1.25rem 0 0;
+            width: 100%;
+            margin-top: -1px;
+        }
+        .card-premium .card-top-line.gold {
+            background: #fcd116;
+        }
+        .card-premium .card-top-line.green {
+            background: #008a00;
+        }
+        .card-hover {
+            transition: transform 0.25s ease, box-shadow 0.3s ease;
+        }
+        .card-hover:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.12);
+        }
+        .fade-up {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1), transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+        .fade-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .fade-up-delay-1 { transition-delay: 0.05s; }
+        .fade-up-delay-2 { transition-delay: 0.10s; }
+        .fade-up-delay-3 { transition-delay: 0.15s; }
+        .fade-up-delay-4 { transition-delay: 0.20s; }
+    </style>
+</head>
+<body class="bg-gray-50 text-aspire-charcoal font-sans antialiased">
+
+    <!-- Encabezado sutil -->
+    <header class="bg-white/80 backdrop-blur-sm border-b border-gray-100 sticky top-0 z-10">
+        <div class="container mx-auto px-4 lg:px-8 h-16 flex items-center justify-between">
+            <a href="#" class="flex items-center gap-2">
+                <span class="text-2xl font-serif font-bold text-aspire-red">Aspire</span>
+                <span class="text-[8px] font-bold tracking-[0.3em] text-aspire-slate uppercase">Institute</span>
+            </a>
+            <a href="./index.html" target="_blank" class="text-xs text-aspire-slate hover:text-aspire-red transition-colors flex items-center gap-1.5">
+                <i class="fa-solid fa-arrow-left"></i> Volver al sitio
+            </a>
+        </div>
+    </header>
+
+    <!-- Contenido principal: Plan de estudios -->
+    <main class="py-12 md:py-16">
+        <div class="container mx-auto px-4 lg:px-8">
+            <div class="max-w-4xl mx-auto">
+                <!-- Cabecera -->
+                <div class="text-center mb-12">
+                    <span class="section-badge">Aspire Leaders Program</span>
+                    <h1 class="text-3xl md:text-5xl font-serif font-bold text-aspire-charcoal mt-3 leading-tight">
+                        Plan de estudios <br class="sm:hidden" />
+                        <span class="text-aspire-red">2026</span>
+                    </h1>
+                    <p class="text-aspire-slate text-base md:text-lg max-w-2xl mx-auto mt-4 leading-relaxed">
+                        Un curso de liderazgo en línea, gratuito y global de 9 semanas, fundado por docentes de la Universidad de Harvard.
+                        Diseñado para jóvenes de bajos recursos o primera generación universitaria.
+                    </p>
+                </div>
+
+                <!-- Visión general (tarjeta resumen) -->
+                <div class="card-premium p-6 md:p-8 mb-10 flex flex-col md:flex-row items-center gap-6 fade-up visible">
+                    <div class="flex-1">
+                        <div class="flex items-center gap-3 mb-1">
+                            <i class="fa-regular fa-clock text-aspire-red text-xl"></i>
+                            <span class="font-bold text-aspire-charcoal">Duración: 9 semanas</span>
+                        </div>
+                        <p class="text-sm text-aspire-slate leading-relaxed">
+                            El programa combina <strong>aprendizaje a tu propio ritmo</strong> (contenido asincrónico) y 
+                            <strong>sesiones en vivo</strong> con mentores y expertos internacionales. 
+                            Cada módulo está diseñado para desarrollar habilidades concretas de liderazgo y pensamiento crítico.
+                        </p>
+                    </div>
+                    <div class="flex gap-4 shrink-0">
+                        <span class="bg-aspire-red/10 text-aspire-red px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider">100% Online</span>
+                        <span class="bg-aspire-gold/20 text-yellow-700 px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider">Gratuito</span>
+                    </div>
+                </div>
+
+                <!-- Módulos (3 tarjetas) -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <!-- Módulo 1 -->
+                    <div class="card-premium p-6 card-hover fade-up fade-up-delay-1">
+                        <div class="card-top-line"></div>
+                        <div class="mt-2">
+                            <div class="flex items-center gap-2 mb-1">
+                                <span class="w-7 h-7 rounded-full bg-aspire-red/10 text-aspire-red flex items-center justify-center text-sm font-bold">1</span>
+                                <span class="text-xs font-bold text-aspire-red uppercase tracking-wider">Módulo 1</span>
+                            </div>
+                            <h2 class="text-xl font-serif font-bold text-aspire-charcoal">Desarrollo Personal y Profesional</h2>
+                            <span class="inline-block bg-aspire-red/10 text-aspire-red text-xs font-bold px-2.5 py-0.5 rounded-full mt-1">Semanas 1–3</span>
+                            <p class="text-sm text-aspire-slate mt-3 font-semibold">Enfoque: Autoconocimiento y marca personal.</p>
+                            <ul class="text-sm text-aspire-slate mt-3 space-y-2 list-disc list-inside marker:text-aspire-red/70">
+                                <li>Evaluar tus fortalezas individuales</li>
+                                <li>Construir tu currículum</li>
+                                <li>Crear un perfil en LinkedIn</li>
+                                <li>Mejorar tus habilidades de entrevista</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Módulo 2 -->
+                    <div class="card-premium p-6 card-hover fade-up fade-up-delay-2">
+                        <div class="card-top-line gold"></div>
+                        <div class="mt-2">
+                            <div class="flex items-center gap-2 mb-1">
+                                <span class="w-7 h-7 rounded-full bg-aspire-gold/20 text-yellow-700 flex items-center justify-center text-sm font-bold">2</span>
+                                <span class="text-xs font-bold text-aspire-gold uppercase tracking-wider">Módulo 2</span>
+                            </div>
+                            <h2 class="text-xl font-serif font-bold text-aspire-charcoal">Aspire Horizons</h2>
+                            <span class="inline-block bg-aspire-gold/20 text-yellow-700 text-xs font-bold px-2.5 py-0.5 rounded-full mt-1">Semanas 4–6</span>
+                            <p class="text-sm text-aspire-slate mt-3 font-semibold">Enfoque: Teoría del liderazgo y pensamiento crítico.</p>
+                            <ul class="text-sm text-aspire-slate mt-3 space-y-2 list-disc list-inside marker:text-aspire-gold/70">
+                                <li>Creado junto con profesores de Harvard</li>
+                                <li>Identificar problemas en tu comunidad</li>
+                                <li>Usar la tecnología para resolverlos</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Módulo 3 -->
+                    <div class="card-premium p-6 card-hover fade-up fade-up-delay-3">
+                        <div class="card-top-line green"></div>
+                        <div class="mt-2">
+                            <div class="flex items-center gap-2 mb-1">
+                                <span class="w-7 h-7 rounded-full bg-green-100 text-green-700 flex items-center justify-center text-sm font-bold">3</span>
+                                <span class="text-xs font-bold text-green-600 uppercase tracking-wider">Módulo 3</span>
+                            </div>
+                            <h2 class="text-xl font-serif font-bold text-aspire-charcoal">Clases Magistrales</h2>
+                            <span class="inline-block bg-green-100 text-green-700 text-xs font-bold px-2.5 py-0.5 rounded-full mt-1">A lo largo del programa</span>
+                            <p class="text-sm text-aspire-slate mt-3 font-semibold">Enfoque: Exposición a expertos globales.</p>
+                            <ul class="text-sm text-aspire-slate mt-3 space-y-2 list-disc list-inside marker:text-green-600/70">
+                                <li>Innovación y emprendimiento</li>
+                                <li>Desigualdad económica</li>
+                                <li>Liderazgo en la era de la Inteligencia Artificial</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Nota adicional / CTA -->
+                <div class="mt-12 text-center card-premium p-6 md:p-8 border border-aspire-red/10 bg-aspire-red/5 fade-up fade-up-delay-4">
+                    <p class="text-sm text-aspire-slate max-w-2xl mx-auto">
+                        <i class="fa-regular fa-circle-check text-aspire-red mr-1.5"></i>
+                        Al completar los tres módulos, recibirás un certificado de participación y acceso a la red global de Alumni Aspire.
+                    </p>
+                    <div class="mt-4 flex flex-wrap justify-center gap-4">
+                        <a href="https://engage.aspireleaders.org/registration" target="_blank" class="bg-aspire-red hover:bg-aspire-redDark text-white px-6 py-2.5 rounded-full text-sm font-bold uppercase tracking-wider transition-colors shadow-md inline-flex items-center gap-2">
+                            <i class="fa-regular fa-pen-to-square"></i> Postula ahora
+                        </a>
+                        <a href="./index.html" target="_blank" class="border border-aspire-red text-aspire-red hover:bg-aspire-red/10 px-6 py-2.5 rounded-full text-sm font-bold uppercase tracking-wider transition-colors inline-flex items-center gap-2">
+                            <i class="fa-regular fa-globe"></i> Más información
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Pie de página minimalista -->
+    <footer class="bg-aspire-charcoal text-white/60 border-t border-white/5 py-6">
+        <div class="container mx-auto px-4 lg:px-8 text-center text-xs">
+            <p>&copy; 2026 Aspire Institute Inc. · Este contenido es parte del programa Aspire Leaders Program.</p>
+            <p class="mt-1">
+                <a href="https://www.aspireinstitute.mx/" class="hover:text-white transition-colors">aspireinstitute.mx</a>
+                &middot;
+                <a href="mailto:mexico@aspireleaders.org" class="hover:text-white transition-colors">mexico@aspireleaders.org</a>
+            </p>
+        </div>
+    </footer>
+
+    <!-- Pequeño script para activar las animaciones (similar al original) -->
+    <script>
+        (function() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+            document.querySelectorAll('.fade-up').forEach(el => {
+                observer.observe(el);
+            });
+        })();
+    </script>
+</body>
+</html>
