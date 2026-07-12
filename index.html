@@ -1,15 +1,28 @@
 <!DOCTYPE html>
 <html lang="es" class="scroll-smooth">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aspire Institute | México Foundry</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap" rel="stylesheet">
-
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Aspire Institute | México Foundry · Líderes con impacto real</title>
+    <meta name="description" content="Aspire Institute México: programa de liderazgo gratuito para estudiantes de primera generación. Convocatoria 2026 abierta." />
+    <meta name="keywords" content="Aspire Institute, México, liderazgo, estudiantes, primera generación, becas, desarrollo, jóvenes, convocatoria 2026" />
+    <link rel="canonical" href="https://www.aspireinstitute.mx/" />
+    <meta property="og:title" content="Aspire Institute | México Foundry · Líderes con impacto real" />
+    <meta property="og:description" content="Programa de liderazgo gratuito para estudiantes de primera generación. Convocatoria 2026 abierta." />
+    <meta property="og:image" content="https://www.aspireinstitute.mx/files/heroimg.jpg" />
+    <meta property="og:url" content="https://www.aspireinstitute.mx/" />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Aspire Institute | México Foundry · Líderes con impacto real" />
+    <meta name="twitter:description" content="Programa de liderazgo gratuito para estudiantes de primera generación. Convocatoria 2026 abierta." />
+    <meta name="twitter:image" content="https://www.aspireinstitute.mx/files/heroimg.jpg" />
+    <link rel="icon" href="./imagen.jpg" type="image/jpeg" />
+    <script src="https://cdn.tailwindcss.com">
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap" rel="stylesheet" />
     <script>
         tailwind.config = {
             theme: {
@@ -48,435 +61,837 @@
         .snap-center {
             scroll-snap-align: center;
         }
+        .section-badge {
+            display: inline-block;
+            background: rgba(163, 32, 53, 0.08);
+            color: #a32035;
+            padding: 0.25rem 1rem;
+            border-radius: 9999px;
+            font-size: 0.65rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            border: 1px solid rgba(163, 32, 53, 0.15);
+        }
+        .card-hover {
+            transition: transform 0.25s ease, box-shadow 0.3s ease;
+        }
+        .card-hover:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.12);
+        }
+        .card-premium {
+            background: #ffffff;
+            border-radius: 1.25rem;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04), 0 1px 3px rgba(0, 0, 0, 0.03);
+            transition: box-shadow 0.3s ease, transform 0.25s ease;
+        }
+        .card-premium:hover {
+            box-shadow: 0 12px 40px -8px rgba(0, 0, 0, 0.10);
+            transform: translateY(-4px);
+        }
+        .card-premium .card-top-line {
+            height: 4px;
+            border-radius: 1.25rem 1.25rem 0 0;
+            background: #a32035;
+            width: 100%;
+            margin-top: -1px;
+        }
+        .card-premium .card-top-line.gold {
+            background: #fcd116;
+        }
+        .card-premium .card-top-line.green {
+            background: #008a00;
+        }
+        .icon-badge {
+            width: 3.5rem;
+            height: 3.5rem;
+            border-radius: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            background: #f8f6f5;
+            color: #a32035;
+            border: 1px solid #eee;
+            transition: background 0.2s, color 0.2s;
+        }
+        .icon-badge:hover {
+            background: #a32035;
+            color: white;
+        }
+        .ally-circle {
+            width: 5rem;
+            height: 5rem;
+            border-radius: 9999px;
+            overflow: hidden;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #f8f6f5;
+            border: 1px solid #eaeaea;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+        .ally-circle:hover {
+            border-color: #a32035;
+            box-shadow: 0 0 0 4px rgba(163, 32, 53, 0.08);
+        }
+        .ally-circle img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        @media (min-width: 640px) {
+            .ally-circle {
+                width: 5.5rem;
+                height: 5.5rem;
+            }
+        }
+        @media (min-width: 768px) {
+            .ally-circle {
+                width: 6rem;
+                height: 6rem;
+            }
+        }
+
+        /* ===== ORGANIGRAMA CORREGIDO - IDÉNTICO EN TODOS LOS DISPOSITIVOS ===== */
+        .organigrama-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0;
+            width: 100%;
+            max-width: 750px;
+            margin: 0 auto;
+            padding: 1.25rem 0.25rem;
+            position: relative;
+        }
+        .org-nivel {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            gap: 0.75rem;
+            flex-wrap: nowrap;
+            position: relative;
+            padding: 1rem 0.25rem;
+            width: 100%;
+            z-index: 1;
+        }
+        .org-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            padding: 0 0.4rem;
+            flex: 0 0 auto;
+            z-index: 2;
+            background: transparent;
+        }
+        .org-item .avatar {
+            width: 4.2rem;
+            height: 4.2rem;
+            border-radius: 9999px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.6rem;
+            border: 3px solid #a32035;
+            background: white;
+            color: #a32035;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+            transition: transform 0.25s, box-shadow 0.25s;
+            position: relative;
+            z-index: 3;
+            flex-shrink: 0;
+        }
+        .org-item .avatar:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 24px rgba(163, 32, 53, 0.16);
+        }
+        .org-item .avatar.gold {
+            border-color: #fcd116;
+            color: #b8860b;
+        }
+        .org-item .avatar.secondary {
+            border-color: #6b7280;
+            color: #4b5563;
+            width: 3.8rem;
+            height: 3.8rem;
+            font-size: 1.3rem;
+        }
+        .org-item .nombre {
+            font-weight: 700;
+            font-size: 0.85rem;
+            margin-top: 0.45rem;
+            color: #333132;
+            line-height: 1.2;
+            white-space: nowrap;
+        }
+        .org-item .cargo {
+            font-size: 0.65rem;
+            color: #4b5563;
+            line-height: 1.3;
+            max-width: 110px;
+            white-space: normal;
+        }
+
+        /* Líneas jerárquicas */
+        .org-nivel:first-child::after {
+            content: '';
+            position: absolute;
+            bottom: -0.8rem;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 0.9rem;
+            background: #a32035;
+            z-index: 0;
+            border-radius: 1px;
+        }
+        .org-nivel:nth-child(2)::after {
+            content: '';
+            position: absolute;
+            bottom: -0.8rem;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 0.9rem;
+            background: #a32035;
+            z-index: 0;
+            border-radius: 1px;
+        }
+        .org-nivel:last-child::before {
+            content: '';
+            position: absolute;
+            top: -0.1rem;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 0.9rem;
+            background: #a32035;
+            z-index: 0;
+            border-radius: 1px;
+        }
+        .org-nivel:last-child::after {
+            content: '';
+            position: absolute;
+            top: 0.75rem;
+            left: calc(50% - 5rem);
+            right: calc(50% - 5rem);
+            height: 2px;
+            background: #a32035;
+            z-index: 0;
+            border-radius: 1px;
+        }
+        .org-nivel:last-child .org-item::before {
+            content: '';
+            position: absolute;
+            top: -0.85rem;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 0.8rem;
+            background: #a32035;
+            z-index: 0;
+            border-radius: 1px;
+        }
+
+        @media (min-width: 480px) {
+            .org-item .avatar {
+                width: 4.8rem;
+                height: 4.8rem;
+                font-size: 1.8rem;
+            }
+            .org-item .avatar.secondary {
+                width: 4.2rem;
+                height: 4.2rem;
+                font-size: 1.4rem;
+            }
+            .org-item .nombre {
+                font-size: 0.95rem;
+            }
+            .org-item .cargo {
+                font-size: 0.7rem;
+                max-width: 130px;
+            }
+            .org-nivel:last-child::after {
+                left: calc(50% - 6rem);
+                right: calc(50% - 6rem);
+            }
+        }
+        @media (min-width: 640px) {
+            .org-item .avatar {
+                width: 5.5rem;
+                height: 5.5rem;
+                font-size: 2rem;
+            }
+            .org-item .avatar.secondary {
+                width: 4.8rem;
+                height: 4.8rem;
+                font-size: 1.5rem;
+            }
+            .org-item .nombre {
+                font-size: 1rem;
+            }
+            .org-item .cargo {
+                font-size: 0.75rem;
+                max-width: 150px;
+            }
+            .org-nivel {
+                gap: 1.5rem;
+            }
+            .org-nivel:last-child::after {
+                left: calc(50% - 7.5rem);
+                right: calc(50% - 7.5rem);
+            }
+        }
+        @media (min-width: 768px) {
+            .org-item .avatar {
+                width: 6rem;
+                height: 6rem;
+                font-size: 2.2rem;
+            }
+            .org-item .avatar.secondary {
+                width: 5.2rem;
+                height: 5.2rem;
+                font-size: 1.6rem;
+            }
+            .org-item .nombre {
+                font-size: 1.05rem;
+            }
+            .org-item .cargo {
+                font-size: 0.78rem;
+                max-width: 160px;
+            }
+            .org-nivel {
+                gap: 2.5rem;
+            }
+            .org-nivel:last-child::after {
+                left: calc(50% - 9rem);
+                right: calc(50% - 9rem);
+            }
+        }
+
+        /* ===== COLECTIVO MOSAICO - ENCUADRE EJECUTIVO PREMIUM ===== */
+        .mosaico-card {
+            background: #fcfcfc;
+            border-radius: 1rem;
+            padding: 2rem 1.75rem;
+            box-shadow:
+                0 1px 2px rgba(0, 0, 0, 0.03),
+                0 3px 8px rgba(0, 0, 0, 0.04),
+                0 0 0 1px rgba(0, 0, 0, 0.04);
+            border: 1px solid #e5e7eb;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .mosaico-card::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 1.5rem;
+            bottom: 1.5rem;
+            width: 3px;
+            border-radius: 0 3px 3px 0;
+            background: #a32035;
+            opacity: 0.55;
+            z-index: 1;
+        }
+        .mosaico-card:hover {
+            box-shadow:
+                0 2px 4px rgba(0, 0, 0, 0.04),
+                0 6px 16px rgba(0, 0, 0, 0.06),
+                0 0 0 1px rgba(0, 0, 0, 0.06);
+            border-color: #d1d5db;
+            transform: translateY(-2px);
+        }
+        .mosaico-logo {
+            width: 5.5rem;
+            height: 5.5rem;
+            border-radius: 9999px;
+            overflow: hidden;
+            flex-shrink: 0;
+            border: 2px solid #e5e7eb;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            transition: box-shadow 0.3s ease, border-color 0.3s;
+            position: relative;
+            z-index: 2;
+        }
+        .mosaico-logo:hover {
+            border-color: #cbd5e1;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+        }
+        .mosaico-logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .mosaico-content {
+            position: relative;
+            z-index: 2;
+        }
+        @media (min-width: 640px) {
+            .mosaico-logo {
+                width: 6.5rem;
+                height: 6.5rem;
+            }
+            .mosaico-card {
+                padding: 2.25rem 2rem;
+            }
+        }
+        @media (min-width: 768px) {
+            .mosaico-logo {
+                width: 7.5rem;
+                height: 7.5rem;
+            }
+            .mosaico-card {
+                padding: 2.5rem 2.5rem;
+            }
+        }
+
+        /* ===== TESTIMONIOS (mantenidos exactamente como estaban en diseño) ===== */
+        .testimonial-card {
+            background: #ffffff;
+            border-radius: 1.5rem;
+            padding: 1.75rem 1.5rem;
+            border-top: 4px solid #a32035;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03), 0 1px 4px rgba(0, 0, 0, 0.02);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        .testimonial-card:hover {
+            box-shadow: 0 12px 40px rgba(163, 32, 53, 0.06);
+            transform: translateY(-4px);
+        }
+        .testimonial-card .quote-icon {
+            color: rgba(163, 32, 53, 0.12);
+            font-size: 2.2rem;
+            line-height: 1;
+            margin-bottom: 0.25rem;
+        }
+        .testimonial-img {
+            width: 4.5rem;
+            height: 4.5rem;
+            flex-shrink: 0;
+            object-fit: cover;
+            border-radius: 9999px;
+            border: 3px solid #a32035;
+            box-shadow: 0 4px 16px rgba(163, 32, 53, 0.08);
+        }
+        @media (min-width: 640px) {
+            .testimonial-img {
+                width: 5.5rem;
+                height: 5.5rem;
+            }
+            .testimonial-card {
+                padding: 2rem 1.75rem;
+            }
+        }
+        @media (min-width: 768px) {
+            .testimonial-img {
+                width: 6rem;
+                height: 6rem;
+            }
+            .testimonial-card {
+                padding: 2.25rem 2rem;
+            }
+        }
+
+        .fade-up {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1), transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+        .fade-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .fade-up-delay-1 {
+            transition-delay: 0.05s;
+        }
+        .fade-up-delay-2 {
+            transition-delay: 0.10s;
+        }
+        .fade-up-delay-3 {
+            transition-delay: 0.15s;
+        }
+        .fade-up-delay-4 {
+            transition-delay: 0.20s;
+        }
     </style>
 </head>
 <body class="bg-gray-50 text-aspire-charcoal font-sans antialiased selection:bg-aspire-red selection:text-white">
 
-    <!-- Top Banner -->
-    <div class="bg-aspire-red text-white py-2.5 px-4 text-center text-xs sm:text-sm font-medium tracking-wide relative z-50">
+    <div id="top-banner" class="bg-aspire-red text-white py-2.5 px-4 text-center text-xs sm:text-sm font-medium tracking-wide relative z-50">
         <div class="container mx-auto flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-4">
-            <span>¡Ya está abierto el plazo de solicitud para el Programa de Líderes Aspire 2026!</span>
-            <a href="#aplicar" class="bg-aspire-gold text-aspire-charcoal hover:bg-aspire-goldHover px-4 py-1.5 rounded-sm text-xs font-bold uppercase tracking-wider transition-colors shadow-sm inline-block">
-                ¡Solicita ahora!
-            </a>
+            <span id="banner-text">¡Ya está abierto el plazo de solicitud para el Programa de Líderes Aspire 2026!</span>
+            <a href="https://engage.aspireleaders.org/registration" target="_blank" rel="noopener noreferrer" class="bg-aspire-gold text-aspire-charcoal hover:bg-aspire-goldHover px-4 py-1.5 rounded-sm text-xs font-bold uppercase tracking-wider transition-colors shadow-sm inline-block">¡Solicita ahora!</a>
         </div>
     </div>
 
-    <!-- Header Translucido (Efecto Ejecutivo) -->
     <header class="sticky top-0 bg-white/80 backdrop-blur-lg shadow-sm border-b border-white/20 z-40 transition-all duration-300">
         <div class="container mx-auto px-4 lg:px-8 h-20 flex items-center justify-between">
             <a href="#" class="flex flex-col group">
                 <span class="text-3xl font-serif font-bold text-aspire-red tracking-tight leading-none group-hover:text-aspire-redDark transition-colors">Aspire</span>
                 <span class="text-[9px] font-bold tracking-[0.35em] text-aspire-slate uppercase pl-0.5 mt-1">Institute</span>
             </a>
-
             <nav class="hidden lg:flex items-center space-x-6 xl:space-x-8">
-                <a href="#acerca" class="text-sm font-semibold text-aspire-charcoal hover:text-aspire-red transition-colors">¿Qué es Aspire?</a>
-                <a href="#programas" class="text-sm font-semibold text-aspire-charcoal hover:text-aspire-red transition-colors">Convocatoria 2026</a>
-                <a href="#oportunidades" class="text-sm font-semibold text-aspire-charcoal hover:text-aspire-red transition-colors">Alumni & Grants</a>
+                <a href="#convocatoria" class="text-sm font-semibold text-aspire-charcoal hover:text-aspire-red transition-colors">Convocatoria</a>
+                <a href="#proximas" class="text-sm font-semibold text-aspire-charcoal hover:text-aspire-red transition-colors">Próximas</a>
+                <a href="#nosotros" class="text-sm font-semibold text-aspire-charcoal hover:text-aspire-red transition-colors">Nosotros</a>
+                <a href="#english-corner" class="text-sm font-semibold text-aspire-charcoal hover:text-aspire-red transition-colors">English</a>
+                <a href="#alumni" class="text-sm font-semibold text-aspire-charcoal hover:text-aspire-red transition-colors">Alumni</a>
+                <a href="#testimonios" class="text-sm font-semibold text-aspire-charcoal hover:text-aspire-red transition-colors">Testimonios</a>
                 <a href="#galeria" class="text-sm font-semibold text-aspire-charcoal hover:text-aspire-red transition-colors">Galería</a>
-                <a href="#contacto" class="text-sm font-semibold text-aspire-charcoal hover:text-aspire-red transition-colors">Contacto</a>
             </nav>
-
             <div class="hidden lg:flex items-center space-x-6">
-                <a href="https://engage.aspireleaders.org/" class="text-xs font-semibold text-aspire-slate hover:text-aspire-charcoal flex items-center gap-1.5 transition-colors">
-                    <i class="fa-solid fa-user-circle text-sm text-aspire-red"></i> Portal Aspire
-                </a>
+                <a href="https://engage.aspireleaders.org/" target="_blank" rel="noopener noreferrer" class="text-xs font-semibold text-aspire-slate hover:text-aspire-charcoal flex items-center gap-1.5 transition-colors"><i class="fa-solid fa-user-circle text-sm text-aspire-red"></i> Tu portal Aspire</a>
             </div>
-
-            <!-- Botón Hamburguesa Mejorado -->
-            <button id="mobile-menu-btn" class="lg:hidden p-2 text-aspire-charcoal hover:text-aspire-red transition-colors rounded-lg hover:bg-gray-100" aria-label="Abrir menú">
-                <i class="fa-solid fa-bars-staggered text-2xl"></i>
-            </button>
+            <button id="mobile-menu-btn" class="lg:hidden p-2 text-aspire-charcoal hover:text-aspire-red transition-colors rounded-lg hover:bg-gray-100" aria-label="Abrir menú"><i class="fa-solid fa-bars-staggered text-2xl"></i></button>
         </div>
     </header>
 
-    <!-- Menú Móvil Deslizable (Off-canvas) -->
     <div id="menu-overlay" class="fixed inset-0 bg-black/50 z-50 hidden backdrop-blur-sm transition-opacity"></div>
     <div id="mobile-menu" class="fixed top-0 right-0 h-full w-4/5 max-w-sm bg-white shadow-2xl z-50 transform translate-x-full transition-transform duration-300 ease-in-out flex flex-col">
         <div class="p-6 border-b border-gray-100 flex justify-between items-center bg-gray-50/50">
             <span class="text-xl font-serif font-bold text-aspire-red">Menú</span>
-            <button id="close-menu-btn" class="p-2 text-gray-500 hover:text-aspire-red bg-white rounded-full shadow-sm" aria-label="Cerrar menú">
-                <i class="fa-solid fa-xmark text-xl"></i>
-            </button>
+            <button id="close-menu-btn" class="p-2 text-gray-500 hover:text-aspire-red bg-white rounded-full shadow-sm" aria-label="Cerrar menú"><i class="fa-solid fa-xmark text-xl"></i></button>
         </div>
         <div class="p-6 flex flex-col space-y-6 overflow-y-auto">
-            <a href="#acerca" class="mobile-link flex items-center gap-4 text-base font-medium text-aspire-charcoal hover:text-aspire-red transition-colors">
-                <div class="w-8 h-8 rounded-full bg-red-50 text-aspire-red flex items-center justify-center"><i class="fa-solid fa-circle-info"></i></div>
-                ¿Qué es Aspire?
-            </a>
-            <a href="#programas" class="mobile-link flex items-center gap-4 text-base font-medium text-aspire-charcoal hover:text-aspire-red transition-colors">
-                <div class="w-8 h-8 rounded-full bg-red-50 text-aspire-red flex items-center justify-center"><i class="fa-solid fa-calendar-check"></i></div>
-                Convocatoria 2026
-            </a>
-            <a href="#oportunidades" class="mobile-link flex items-center gap-4 text-base font-medium text-aspire-charcoal hover:text-aspire-red transition-colors">
-                <div class="w-8 h-8 rounded-full bg-red-50 text-aspire-red flex items-center justify-center"><i class="fa-solid fa-graduation-cap"></i></div>
-                Alumni & Grants
-            </a>
-            <a href="#galeria" class="mobile-link flex items-center gap-4 text-base font-medium text-aspire-charcoal hover:text-aspire-red transition-colors">
-                <div class="w-8 h-8 rounded-full bg-red-50 text-aspire-red flex items-center justify-center"><i class="fa-solid fa-images"></i></div>
-                Galería
-            </a>
-            <a href="#contacto" class="mobile-link flex items-center gap-4 text-base font-medium text-aspire-charcoal hover:text-aspire-red transition-colors">
-                <div class="w-8 h-8 rounded-full bg-red-50 text-aspire-red flex items-center justify-center"><i class="fa-solid fa-envelope"></i></div>
-                Contacto
-            </a>
-            
+            <a href="#convocatoria" class="mobile-link flex items-center gap-4 text-base font-medium text-aspire-charcoal hover:text-aspire-red transition-colors"><div class="w-8 h-8 rounded-full bg-red-50 text-aspire-red flex items-center justify-center"><i class="fa-solid fa-calendar-check"></i></div>Convocatoria</a>
+            <a href="#proximas" class="mobile-link flex items-center gap-4 text-base font-medium text-aspire-charcoal hover:text-aspire-red transition-colors"><div class="w-8 h-8 rounded-full bg-red-50 text-aspire-red flex items-center justify-center"><i class="fa-solid fa-clock"></i></div>Próximas</a>
+            <a href="#nosotros" class="mobile-link flex items-center gap-4 text-base font-medium text-aspire-charcoal hover:text-aspire-red transition-colors"><div class="w-8 h-8 rounded-full bg-red-50 text-aspire-red flex items-center justify-center"><i class="fa-solid fa-users"></i></div>Nosotros</a>
+            <a href="#english-corner" class="mobile-link flex items-center gap-4 text-base font-medium text-aspire-charcoal hover:text-aspire-red transition-colors"><div class="w-8 h-8 rounded-full bg-red-50 text-aspire-red flex items-center justify-center"><i class="fa-solid fa-language"></i></div>English Corner</a>
+            <a href="#alumni" class="mobile-link flex items-center gap-4 text-base font-medium text-aspire-charcoal hover:text-aspire-red transition-colors"><div class="w-8 h-8 rounded-full bg-red-50 text-aspire-red flex items-center justify-center"><i class="fa-solid fa-graduation-cap"></i></div>Alumni</a>
+            <a href="#testimonios" class="mobile-link flex items-center gap-4 text-base font-medium text-aspire-charcoal hover:text-aspire-red transition-colors"><div class="w-8 h-8 rounded-full bg-red-50 text-aspire-red flex items-center justify-center"><i class="fa-solid fa-quote-left"></i></div>Testimonios</a>
+            <a href="#galeria" class="mobile-link flex items-center gap-4 text-base font-medium text-aspire-charcoal hover:text-aspire-red transition-colors"><div class="w-8 h-8 rounded-full bg-red-50 text-aspire-red flex items-center justify-center"><i class="fa-solid fa-images"></i></div>Galería</a>
             <div class="mt-auto pt-8 border-t border-gray-100">
-                <a href="https://engage.aspireleaders.org/" class="flex items-center justify-center gap-2 bg-gray-900 text-white py-3 rounded-lg font-medium">
-                    <i class="fa-solid fa-user-circle"></i> Portal Aspire
-                </a>
+                <a href="https://engage.aspireleaders.org/" target="_blank" rel="noopener noreferrer" class="flex items-center justify-center gap-2 bg-gray-900 text-white py-3 rounded-lg font-medium"><i class="fa-solid fa-user-circle"></i> Tu portal Aspire</a>
             </div>
         </div>
     </div>
 
-    <!-- Hero Section con Cuenta Regresiva -->
-    <section class="relative bg-aspire-charcoal overflow-hidden flex items-center min-h-[85vh]">
+    <section class="relative bg-aspire-charcoal overflow-hidden flex items-center min-h-[80vh]">
         <div class="absolute inset-0 z-0">
             <div class="absolute inset-0 bg-gradient-to-r from-black/80 via-black/60 to-transparent z-10"></div>
             <img src="./files/heroimg.jpg" alt="Estudiantes Aspire" class="w-full h-full object-cover object-center transform scale-105 filter grayscale-[20%]">
         </div>
-
         <div class="container mx-auto px-4 lg:px-8 relative z-20 py-16">
             <div class="max-w-3xl">
-                <h1 class="text-4xl sm:text-5xl lg:text-6xl font-serif font-bold text-white tracking-tight leading-tight mb-6">
-                    Líderes con impacto real
-                </h1>
-                <p class="text-lg sm:text-xl text-gray-200 leading-relaxed font-light mb-10 max-w-2xl">
-                    Empoderamos a estudiantes universitarios de primera generación para que desarrollen su potencial de liderazgo. Conectamos la ambición con la oportunidad, formando a los agentes de cambio del mañana en México.
-                </p>
-                
-                <!-- Countdown Timer -->
-                <div class="bg-white/10 backdrop-blur-md border border-white/20 rounded-lg p-6 mb-8 inline-block shadow-xl">
-                    <p class="text-aspire-gold text-xs font-bold uppercase tracking-widest mb-3">Cierre Cohort 3: 10 de Julio 2026</p>
+                <span class="inline-block bg-aspire-gold/20 text-aspire-gold px-4 py-1 rounded-full text-xs font-bold uppercase tracking-wider mb-4 backdrop-blur-sm border border-aspire-gold/30">Cohorte 3 · 2026</span>
+                <h1 class="text-4xl sm:text-5xl lg:text-6xl font-serif font-bold text-white tracking-tight leading-tight mb-6">Líderes con impacto real</h1>
+                <p class="text-lg sm:text-xl text-gray-200 leading-relaxed font-light mb-10 max-w-2xl">Empoderamos a estudiantes universitarios de primera generación para que desarrollen su potencial de liderazgo. Conectamos la ambición con la oportunidad.</p>
+                <div id="countdown-wrapper" class="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-6 mb-8 inline-block shadow-xl">
+                    <p id="countdown-label" class="text-aspire-gold text-xs font-bold uppercase tracking-widest mb-3">Cierre Cohort 3: 10 de Julio 2026</p>
                     <div class="flex gap-4 sm:gap-6 text-center" id="countdown">
-                        <div class="flex flex-col">
-                            <span class="text-3xl sm:text-4xl font-serif font-bold text-white" id="cd-days">00</span>
-                            <span class="text-[10px] sm:text-xs text-gray-300 uppercase font-medium mt-1">Días</span>
-                        </div>
+                        <div class="flex flex-col"><span class="text-3xl sm:text-4xl font-serif font-bold text-white" id="cd-days">00</span><span class="text-[10px] sm:text-xs text-gray-300 uppercase font-medium mt-1">Días</span></div>
                         <span class="text-2xl text-white/50 font-serif">:</span>
-                        <div class="flex flex-col">
-                            <span class="text-3xl sm:text-4xl font-serif font-bold text-white" id="cd-hours">00</span>
-                            <span class="text-[10px] sm:text-xs text-gray-300 uppercase font-medium mt-1">Horas</span>
-                        </div>
+                        <div class="flex flex-col"><span class="text-3xl sm:text-4xl font-serif font-bold text-white" id="cd-hours">00</span><span class="text-[10px] sm:text-xs text-gray-300 uppercase font-medium mt-1">Horas</span></div>
                         <span class="text-2xl text-white/50 font-serif">:</span>
-                        <div class="flex flex-col">
-                            <span class="text-3xl sm:text-4xl font-serif font-bold text-white" id="cd-minutes">00</span>
-                            <span class="text-[10px] sm:text-xs text-gray-300 uppercase font-medium mt-1">Min</span>
-                        </div>
+                        <div class="flex flex-col"><span class="text-3xl sm:text-4xl font-serif font-bold text-white" id="cd-minutes">00</span><span class="text-[10px] sm:text-xs text-gray-300 uppercase font-medium mt-1">Min</span></div>
                         <span class="text-2xl text-white/50 font-serif hidden sm:block">:</span>
-                        <div class="flex flex-col hidden sm:flex">
-                            <span class="text-3xl sm:text-4xl font-serif font-bold text-white" id="cd-seconds">00</span>
-                            <span class="text-[10px] sm:text-xs text-gray-300 uppercase font-medium mt-1">Seg</span>
-                        </div>
+                        <div class="flex flex-col hidden sm:flex"><span class="text-3xl sm:text-4xl font-serif font-bold text-white" id="cd-seconds">00</span><span class="text-[10px] sm:text-xs text-gray-300 uppercase font-medium mt-1">Seg</span></div>
                     </div>
                 </div>
-
-                <div>
-                    <a href="https://www.aspireleaders.org/" class="bg-aspire-gold hover:bg-aspire-goldHover text-aspire-charcoal px-8 py-4 rounded-sm font-bold uppercase tracking-wider text-sm text-center shadow-lg transition-all inline-block">
-                        Aplicar ahora
-                    </a>
+                <div class="flex flex-wrap gap-4">
+                    <a href="https://engage.aspireleaders.org/registration" target="_blank" rel="noopener noreferrer" class="bg-aspire-gold hover:bg-aspire-goldHover text-aspire-charcoal px-8 py-4 rounded-sm font-bold uppercase tracking-wider text-sm text-center shadow-lg transition-all inline-block">Aplicar ahora</a>
+                    <a href="https://www.aspireleaders.org/" target="_blank" rel="noopener noreferrer" class="bg-white/10 hover:bg-white/20 text-white border border-white/30 px-8 py-4 rounded-sm font-bold uppercase tracking-wider text-sm text-center transition-all inline-block backdrop-blur-sm">Conoce más</a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Impacto Local Section -->
-    <section class="py-16 bg-white border-b border-gray-100">
+    <section class="py-12 bg-white border-b border-gray-100">
         <div class="container mx-auto px-4 lg:px-8">
-            <h2 class="text-4xl font-serif font-bold text-aspire-charcoal text-center mb-12">Impacto local</h2>
-            
-            <div class="flex overflow-x-auto snap-x md:grid md:grid-cols-3 gap-6 pb-6 md:pb-0 scrollbar-hide">
-                <div class="snap-center shrink-0 w-[80vw] sm:w-[300px] md:w-auto relative group overflow-hidden rounded-lg aspect-video md:aspect-square lg:aspect-video shadow-md">
-                    <img src="https://images.unsplash.com/photo-1529390079861-591de354faf5?auto=format&fit=crop&w=800&q=80" alt="Aprendices" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 filter brightness-50">
-                    <div class="absolute inset-0 flex flex-col items-center justify-center p-6 text-center">
-                        <div class="text-5xl lg:text-6xl font-bold text-white mb-2 tracking-tight">4,000+</div>
-                        <div class="text-base text-white/90 font-medium tracking-wider">Aprendices</div>
+            <h2 class="text-3xl font-serif font-bold text-aspire-charcoal text-center mb-8">Impacto local</h2>
+            <div class="flex overflow-x-auto snap-x md:grid md:grid-cols-3 gap-6 pb-4 md:pb-0 scrollbar-hide">
+                <div class="snap-center shrink-0 w-[80vw] sm:w-[300px] md:w-auto relative group overflow-hidden rounded-xl aspect-video md:aspect-square lg:aspect-video shadow-md"><img src="https://images.unsplash.com/photo-1529390079861-591de354faf5?auto=format&fit=crop&w=800&q=80" alt="Estudiantes" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 filter brightness-50"><div class="absolute inset-0 flex flex-col items-center justify-center p-6 text-center"><div class="text-5xl lg:text-6xl font-bold text-white mb-2 tracking-tight">4,000+</div><div class="text-base text-white/90 font-medium tracking-wider">Estudiantes</div></div></div>
+                <div class="snap-center shrink-0 w-[80vw] sm:w-[300px] md:w-auto relative group overflow-hidden rounded-xl aspect-video md:aspect-square lg:aspect-video shadow-md"><img src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=800&q=80" alt="Alumni" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 filter brightness-50"><div class="absolute inset-0 flex flex-col items-center justify-center p-6 text-center"><div class="text-5xl lg:text-6xl font-bold text-white mb-2 tracking-tight">850</div><div class="text-base text-white/90 font-medium tracking-wider">Alumni</div></div></div>
+                <div class="snap-center shrink-0 w-[80vw] sm:w-[300px] md:w-auto relative group overflow-hidden rounded-xl aspect-video md:aspect-square lg:aspect-video shadow-md"><img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=800&q=80" alt="Crecimiento" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 filter brightness-50"><div class="absolute inset-0 flex flex-col items-center justify-center p-6 text-center"><div class="text-5xl lg:text-6xl font-bold text-white mb-2 tracking-tight">523 %</div><div class="text-base text-white/90 font-medium leading-tight max-w-[200px] mx-auto">Crecimiento solicitudes 2024 → 2025</div></div></div>
+            </div>
+        </div>
+    </section>
+
+<section id="convocatoria" class="py-14 bg-gray-50">
+  <div class="container mx-auto px-4 lg:px-8">
+
+    <!-- Contenido centrado con párrafos justificados -->
+    <div class="max-w-3xl mx-auto">
+      
+      <div class="text-center">
+        <span class="section-badge">Convocatoria 2026</span>
+        <h3 class="text-3xl md:text-4xl font-serif font-bold text-aspire-charcoal mt-3 mb-4">¿Qué es Aspire?</h3>
+      </div>
+      
+      <p class="text-aspire-slate leading-relaxed mb-4 text-sm text-justify">
+        Aspire es una organización internacional sin fines de lucro fundada en 2017 por docentes de Harvard, con presencia en 195 países. Acompañamos a estudiantes de primera generación y egresados recientes de contextos con desigualdades económicas. En 2026, a través de Mosaico A.C., llega a México.
+      </p>
+      
+      <div class="text-center">
+        <h4 class="text-xl font-serif font-bold text-aspire-charcoal mb-2">Estructura del programa</h4>
+      </div>
+      
+      <p class="text-aspire-slate leading-relaxed mb-4 text-sm text-justify">
+        Programa en línea, gratuito y autofinanciado, impartido en inglés (comprensión lectora). Dura 9 semanas, combina actividades asincrónicas y sesiones en vivo.
+      </p>
+      
+      <div class="text-center">
+        <a href="./plan.html" class="inline-flex items-center gap-2 bg-aspire-red text-white px-6 py-3 rounded-full font-bold text-sm uppercase tracking-wider hover:bg-aspire-redDark transition-colors shadow-md">
+          <i class="fa-solid fa-eye"></i> Ver plan de estudios
+        </a>
+      </div>
+    </div>
+
+    <!-- Tarjeta premium: Elegibilidad + Fechas + CTA (sin cambios) -->
+    <div class="mt-12 card-premium overflow-hidden">
+      <div class="flex flex-col md:flex-row divide-y md:divide-y-0 md:divide-x divide-gray-200">
+        <div class="flex-1 p-6 md:p-8">
+          <div class="flex items-center gap-2 mb-4">
+            <i class="fa-regular fa-circle-check text-aspire-green text-xl"></i>
+            <h4 class="text-xl font-serif font-bold text-aspire-charcoal">Criterios de elegibilidad</h4>
+          </div>
+          <ul class="space-y-4 text-aspire-slate">
+            <li class="flex items-start gap-3">
+              <span class="w-6 h-6 rounded-full bg-aspire-red/10 text-aspire-red flex items-center justify-center text-sm font-bold mt-0.5">1</span>
+              <span><strong class="text-aspire-charcoal">18 – 29 años</strong></span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="w-6 h-6 rounded-full bg-aspire-red/10 text-aspire-red flex items-center justify-center text-sm font-bold mt-0.5">2</span>
+              <span><strong class="text-aspire-charcoal">Estudiante universitario o egresado reciente</strong></span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="w-6 h-6 rounded-full bg-aspire-red/10 text-aspire-red flex items-center justify-center text-sm font-bold mt-0.5">3</span>
+              <span><strong class="text-aspire-charcoal">Primera generación en universidad o contexto de desigualdad económica</strong></span>
+            </li>
+          </ul>
+          <div class="mt-6 p-4 bg-aspire-gold/10 border-l-4 border-aspire-gold rounded-r-lg">
+            <p class="text-sm font-medium text-aspire-charcoal">
+              <i class="fa-regular fa-circle-check text-aspire-green mr-2"></i>
+              Si cumples estos criterios, <strong>la admisión está garantizada</strong>.
+            </p>
+          </div>
+        </div>
+        <div class="flex-1 p-6 md:p-8 bg-gray-50/50 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center gap-2 mb-4">
+              <i class="fa-regular fa-calendar text-aspire-red text-xl"></i>
+              <h4 class="text-xl font-serif font-bold text-aspire-charcoal">Fechas clave</h4>
+            </div>
+            <div class="space-y-3 text-sm">
+              <div class="flex justify-between border-b border-gray-200 pb-2">
+                <span class="text-aspire-slate">Cierre convocatoria</span>
+                <span class="font-bold text-aspire-red">10 de julio 2026</span>
+              </div>
+              <div class="flex justify-between border-b border-gray-200 pb-2">
+                <span class="text-aspire-slate">Inicio del programa</span>
+                <span class="font-bold">22 de julio 2026</span>
+              </div>
+              <div class="flex justify-between">
+                <span class="text-aspire-slate">Fin del programa</span>
+                <span class="font-bold">28 de septiembre 2026</span>
+              </div>
+            </div>
+          </div>
+          <div class="mt-6">
+            <a href="https://engage.aspireleaders.org/registration" target="_blank" rel="noopener noreferrer" class="block text-center bg-aspire-red text-white px-6 py-3 rounded-full font-bold text-sm uppercase tracking-wider hover:bg-aspire-redDark transition-colors shadow-md">
+              Postula ahora en engage.aspireleaders.org
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+    <section id="proximas" class="py-14 bg-white border-y border-gray-100">
+        <div class="container mx-auto px-4 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-10"><span class="section-badge">Convocatorias internas</span><h3 class="text-3xl font-serif font-bold text-aspire-charcoal mt-3">Próximas oportunidades</h3><p class="text-aspire-slate mt-2">Voluntariado, Grants & Awards, y Mentoría para nuestra comunidad.</p></div>
+            <div class="flex overflow-x-auto snap-x gap-6 pb-6 md:grid md:grid-cols-3 md:gap-8 md:pb-0 scrollbar-hide">
+                <div class="snap-center shrink-0 w-[80vw] sm:w-[300px] md:w-auto card-premium p-6 card-hover"><div class="icon-badge mb-4"><i class="fa-solid fa-hands-helping"></i></div><h4 class="text-xl font-bold font-serif text-aspire-charcoal mb-2">Voluntariado</h4><p class="text-sm text-aspire-slate flex-grow">Tres formas de participar: embajador, facilitador o mentor.</p><div class="mt-4 flex items-center gap-2"><span class="inline-block w-2 h-2 rounded-full bg-aspire-red"></span><span class="text-xs font-bold text-aspire-red uppercase tracking-wider">Próxima apertura</span></div></div>
+                <div class="snap-center shrink-0 w-[80vw] sm:w-[300px] md:w-auto card-premium p-6 card-hover"><div class="icon-badge mb-4" style="color:#b8860b;"><i class="fa-solid fa-trophy"></i></div><h4 class="text-xl font-bold font-serif text-aspire-charcoal mb-2">Grants & Awards</h4><p class="text-sm text-aspire-slate flex-grow">Seed Funds, Academic Grants y Community Action Awards.</p><div class="mt-4 flex items-center gap-2"><span class="inline-block w-2 h-2 rounded-full bg-green-600"></span><span class="text-xs font-bold text-green-600 uppercase tracking-wider">Abierto por ciclos</span></div></div>
+                <div class="snap-center shrink-0 w-[80vw] sm:w-[300px] md:w-auto card-premium p-6 card-hover"><div class="icon-badge mb-4" style="color:#5b3e8c;"><i class="fa-solid fa-people-arrows"></i></div><h4 class="text-xl font-bold font-serif text-aspire-charcoal mb-2">Mentoría</h4><p class="text-sm text-aspire-slate flex-grow">Conecta con profesionales y líderes que te guiarán.</p><div class="mt-4 flex items-center gap-2"><span class="inline-block w-2 h-2 rounded-full bg-blue-600"></span><span class="text-xs font-bold text-blue-600 uppercase tracking-wider">Proximamente</span></div></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== NOSOTROS - ORGANIGRAMA IDÉNTICO EN TODOS LOS DISPOSITIVOS ===== -->
+    <section id="nosotros" class="py-14 bg-gray-50">
+        <div class="container mx-auto px-4 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-10">
+                <span class="section-badge">Equipo</span>
+                <h3 class="text-3xl font-serif font-bold text-aspire-charcoal mt-3">Conozca al equipo</h3>
+                <p class="text-aspire-slate mt-2">Un equipo comprometido con crear acceso equitativo a oportunidades de liderazgo en todo México.</p>
+            </div>
+            <div class="organigrama-wrapper">
+                <div class="org-nivel">
+                    <div class="org-item">
+                        <div class="avatar"><i class="fa-solid fa-user-tie"></i></div>
+                        <span class="nombre">Ana Flores</span>
+                        <span class="cargo">Directora Nacional</span>
                     </div>
                 </div>
-                
-                <div class="snap-center shrink-0 w-[80vw] sm:w-[300px] md:w-auto relative group overflow-hidden rounded-lg aspect-video md:aspect-square lg:aspect-video shadow-md">
-                    <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=800&q=80" alt="Antiguos Alumnos" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 filter brightness-50">
-                    <div class="absolute inset-0 flex flex-col items-center justify-center p-6 text-center">
-                        <div class="text-5xl lg:text-6xl font-bold text-white mb-2 tracking-tight">850</div>
-                        <div class="text-base text-white/90 font-medium tracking-wider">Antiguos alumnos</div>
+                <div class="org-nivel">
+                    <div class="org-item">
+                        <div class="avatar gold"><i class="fa-solid fa-user-group"></i></div>
+                        <span class="nombre">Erika Pérez</span>
+                        <span class="cargo">Coordinadora de Divulgación</span>
                     </div>
                 </div>
-                
-                <div class="snap-center shrink-0 w-[80vw] sm:w-[300px] md:w-auto relative group overflow-hidden rounded-lg aspect-video md:aspect-square lg:aspect-video shadow-md">
-                    <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=800&q=80" alt="Crecimiento" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 filter brightness-50">
-                    <div class="absolute inset-0 flex flex-col items-center justify-center p-6 text-center">
-                        <div class="text-5xl lg:text-6xl font-bold text-white mb-2 tracking-tight">523 %</div>
-                        <div class="text-base text-white/90 font-medium leading-tight max-w-[200px] mx-auto">Crecimiento solicitudes 2024 a 2025</div>
+                <div class="org-nivel">
+                    <div class="org-item">
+                        <div class="avatar secondary"><i class="fa-solid fa-hand-holding-heart"></i></div>
+                        <span class="nombre">Voluntarios</span>
+                        <span class="cargo">Facilitadores y embajadores</span>
+                    </div>
+                    <div class="org-item">
+                        <div class="avatar secondary"><i class="fa-solid fa-flag"></i></div>
+                        <span class="nombre">Campus Leaders</span>
+                        <span class="cargo">Líderes en universidades</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Colectivo Mosaico - Encuadre ejecutivo premium -->
+            <div class="mt-12 mosaico-card max-w-3xl mx-auto">
+                <div class="flex flex-col sm:flex-row items-center gap-5 sm:gap-7 mosaico-content">
+                    <div class="mosaico-logo">
+                        <img src="./comppliances/mosaico.jpg" alt="Colectivo Mosaico">
+                    </div>
+                    <div class="text-center sm:text-left">
+                        <h4 class="text-xl sm:text-2xl font-serif font-bold text-aspire-charcoal mb-1.5">Colectivo Mosaico A.C.</h4>
+                        <p class="text-aspire-slate leading-relaxed text-xs sm:text-sm max-w-lg">
+                            Asociación civil donataria autorizada con sede en CDMX. Aspire México opera a través de esta alianza, dedicada a la orientación académica y el desarrollo integral con compromiso inquebrantable con la justicia social y la equidad de género.
+                        </p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Resto de secciones (¿Qué es Aspire?, Oportunidades, Galería) permanecen igual de optimizadas -->
-    <section id="acerca" class="py-20 bg-gray-50">
-        <!-- Contenido idéntico a la versión anterior... -->
+    <section id="english-corner" class="py-14 bg-white border-y border-gray-100">
         <div class="container mx-auto px-4 lg:px-8">
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-                <div>
-                    <h2 class="text-xs font-bold tracking-widest text-aspire-red uppercase mb-3">Conoce nuestra misión</h2>
-                    <h3 class="text-3xl md:text-4xl font-serif font-bold text-aspire-charcoal mb-6">¿Qué es Aspire?</h3>
-                    <p class="text-aspire-slate leading-relaxed mb-6">Fundada en 2017 por docentes de la Escuela de Negocios de Harvard, acompañamos a estudiantes universitarios de primera generación y egresados recientes de contextos con desigualdades económicas, para que se conviertan en agentes de cambio en sus comunidades. En 2026, a través de Mosaico A.C., Aspire llega a México.</p>
-                    <h4 class="text-xl font-serif font-bold text-aspire-charcoal mb-3">Estructura del programa</h4>
-                    <p class="text-aspire-slate leading-relaxed mb-6">El Aspire Leaders Program (ALP) es en línea, gratuito y autofinanciado, impartido en inglés (solo se requiere comprensión lectora básica). Dura 9 semanas combinando actividades a tu propio ritmo con sesiones en vivo.</p>
-                </div>
-                <div class="relative">
-                  <img src="./files/thx.jpg" alt="Estudiantes trabajando" 
-     style="width: 67%; height: auto;" 
-     class="rounded-lg shadow-xl relative z-10">
-                    <div class="absolute -bottom-6 -left-6 w-24 h-24 bg-aspire-gold rounded-full z-0 opacity-70"></div>
+            <div class="text-center max-w-2xl mx-auto mb-10"><span class="section-badge">Práctica de inglés</span><h3 class="text-3xl font-serif font-bold text-aspire-charcoal mt-3">English Corner</h3></div>
+            <div class="card-premium overflow-hidden">
+                <div class="flex flex-col md:flex-row divide-y md:divide-y-0 md:divide-x divide-gray-200">
+                    <div class="flex-1 p-6 md:p-8">
+                        <div class="flex items-center gap-2 mb-4"><i class="fa-solid fa-language text-aspire-red text-xl"></i><h4 class="text-xl font-serif font-bold text-aspire-charcoal">Programa de práctica</h4></div>
+                        <p class="text-sm text-aspire-slate leading-relaxed mb-4">Espacio seguro, dinámico y sin presión para perder el miedo a comunicarse en inglés, con conversaciones y actividades de la vida real (entrevistas, LinkedIn, liderazgo, posgrados).</p>
+                        <ul class="space-y-2 text-sm text-aspire-slate"><li class="flex items-center gap-2"><i class="fa-regular fa-circle-check text-aspire-green"></i> 24 sesiones al año</li><li class="flex items-center gap-2"><i class="fa-regular fa-circle-check text-aspire-green"></i> Virtual y presencial</li><li class="flex items-center gap-2"><i class="fa-regular fa-circle-check text-aspire-green"></i> Grupos pequeños</li><li class="flex items-center gap-2"><i class="fa-regular fa-circle-check text-aspire-green"></i> Facilitado por voluntarios</li></ul>
+                    </div>
+                    <div class="flex-1 p-6 md:p-8 bg-gray-50/50 flex flex-col items-center justify-center"><img src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=400&q=80" alt="English Corner" class="rounded-xl shadow-md w-full max-w-xs object-cover h-40 mb-4"><div class="text-center"><span class="inline-block bg-aspire-red text-white px-6 py-2 rounded-full font-bold text-sm uppercase tracking-wider shadow-sm">Próxima sesión: consulta fechas</span></div></div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="oportunidades" class="py-20 bg-white border-y border-gray-100">
-        <!-- Carrusel horizontal oportunidades igual de optimizado -->
+    <section id="alumni" class="py-14 bg-gray-50">
         <div class="container mx-auto px-4 lg:px-8">
-            <div class="text-center max-w-2xl mx-auto mb-14">
-                <h2 class="text-xs font-bold tracking-widest text-aspire-red uppercase mb-2">Más allá del programa</h2>
-                <h3 class="text-3xl font-serif font-bold text-aspire-charcoal">Oportunidades y Financiamiento</h3>
-            </div>
-            <div class="flex overflow-x-auto snap-x gap-6 pb-8 md:grid md:grid-cols-2 lg:grid-cols-4 md:pb-0 scrollbar-hide">
-                <!-- Cards Oportunidades... -->
-                <div class="snap-center shrink-0 w-[80vw] sm:w-[300px] md:w-auto bg-gray-50 p-6 rounded-xl border border-gray-100 flex flex-col">
-                    <div class="w-12 h-12 bg-blue-100 text-blue-600 rounded-lg flex items-center justify-center mb-4 text-xl"><i class="fa-solid fa-comments"></i></div>
-                    <h4 class="text-xl font-bold font-serif text-aspire-charcoal mb-2">English Corner</h4>
-                    <p class="text-sm text-aspire-slate flex-grow">Práctica gratuita de inglés sin presión. 24 sesiones al año para mejorar tu fluidez en entrevistas y networking.</p>
-                </div>
-                <div class="snap-center shrink-0 w-[80vw] sm:w-[300px] md:w-auto bg-gray-50 p-6 rounded-xl border border-gray-100 flex flex-col">
-                    <div class="w-12 h-12 bg-green-100 text-green-600 rounded-lg flex items-center justify-center mb-4 text-xl"><i class="fa-solid fa-seedling"></i></div>
-                    <h4 class="text-xl font-bold font-serif text-aspire-charcoal mb-2">Seed Funds</h4>
-                    <p class="text-sm text-aspire-slate flex-grow">Fondo inicial de $200 a $500 USD para egresados que deseen convertir una idea en un proyecto concreto.</p>
-                </div>
-                 <div class="snap-center shrink-0 w-[85vw] sm:w-[350px] md:w-auto bg-gray-50 p-6 rounded-xl border border-gray-100 hover:shadow-lg transition-all flex flex-col">
-
-                    <div class="w-12 h-12 bg-purple-100 text-purple-600 rounded-lg flex items-center justify-center mb-4 text-xl">
-
-                        <i class="fa-solid fa-book-open-reader"></i>
-
-                    </div>
-
-                    <h4 class="text-xl font-bold font-serif text-aspire-charcoal mb-2">Academic Grants</h4>
-
-                    <p class="text-sm text-aspire-slate flex-grow">Becas para apoyar tu formación continua: certificaciones profesionales, exámenes especializados y rutas de aprendizaje avanzadas.</p>
-
-                </div>
-
-
-
-                <div class="snap-center shrink-0 w-[85vw] sm:w-[350px] md:w-auto bg-gray-50 p-6 rounded-xl border border-gray-100 hover:shadow-lg transition-all flex flex-col">
-
-                    <div class="w-12 h-12 bg-aspire-gold/20 text-yellow-700 rounded-lg flex items-center justify-center mb-4 text-xl">
-
-                        <i class="fa-solid fa-trophy"></i>
-
-                    </div>
-
-                    <h4 class="text-xl font-bold font-serif text-aspire-charcoal mb-2">Community Action Awards</h4>
-
-                    <p class="text-sm text-aspire-slate flex-grow">Premio de hasta $5,000 USD para escalar proyectos exitosos que previamente recibieron financiamiento semilla.</p>
-
-                </div>
+            <div class="text-center max-w-3xl mx-auto mb-10"><span class="section-badge">Comunidad global</span><h3 class="text-3xl font-serif font-bold text-aspire-charcoal mt-3">Alumni & ELP</h3><p class="text-aspire-slate mt-2">Más de 100,000 egresados en 195 países. Graduarte es el comienzo.</p></div>
+            <div class="flex overflow-x-auto snap-x gap-6 pb-6 md:grid md:grid-cols-3 md:gap-6 md:pb-0 scrollbar-hide">
+                <div class="snap-center shrink-0 w-[80vw] sm:w-[300px] md:w-auto card-premium p-6 flex flex-col card-hover"><div class="card-top-line"></div><div class="flex items-center gap-3 mb-3 mt-2"><i class="fa-solid fa-route text-2xl text-aspire-red"></i><h4 class="text-xl font-serif font-bold text-aspire-charcoal">ELP Pathways</h4></div><p class="text-sm text-aspire-slate flex-grow leading-relaxed">Acceso a recursos, mentorías y microbecas en tres rutas: <strong>desarrollo profesional</strong>, <strong>emprendimiento</strong> y <strong>educación superior</strong>. Flexible y autodirigido.</p><div class="flex flex-wrap gap-2 mt-4"><span class="bg-aspire-red/10 text-aspire-red px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider">Profesional</span><span class="bg-aspire-gold/20 text-yellow-700 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider">Emprende</span><span class="bg-blue-100 text-blue-600 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider">Académico</span></div></div>
+                <div class="snap-center shrink-0 w-[80vw] sm:w-[300px] md:w-auto card-premium p-6 flex flex-col card-hover"><div class="card-top-line gold"></div><div class="flex items-center gap-3 mb-3 mt-2"><i class="fa-solid fa-robot text-2xl text-aspire-red"></i><h4 class="text-xl font-serif font-bold text-aspire-charcoal">LAPA</h4></div><p class="text-sm text-aspire-slate flex-grow leading-relaxed">Programa virtual de 8 semanas que combina IA con habilidades prácticas de liderazgo. <strong>Precio regular $100 USD, alumni $25 USD.</strong></p><div class="mt-4 p-3 bg-aspire-gold/10 border-l-4 border-aspire-gold rounded-r-lg"><p class="text-xs font-medium text-aspire-charcoal"><i class="fa-regular fa-circle-check text-aspire-green mr-1"></i> Descuento exclusivo</p></div></div>
+                <div class="snap-center shrink-0 w-[80vw] sm:w-[300px] md:w-auto card-premium p-6 flex flex-col card-hover"><div class="card-top-line green"></div><div class="flex items-center gap-3 mb-3 mt-2"><i class="fa-solid fa-gem text-2xl text-aspire-red"></i><h4 class="text-xl font-serif font-bold text-aspire-charcoal">Grants & Awards</h4></div><ul class="text-sm text-aspire-slate space-y-2 flex-grow"><li><i class="fa-solid fa-seedling text-green-600 w-5"></i> Seed Funds: $200–$500 USD</li><li><i class="fa-solid fa-book-open-reader text-purple-600 w-5"></i> Academic Advancement: becas</li><li><i class="fa-solid fa-trophy text-yellow-600 w-5"></i> Community Action: hasta $5,000 USD</li></ul><div class="mt-4 text-xs text-aspire-slate italic">Requisito: completar el ALP.</div></div>
             </div>
         </div>
     </section>
 
-    <!-- Voces de la Comunidad (CENTRADAS) -->
-    <section class="py-20 bg-white">
+    <section id="testimonios" class="py-14 bg-white">
         <div class="container mx-auto px-4 lg:px-8">
-            <div class="max-w-3xl mx-auto text-center mb-12 border-b-2 border-aspire-red pb-6">
-                <h3 class="text-4xl font-serif font-bold text-aspire-red mb-4">Voces de la comunidad</h3>
-                <p class="text-lg text-aspire-charcoal leading-relaxed font-light">
-                    Cada historia de Aspire México es un reflejo de resiliencia, crecimiento y transformación. Escucha a nuestros exalumnos que están liderando el cambio, una comunidad a la vez.
+            <div class="text-center max-w-3xl mx-auto mb-10"><span class="section-badge">Voces de la comunidad</span><h3 class="text-3xl font-serif font-bold text-aspire-charcoal mt-3">Testimonios</h3><p class="text-aspire-slate mt-2">Historias de resiliencia, crecimiento y transformación.</p></div>
+            <div class="flex overflow-x-auto snap-x gap-6 pb-6 md:grid md:grid-cols-2 md:gap-6 md:pb-0 scrollbar-hide">
+                <div class="snap-center shrink-0 w-[85vw] sm:w-[400px] md:w-auto testimonial-card flex flex-col sm:flex-row gap-4 items-start relative"><img src="./quotes/yael.jpg" alt="Yael Emir Guzmán" class="testimonial-img"><div><h4 class="font-bold text-lg text-aspire-charcoal">Yael Emir Guzmán, UNAM / IPN</h4><div class="mt-1 text-sm text-aspire-slate leading-relaxed"><i class="fa-solid fa-quote-left quote-icon mr-1"></i> "Aprendes a comunicar ideas, conectar con personas y leer el contexto. Te abre puertas a becas, financiamientos y crecimiento. Lo recomiendo para desarrollarte profesional y personalmente."</div></div></div>
+                <div class="snap-center shrink-0 w-[85vw] sm:w-[400px] md:w-auto testimonial-card flex flex-col sm:flex-row gap-4 items-start relative"><img src="./quotes/milton.jpg" alt="Milton Rodríguez" class="testimonial-img"><div><h4 class="font-bold text-lg text-aspire-charcoal">Milton Rodríguez, Propulsión UNAM</h4><div class="mt-1 text-sm text-aspire-slate leading-relaxed"><i class="fa-solid fa-quote-left quote-icon mr-1"></i> "La comunidad en Discord me permitió poner en práctica lo aprendido y recibir consejos. Entendí que un líder influye positivamente, no solo ocupa un cargo. Aspire me mostró que desde cualquier lugar se pueden hacer cosas grandes."</div></div></div>
+                <div class="snap-center shrink-0 w-[85vw] sm:w-[400px] md:w-auto testimonial-card flex flex-col sm:flex-row gap-4 items-start relative"><img src="./quotes/mich.jpg" alt="Michelle Hernández" class="testimonial-img"><div><h4 class="font-bold text-lg text-aspire-charcoal">Michelle Hernández, Tec de Monterrey</h4><div class="mt-1 text-sm text-aspire-slate leading-relaxed"><i class="fa-solid fa-quote-left quote-icon mr-1"></i> "Las Masterclasses con profesores de Harvard y MIT fueron lo mejor. El programa da herramientas para desarrollar ideas y llevarlas a la acción. Mi proyecto son asesorías de orientación vocacional."</div></div></div>
+                <div class="snap-center shrink-0 w-[85vw] sm:w-[400px] md:w-auto testimonial-card flex flex-col sm:flex-row gap-4 items-start relative"><img src="./quotes/ximena.jpg" alt="Ximena Sandoval" class="testimonial-img"><div><h4 class="font-bold text-lg text-aspire-charcoal">Ximena Sandoval, Mujeres Globales, Nayarit</h4><div class="mt-1 text-sm text-aspire-slate leading-relaxed"><i class="fa-solid fa-quote-left quote-icon mr-1"></i> "Con las mentorías potenciamos nuestro proyecto y llegamos a 280 mujeres en 11 países. El Seed Fund Award permitió ediciones presenciales. Aspire me ayudó a construir una red global de agentes de cambio."</div></div></div>
+                <div class="snap-center shrink-0 w-[85vw] sm:w-[400px] md:w-auto testimonial-card flex flex-col sm:flex-row gap-4 items-start relative"><img src="./quotes/aranza.jpg" alt="Aranza Licón" class="testimonial-img"><div><h4 class="font-bold text-lg text-aspire-charcoal">Aranza Licón, Querétaro</h4><div class="mt-1 text-sm text-aspire-slate leading-relaxed"><i class="fa-solid fa-quote-left quote-icon mr-1"></i> "Estudié diseño industrial y me especialicé en UX/UI. Hoy trabajo en IA y marketing. El Academic Advancement Grant financió mi certificación UX de Google. No es falta de talento, sino de acceso a herramientas."</div></div></div>
+                <div class="snap-center shrink-0 w-[85vw] sm:w-[400px] md:w-auto testimonial-card flex flex-col sm:flex-row gap-4 items-start relative"><img src="./quotes/aurora.jpg" alt="María Aurora Gutiérrez" class="testimonial-img"><div><h4 class="font-bold text-lg text-aspire-charcoal">María Aurora Gutiérrez, Sonora</h4><div class="mt-1 text-sm text-aspire-slate leading-relaxed"><i class="fa-solid fa-quote-left quote-icon mr-1"></i> "Quería crear proyectos con impacto social y Aspire me dio la formación. Aprendí a convertir ideas en proyectos, con mentorías y conexiones globales. Es una oportunidad que puede cambiar tu camino."</div></div></div>
+            </div>
+            <div class="text-center mt-10"><a href="https://drive.google.com/drive/folders/1gGrJxFvPX1fZi21Q41qYuhcnZv0a72VT?usp=drive_link" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 bg-aspire-red text-white px-6 py-3 rounded-full font-bold text-sm uppercase tracking-wider hover:bg-aspire-redDark transition-colors shadow-md"><i class="fa-solid fa-video"></i> Ver testimonios en video</a></div>
+        </div>
+    </section>
+
+    <section id="galeria" class="py-14 bg-gray-50 border-y border-gray-200">
+        <div class="container mx-auto px-4 lg:px-8"><div class="text-center max-w-2xl mx-auto mb-10"><span class="section-badge">Recuerdos</span><h3 class="text-3xl font-serif font-bold text-aspire-charcoal mt-3">Galería de eventos</h3></div><div class="flex overflow-x-auto snap-x gap-4 pb-4 md:grid md:grid-cols-4 md:gap-4 md:pb-0 scrollbar-hide"><div class="snap-center shrink-0 w-[75vw] sm:w-[300px] md:w-auto rounded-xl overflow-hidden shadow-md aspect-video"><img src="./gallery/ev1.jpg" alt="Evento 1" class="w-full h-full object-cover"></div><div class="snap-center shrink-0 w-[75vw] sm:w-[300px] md:w-auto rounded-xl overflow-hidden shadow-md aspect-video"><img src="./gallery/ev2.jpg" alt="Evento 2" class="w-full h-full object-cover"></div><div class="snap-center shrink-0 w-[75vw] sm:w-[300px] md:w-auto rounded-xl overflow-hidden shadow-md aspect-video"><img src="./gallery/ev3.jpg" alt="Evento 3" class="w-full h-full object-cover"></div><div class="snap-center shrink-0 w-[75vw] sm:w-[300px] md:w-auto rounded-xl overflow-hidden shadow-md aspect-video"><img src="./gallery/ev4.jpg" alt="Evento 4" class="w-full h-full object-cover"></div></div></div>
+    </section>
+
+    <!-- ===== ALIANZAS MEJORADA - TEXTO SINTETIZADO Y DISEÑO REFINADO ===== -->
+    <section id="alianzas" class="py-14 bg-white">
+        <div class="container mx-auto px-4 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-10">
+                <span class="section-badge">Aliados</span>
+                <h3 class="text-3xl font-serif font-bold text-aspire-charcoal mt-3">Aliados estratégicos</h3>
+                <p class="text-aspire-slate mt-3 text-sm md:text-base leading-relaxed max-w-xl mx-auto">
+                    Construimos puentes con <strong class="text-aspire-charcoal">universidades, organizaciones estudiantiles y creadores de contenido</strong> que comparten nuestra visión de un liderazgo más diverso e incluyente en todo México.
                 </p>
             </div>
-
-            <!-- Carrusel Horizontal en Móvil, Grid en Desktop -->
-            <div class="flex overflow-x-auto snap-x gap-8 pb-8 md:grid md:grid-cols-2 lg:grid-cols-2 md:pb-0 scrollbar-hide">
-                <div class="snap-center shrink-0 w-[85vw] md:w-auto flex flex-col md:flex-row gap-6 bg-gray-50 rounded-xl overflow-hidden shadow-sm border border-gray-100 p-6">
-                    <img src="./files/zarekmtz.jpeg" alt="Zarek Martínez" class="w-full md:w-48 h-64 md:h-auto object-cover rounded-lg">
-                    <div class="flex flex-col justify-center">
-                        <h4 class="font-bold text-lg text-aspire-charcoal mb-1">Zarek Martínez, ALP' 21, México</h4>
-                        <div class="mt-4 text-sm text-aspire-slate italic leading-relaxed space-y-3 font-light">
-                            <p>“Antes de entrar al programa tenía muchas dudas sobre mi trayectoria, hacia dónde iba a dirigir mi carrera. Cuando entré, cambió todo mi panorama.”</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="snap-center shrink-0 w-[85vw] md:w-auto flex flex-col md:flex-row gap-6 bg-gray-50 rounded-xl overflow-hidden shadow-sm border border-gray-100 p-6">
-                    <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=300&q=80" alt="Alumni Example" class="w-full md:w-48 h-64 md:h-auto object-cover rounded-lg">
-                    <div class="flex flex-col justify-center">
-                        <h4 class="font-bold text-lg text-aspire-charcoal mb-1">María Fernanda, ALP' 22, México</h4>
-                        <div class="mt-4 text-sm text-aspire-slate italic leading-relaxed space-y-3 font-light">
-                            <p>“Aspire me dio las herramientas no solo para creer en mis proyectos, sino para estructurarlos. La red global es increíble, nunca estás solo en este camino.”</p>
-                        </div>
-                    </div>
-                </div>
+            <div class="flex overflow-x-auto snap-x gap-8 pb-4 md:justify-center scrollbar-hide">
+                <div class="snap-center shrink-0 flex flex-col items-center gap-2 w-24"><div class="ally-circle flex items-center justify-center"><img src="./comppliances/propulsion.jfif" alt="Propulsión UNAM" class="w-full h-full object-cover"></div><span class="text-xs font-bold text-aspire-charcoal text-center">Propulsión UNAM</span><div class="flex gap-2"><a href="https://www.instagram.com/propulsionunam/" target="_blank" rel="noopener noreferrer" class="text-aspire-slate hover:text-aspire-red transition-colors"><i class="fa-brands fa-instagram"></i></a><a href="https://mx.linkedin.com/company/propulsi%C3%B3n-unam" target="_blank" rel="noopener noreferrer" class="text-aspire-slate hover:text-aspire-red transition-colors"><i class="fa-brands fa-linkedin-in"></i></a></div></div>
+                <div class="snap-center shrink-0 flex flex-col items-center gap-2 w-24"><div class="ally-circle flex items-center justify-center text-2xl" style="color:#b8860b;"><i class="fa-solid fa-paintbrush"></i></div><span class="text-xs font-bold text-aspire-charcoal text-center">María Aurora</span><div class="flex gap-2"><a href="#" class="text-aspire-slate hover:text-aspire-red transition-colors"><i class="fa-brands fa-instagram"></i></a><a href="#" class="text-aspire-slate hover:text-aspire-red transition-colors"><i class="fa-brands fa-youtube"></i></a></div></div>
+                <div class="snap-center shrink-0 flex flex-col items-center gap-2 w-24"><div class="ally-circle flex items-center justify-center"><img src="./comppliances/unamaerodesign.png" alt="AeroDesign" class="w-full h-full object-cover"></div><span class="text-xs font-bold text-aspire-charcoal text-center">AeroDesign</span><div class="flex gap-2"><a href="https://www.instagram.com/unamaerodesign/" target="_blank" rel="noopener noreferrer" class="text-aspire-slate hover:text-aspire-red transition-colors"><i class="fa-brands fa-instagram"></i></a></div></div>
+                <div class="snap-center shrink-0 flex flex-col items-center gap-2 w-24"><div class="ally-circle flex items-center justify-center text-2xl text-gray-400"><i class="fa-solid fa-university"></i></div><span class="text-xs font-bold text-aspire-charcoal text-center">Universidades</span></div>
             </div>
         </div>
     </section>
 
-    <!-- Equipo Aspire (TEXTOS CENTRADOS Y CARDS MEJORADAS) -->
-    <section class="py-20 bg-gray-50 border-t border-gray-200">
+    <footer id="contacto" class="bg-aspire-charcoal text-white pt-16 pb-8 border-t border-white/5">
         <div class="container mx-auto px-4 lg:px-8">
-            <div class="max-w-3xl mx-auto text-center mb-12 border-b border-gray-300 pb-8">
-                <h3 class="text-4xl font-serif font-bold text-aspire-charcoal mb-4">Conozca al equipo</h3>
-                <p class="text-lg text-aspire-charcoal leading-relaxed font-light">
-                    Aspire México Foundry está impulsada por líderes visionarios comprometidos con la creación de un acceso equitativo a oportunidades de liderazgo en todo el país.
-                </p>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-10 mb-12">
+                <div class="sm:col-span-2 bg-white/5 p-6 rounded-xl border border-white/10"><h3 class="text-2xl font-serif font-bold mb-3 text-white">Contáctanos</h3><p class="text-gray-400 text-sm leading-relaxed mb-4">Dudas sobre postulaciones, fondos semilla o colaboración institucional.</p><a href="mailto:mexico@aspireleaders.org" class="inline-flex items-center justify-center gap-2 bg-aspire-red hover:bg-aspire-redDark text-white text-sm font-bold uppercase tracking-wider px-6 py-3 rounded transition-colors shadow-lg w-full sm:w-auto"><i class="fa-solid fa-envelope"></i> Enviar correo</a><p class="text-xs text-gray-400 mt-3">Respuesta en 48 horas hábiles.</p></div>
+                <div><h4 class="text-lg font-bold text-white mb-3">Horario de atención</h4><p class="text-sm text-gray-300 leading-relaxed">Lun – Vie: 9 am – 6 pm (CDMX)</p><p class="text-sm text-gray-300 leading-relaxed font-mono">Ciudad de México</p><div class="flex flex-wrap gap-3 mt-4"><a href="https://www.instagram.com/aspireleadersmexico/" class="w-9 h-9 bg-white/10 flex items-center justify-center rounded hover:bg-aspire-red transition-colors"><i class="fa-brands fa-instagram"></i></a></div></div>
+                <div class="grid grid-cols-2 gap-4"><div><h4 class="text-lg font-bold text-white mb-3">Enlaces</h4><ul class="space-y-2 text-sm text-gray-400 font-bold uppercase text-[10px] sm:text-[11px] tracking-wider"><li><a href="#convocatoria" class="hover:text-aspire-gold transition-colors">Convocatoria</a></li><li><a href="#proximas" class="hover:text-aspire-gold transition-colors">Próximas</a></li><li><a href="#alumni" class="hover:text-aspire-gold transition-colors">Alumni</a></li></ul></div><div><h4 class="text-lg font-bold text-white mb-3 invisible">.</h4><ul class="space-y-2 text-sm text-gray-400 font-bold uppercase text-[10px] sm:text-[11px] tracking-wider"><li><a href="#testimonios" class="hover:text-aspire-gold transition-colors">Testimonios</a></li><li><a href="#galeria" class="hover:text-aspire-gold transition-colors">Galería</a></li><li><a href="https://engage.aspireleaders.org/registration" target="_blank" rel="noopener noreferrer" class="hover:text-aspire-gold transition-colors">Aplicar</a></li></ul></div></div>
             </div>
-
-            <!-- Scroll Horizontal Móvil con Pequeñas Tarjetas de Perfil -->
-            <div class="flex overflow-x-auto snap-x justify-start md:justify-center gap-6 pb-8 md:grid md:grid-cols-2 md:gap-8 max-w-4xl mx-auto md:pb-0 scrollbar-hide">
-                
-                <!-- Card Ana -->
-                <div class="snap-center shrink-0 w-[65vw] sm:w-[250px] md:w-auto bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex flex-col items-center text-center hover:shadow-md transition-shadow">
-                    <div class="w-20 h-20 bg-aspire-red/10 text-aspire-red rounded-full flex items-center justify-center text-3xl mb-4 border-4 border-white shadow-sm">
-                        <i class="fa-solid fa-user-tie"></i>
-                    </div>
-                    <h4 class="font-bold text-xl text-aspire-charcoal">Ana Flores</h4>
-                    <p class="text-sm text-aspire-slate mt-2">Directora Nacional,<br>Aspire Mexico Foundry</p>
-                </div>
-
-                <!-- Card Erika -->
-                <div class="snap-center shrink-0 w-[65vw] sm:w-[250px] md:w-auto bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex flex-col items-center text-center hover:shadow-md transition-shadow">
-                    <div class="w-20 h-20 bg-aspire-gold/20 text-yellow-700 rounded-full flex items-center justify-center text-3xl mb-4 border-4 border-white shadow-sm">
-                        <i class="fa-solid fa-user-group"></i>
-                    </div>
-                    <h4 class="font-bold text-xl text-aspire-charcoal">Erika Pérez</h4>
-                    <p class="text-sm text-aspire-slate mt-2">Coordinadora de Divulgación,<br>Aspire Mexico Foundry</p>
-                </div>
-
-            </div>
-        </div>
-        
-        <!-- Banner Reclutamiento Centrado -->
-        <div class="bg-aspire-gold mt-12 py-10 px-4 lg:px-8 text-center">
-            <div class="container mx-auto max-w-2xl">
-                <i class="fa-solid fa-briefcase text-3xl text-aspire-charcoal/50 mb-3"></i>
-                <h4 class="font-bold text-2xl text-aspire-charcoal mb-2">Aspire México busca personal para cubrir puestos vacantes.</h4>
-                <p class="text-base text-aspire-charcoal font-medium uppercase tracking-widest bg-white/40 inline-block px-4 py-1 rounded-full mt-2">¡Próxima apertura!</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer Responsivo (Mejorado para móvil estilo PC) -->
-    <footer id="contacto" class="bg-aspire-charcoal text-white pt-20 pb-8 border-t border-white/5 relative overflow-hidden">
-        <div class="container mx-auto px-4 lg:px-8 relative z-10">
-            <!-- Cambié grid-cols-1 a grid-cols-2 en sm para que se distribuya mejor en móviles y parezca PC -->
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-12 mb-16">
-                
-                <!-- Contáctanos (Toma todo el ancho en móviles muy chicos, o 2 columnas en medianos) -->
-                <div class="sm:col-span-2 bg-white/5 p-6 sm:p-8 rounded-xl border border-white/10">
-                    <h3 class="text-3xl font-serif font-bold mb-4 text-white">Contáctanos</h3>
-                    <p class="text-gray-400 text-sm leading-relaxed mb-6">
-                        ¿Tienes dudas sobre las postulaciones, los fondos semilla o quieres colaborar institucionalmente con Aspire México? Estamos aquí para escucharte.
-                    </p>
-                    <a href="mailto:[PON_TU_CORREO_AQUI]" class="inline-flex items-center justify-center gap-2 bg-aspire-red hover:bg-aspire-redDark text-white text-sm font-bold uppercase tracking-wider px-8 py-4 rounded transition-colors shadow-lg w-full sm:w-auto">
-                        <i class="fa-solid fa-envelope"></i> Enviar correo
-                    </a>
-                </div>
-
-                <!-- Info Comercial -->
-                <div>
-                    <h4 class="text-lg font-bold text-white mb-4">Horario comercial</h4>
-                    <p class="text-sm text-gray-300 leading-relaxed mb-4">Lun – Vie: 9 am – 5 pm ET<br>(Nueva York, EE. UU.)</p>
-                    <p class="text-sm text-gray-300 leading-relaxed font-mono">255 Main St, 8.º piso<br>Cambridge, MA 02142</p>
-                    
-                    <div class="flex flex-wrap gap-3 mt-6">
-                        <a href="#" class="w-9 h-9 bg-white/10 flex items-center justify-center rounded hover:bg-aspire-red transition-colors"><i class="fa-brands fa-youtube"></i></a>
-                        <a href="#" class="w-9 h-9 bg-white/10 flex items-center justify-center rounded hover:bg-aspire-red transition-colors"><i class="fa-brands fa-twitter"></i></a>
-                        <a href="#" class="w-9 h-9 bg-white/10 flex items-center justify-center rounded hover:bg-aspire-red transition-colors"><i class="fa-brands fa-instagram"></i></a>
-                        <a href="#" class="w-9 h-9 bg-white/10 flex items-center justify-center rounded hover:bg-aspire-red transition-colors"><i class="fa-brands fa-linkedin-in"></i></a>
-                    </div>
-                </div>
-
-                <!-- Enlaces rápidos juntos en móvil usando subgrid -->
-                <div class="grid grid-cols-2 gap-4">
-                    <div>
-                        <h4 class="text-lg font-bold text-white mb-4">Enlaces</h4>
-                        <ul class="space-y-3 text-sm text-gray-400 font-bold uppercase text-[10px] sm:text-[11px] tracking-wider">
-                            <li><a href="#acerca" class="hover:text-aspire-gold transition-colors">Nosotros</a></li>
-                            <li><a href="#programas" class="hover:text-aspire-gold transition-colors">Programas</a></li>
-                            <li><a href="#oportunidades" class="hover:text-aspire-gold transition-colors">Grants</a></li>
-                        </ul>
-                    </div>
-                    <div>
-                        <h4 class="text-lg font-bold text-white mb-4 invisible">.</h4>
-                        <ul class="space-y-3 text-sm text-gray-400 font-bold uppercase text-[10px] sm:text-[11px] tracking-wider">
-                            <li><a href="#galeria" class="hover:text-aspire-gold transition-colors">Historias</a></li>
-                            <li><a href="#aplicar" class="hover:text-aspire-gold transition-colors">Aplicar</a></li>
-                        </ul>
-                    </div>
-                </div>
-
-            </div>
-
-            <div class="border-t border-white/10 pt-8 text-center text-xs text-gray-500 flex flex-col md:flex-row justify-between items-center gap-4">
-                <p>&copy; 2026 Aspire Institute Inc. - Todos los derechos reservados.</p>
-                <div class="flex gap-4">
-                    <a href="#" class="hover:text-gray-300">Política de privacidad</a>
-                    <span>|</span>
-                    <a href="#" class="hover:text-gray-300">Cookies</a>
-                </div>
-            </div>
+            <div class="border-t border-white/10 pt-6 text-center text-xs text-gray-500 flex flex-col md:flex-row justify-between items-center gap-3"><p>&copy; 2026 Aspire Institute Inc. - Todos los derechos reservados.</p><div class="flex gap-4"><a href="#" class="hover:text-gray-300">Política de privacidad</a><span>|</span><a href="#" class="hover:text-gray-300">Cookies</a></div></div>
         </div>
     </footer>
 
     <script>
-        // Lógica del Menú Móvil Deslizable
-        const menuBtn = document.getElementById('mobile-menu-btn');
-        const closeBtn = document.getElementById('close-menu-btn');
-        const mobileMenu = document.getElementById('mobile-menu');
-        const overlay = document.getElementById('menu-overlay');
-        const mobileLinks = document.querySelectorAll('.mobile-link');
-
-        function toggleMenu() {
-            // Animación de entrada/salida
-            mobileMenu.classList.toggle('translate-x-full');
-            // Fondo oscuro (overlay)
-            overlay.classList.toggle('hidden');
-        }
-
-        // Eventos para abrir y cerrar
-        menuBtn.addEventListener('click', toggleMenu);
-        closeBtn.addEventListener('click', toggleMenu);
-        overlay.addEventListener('click', toggleMenu); // Cierra tocando fuera
-
-        // Cierra el menú al tocar un enlace
-        mobileLinks.forEach(link => {
-            link.addEventListener('click', toggleMenu);
-        });
-
-        // Lógica de la Cuenta Regresiva
-        const countDownDate = new Date("Jul 10, 2026 23:59:59").getTime();
-
-        const timer = setInterval(function() {
-            const now = new Date().getTime();
-            const distance = countDownDate - now;
-
-            if (distance < 0) {
-                clearInterval(timer);
-                document.getElementById("countdown").innerHTML = "<span class='text-aspire-gold font-bold'>¡La convocatoria ha cerrado!</span>";
-                return;
-            }
-
-            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-            document.getElementById("cd-days").innerText = days.toString().padStart(2, '0');
-            document.getElementById("cd-hours").innerText = hours.toString().padStart(2, '0');
-            document.getElementById("cd-minutes").innerText = minutes.toString().padStart(2, '0');
-            document.getElementById("cd-seconds").innerText = seconds.toString().padStart(2, '0');
-        }, 1000);
+        (function() {
+            'use strict';
+            const menuBtn = document.getElementById('mobile-menu-btn');
+            const closeBtn = document.getElementById('close-menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const overlay = document.getElementById('menu-overlay');
+            const mobileLinks = document.querySelectorAll('.mobile-link');
+            function toggleMenu() { mobileMenu.classList.toggle('translate-x-full');
+                overlay.classList.toggle('hidden'); }
+            menuBtn.addEventListener('click', toggleMenu);
+            closeBtn.addEventListener('click', toggleMenu);
+            overlay.addEventListener('click', toggleMenu);
+            mobileLinks.forEach(link => link.addEventListener('click', toggleMenu));
+            const countDownDate = new Date("Jul 10, 2026 23:59:59").getTime();
+            const bannerText = document.getElementById('banner-text');
+            const countdownLabel = document.getElementById('countdown-label');
+            const timer = setInterval(function() {
+                const now = new Date().getTime();
+                const distance = countDownDate - now;
+                if (distance < 0) { clearInterval(timer);
+                    document.getElementById("countdown").innerHTML = '<span class="text-aspire-red text-xl font-bold">Convocatoria cerrada. Espera próximas fechas.</span>';
+                    countdownLabel.textContent = 'Cohorte 3-2026 finalizada';
+                    bannerText.textContent = 'La convocatoria ha cerrado. ¡Sigue nuestras redes para próximas fechas!'; return; }
+                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+                document.getElementById("cd-days").innerText = days.toString().padStart(2, '0');
+                document.getElementById("cd-hours").innerText = hours.toString().padStart(2, '0');
+                document.getElementById("cd-minutes").innerText = minutes.toString().padStart(2, '0');
+                document.getElementById("cd-seconds").innerText = seconds.toString().padStart(2, '0');
+            }, 1000);
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => { anchor.addEventListener('click', function(e) { const href = this.getAttribute('href'); if (href === '#') return;
+                    e.preventDefault(); const target = document.querySelector(href); if (target) { target.scrollIntoView({ behavior: 'smooth', block: 'start' }); } }); });
+            const observer = new IntersectionObserver((entries) => { entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('visible'); } }); }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+            document.querySelectorAll('.fade-up').forEach(el => { observer.observe(el); });
+        })();
+    </script>
+    <script type="application/ld+json">
+        { "@context": "https://schema.org", "@type": "EducationalOrganization", "name": "Aspire Institute México", "alternateName": "Aspire México", "url": "https://www.aspireinstitute.mx/", "logo": "https://www.aspireinstitute.mx/files/heroimg.jpg", "description": "Programa de liderazgo gratuito para estudiantes universitarios de primera generación en México.", "address": { "@type": "PostalAddress", "addressLocality": "Ciudad de México", "addressCountry": "MX" }, "sameAs": ["https://www.instagram.com/aspireinstitute/", "https://www.linkedin.com/company/aspire-institute/"] }
+    </script>
+    <script type="application/ld+json">
+        { "@context": "https://schema.org", "@type": "Course", "name": "Programa de Líderes Aspire 2026", "description": "Programa de liderazgo en línea de 9 semanas para estudiantes de primera generación.", "provider": { "@type": "EducationalOrganization", "name": "Aspire Institute México" }, "startDate": "2026-07-22", "endDate": "2026-09-28", "url": "https://engage.aspireleaders.org/registration", "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" } }
     </script>
 </body>
 </html>
