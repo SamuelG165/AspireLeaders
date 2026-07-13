@@ -35,7 +35,93 @@
         }
     </script>
     <style>
-        /* Estilos mínimos reutilizados del sitio original */
+        /* ===== LOADING PAGE (idéntica a la de index.html) ===== */
+        #loading-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            background: #ffffff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.8s ease, visibility 0.8s ease;
+            opacity: 1;
+            visibility: visible;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Ctext x='50%25' y='50%25' dominant-baseline='central' text-anchor='middle' font-family='%27Playfair Display%27, serif' font-weight='700' font-size='46' fill='%23d1d5db' opacity='0.12'%3EA%3C/text%3E%3C/svg%3E");
+            background-repeat: repeat;
+            background-size: 120px 120px;
+        }
+        #loading-overlay.hidden {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+        .spinner-wrapper {
+            position: relative;
+            width: 120px;
+            height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 50%;
+            backdrop-filter: blur(2px);
+            box-shadow: 0 12px 40px rgba(163, 32, 53, 0.06);
+        }
+        .spinner-ring {
+            position: absolute;
+            inset: 0;
+            border-radius: 50%;
+            border: 6px solid #e5e7eb;
+            border-top-color: #a32035;
+            animation: spin 1s linear infinite;
+        }
+        .spinner-letter {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            font-size: 3.5rem;
+            color: #a32035;
+            line-height: 1;
+            text-shadow: 0 2px 8px rgba(163, 32, 53, 0.10);
+            z-index: 2;
+        }
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        .loading-message {
+            margin-top: 2rem;
+            font-family: 'Inter', sans-serif;
+            font-weight: 500;
+            color: #4b5563;
+            letter-spacing: 0.02em;
+        }
+        .loading-message .dots::after {
+            content: '';
+            animation: dots 1.4s steps(4, end) infinite;
+        }
+        @keyframes dots {
+            0%   { content: ''; }
+            25%  { content: '.'; }
+            50%  { content: '..'; }
+            75%  { content: '...'; }
+            100% { content: ''; }
+        }
+        .loading-delay-msg {
+            margin-top: 0.75rem;
+            font-size: 0.85rem;
+            color: #9ca3af;
+            max-width: 320px;
+            text-align: center;
+            opacity: 0;
+            transition: opacity 0.6s ease;
+            font-weight: 400;
+        }
+        .loading-delay-msg.show {
+            opacity: 1;
+        }
+
+        /* ===== Estilos propios del plan de estudios (sin cambios) ===== */
         .section-badge {
             display: inline-block;
             background: rgba(163, 32, 53, 0.08);
@@ -94,7 +180,21 @@
 </head>
 <body class="bg-gray-50 text-aspire-charcoal font-sans antialiased">
 
-    <!-- Encabezado sutil -->
+    <!-- ===== LOADING PAGE ===== -->
+    <div id="loading-overlay">
+        <div class="spinner-wrapper">
+            <div class="spinner-ring"></div>
+            <span class="spinner-letter">A</span>
+        </div>
+        <p class="loading-message">
+            Cargando<span class="dots"></span>
+        </p>
+        <p id="delay-msg" class="loading-delay-msg">
+            La página se está cargando en segundo plano. <br>Gracias por tu paciencia.
+        </p>
+    </div>
+
+    <!-- ===== ENCABEZADO ===== -->
     <header class="bg-white/80 backdrop-blur-sm border-b border-gray-100 sticky top-0 z-10">
         <div class="container mx-auto px-4 lg:px-8 h-16 flex items-center justify-between">
             <a href="#" class="flex items-center gap-2">
@@ -107,7 +207,7 @@
         </div>
     </header>
 
-    <!-- Contenido principal: Plan de estudios -->
+    <!-- ===== CONTENIDO PRINCIPAL ===== -->
     <main class="py-12 md:py-16">
         <div class="container mx-auto px-4 lg:px-8">
             <div class="max-w-4xl mx-auto">
@@ -124,7 +224,7 @@
                     </p>
                 </div>
 
-                <!-- Visión general (tarjeta resumen) -->
+                <!-- Visión general -->
                 <div class="card-premium p-6 md:p-8 mb-10 flex flex-col md:flex-row items-center gap-6 fade-up visible">
                     <div class="flex-1">
                         <div class="flex items-center gap-3 mb-1">
@@ -143,7 +243,7 @@
                     </div>
                 </div>
 
-                <!-- Módulos (3 tarjetas) -->
+                <!-- Módulos -->
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                     <!-- Módulo 1 -->
                     <div class="card-premium p-6 card-hover fade-up fade-up-delay-1">
@@ -204,7 +304,7 @@
                     </div>
                 </div>
 
-                <!-- Nota adicional / CTA -->
+                <!-- CTA final -->
                 <div class="mt-12 text-center card-premium p-6 md:p-8 border border-aspire-red/10 bg-aspire-red/5 fade-up fade-up-delay-4">
                     <p class="text-sm text-aspire-slate max-w-2xl mx-auto">
                         <i class="fa-regular fa-circle-check text-aspire-red mr-1.5"></i>
@@ -223,7 +323,7 @@
         </div>
     </main>
 
-    <!-- Pie de página minimalista -->
+    <!-- ===== PIE DE PÁGINA ===== -->
     <footer class="bg-aspire-charcoal text-white/60 border-t border-white/5 py-6">
         <div class="container mx-auto px-4 lg:px-8 text-center text-xs">
             <p>&copy; 2026 Aspire Institute Inc. · Este contenido es parte del programa Aspire Leaders Program.</p>
@@ -235,9 +335,32 @@
         </div>
     </footer>
 
-    <!-- Pequeño script para activar las animaciones (similar al original) -->
+    <!-- ===== SCRIPTS ===== -->
     <script>
         (function() {
+            'use strict';
+
+            // ---- LOADING PAGE ----
+            const overlay = document.getElementById('loading-overlay');
+            const delayMsg = document.getElementById('delay-msg');
+
+            // Mostrar mensaje de "tardando" después de 3 segundos
+            const delayTimer = setTimeout(function() {
+                if (!overlay.classList.contains('hidden')) {
+                    delayMsg.classList.add('show');
+                }
+            }, 3000);
+
+            // Ocultar loading cuando todo esté cargado
+            window.addEventListener('load', function() {
+                clearTimeout(delayTimer);
+                overlay.classList.add('hidden');
+                setTimeout(function() {
+                    overlay.style.display = 'none';
+                }, 900);
+            });
+
+            // ---- ANIMACIONES FADE-UP (existentes) ----
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
@@ -248,6 +371,7 @@
             document.querySelectorAll('.fade-up').forEach(el => {
                 observer.observe(el);
             });
+
         })();
     </script>
 </body>
