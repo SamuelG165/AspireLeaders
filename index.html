@@ -48,19 +48,98 @@
         }
     </script>
     <style>
-        .scrollbar-hide::-webkit-scrollbar {
-            display: none;
+        /* ===== LOADING PAGE ===== */
+        #loading-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            background: #ffffff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.8s ease, visibility 0.8s ease;
+            opacity: 1;
+            visibility: visible;
+            /* Fondo de sello con "A" grises */
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Ctext x='50%25' y='50%25' dominant-baseline='central' text-anchor='middle' font-family='%27Playfair Display%27, serif' font-weight='700' font-size='46' fill='%23d1d5db' opacity='0.12'%3EA%3C/text%3E%3C/svg%3E");
+            background-repeat: repeat;
+            background-size: 120px 120px;
         }
-        .scrollbar-hide {
-            -ms-overflow-style: none;
-            scrollbar-width: none;
+        #loading-overlay.hidden {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
         }
-        .snap-x {
-            scroll-snap-type: x mandatory;
+        .spinner-wrapper {
+            position: relative;
+            width: 120px;
+            height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 50%;
+            backdrop-filter: blur(2px);
+            box-shadow: 0 12px 40px rgba(163, 32, 53, 0.06);
         }
-        .snap-center {
-            scroll-snap-align: center;
+        .spinner-ring {
+            position: absolute;
+            inset: 0;
+            border-radius: 50%;
+            border: 6px solid #e5e7eb;
+            border-top-color: #a32035;
+            animation: spin 1s linear infinite;
         }
+        .spinner-letter {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            font-size: 3.5rem;
+            color: #a32035;
+            line-height: 1;
+            text-shadow: 0 2px 8px rgba(163, 32, 53, 0.10);
+            z-index: 2;
+        }
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        .loading-message {
+            margin-top: 2rem;
+            font-family: 'Inter', sans-serif;
+            font-weight: 500;
+            color: #4b5563;
+            letter-spacing: 0.02em;
+        }
+        .loading-message .dots::after {
+            content: '';
+            animation: dots 1.4s steps(4, end) infinite;
+        }
+        @keyframes dots {
+            0%   { content: ''; }
+            25%  { content: '.'; }
+            50%  { content: '..'; }
+            75%  { content: '...'; }
+            100% { content: ''; }
+        }
+        .loading-delay-msg {
+            margin-top: 0.75rem;
+            font-size: 0.85rem;
+            color: #9ca3af;
+            max-width: 320px;
+            text-align: center;
+            opacity: 0;
+            transition: opacity 0.6s ease;
+            font-weight: 400;
+        }
+        .loading-delay-msg.show {
+            opacity: 1;
+        }
+
+        /* resto de estilos originales */
+        .scrollbar-hide::-webkit-scrollbar { display: none; }
+        .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+        .snap-x { scroll-snap-type: x mandatory; }
+        .snap-center { scroll-snap-align: center; }
         .section-badge {
             display: inline-block;
             background: rgba(163, 32, 53, 0.08);
@@ -97,12 +176,8 @@
             width: 100%;
             margin-top: -1px;
         }
-        .card-premium .card-top-line.gold {
-            background: #fcd116;
-        }
-        .card-premium .card-top-line.green {
-            background: #008a00;
-        }
+        .card-premium .card-top-line.gold { background: #fcd116; }
+        .card-premium .card-top-line.green { background: #008a00; }
         .icon-badge {
             width: 3.5rem;
             height: 3.5rem;
@@ -143,19 +218,13 @@
             object-fit: cover;
         }
         @media (min-width: 640px) {
-            .ally-circle {
-                width: 5.5rem;
-                height: 5.5rem;
-            }
+            .ally-circle { width: 5.5rem; height: 5.5rem; }
         }
         @media (min-width: 768px) {
-            .ally-circle {
-                width: 6rem;
-                height: 6rem;
-            }
+            .ally-circle { width: 6rem; height: 6rem; }
         }
 
-        /* ===== ORGANIGRAMA CORREGIDO - IDÉNTICO EN TODOS LOS DISPOSITIVOS ===== */
+        /* organigrama */
         .organigrama-wrapper {
             display: flex;
             flex-direction: column;
@@ -236,8 +305,6 @@
             max-width: 110px;
             white-space: normal;
         }
-
-        /* Líneas jerárquicas */
         .org-nivel:first-child::after {
             content: '';
             position: absolute;
@@ -297,92 +364,36 @@
             z-index: 0;
             border-radius: 1px;
         }
-
         @media (min-width: 480px) {
-            .org-item .avatar {
-                width: 4.8rem;
-                height: 4.8rem;
-                font-size: 1.8rem;
-            }
-            .org-item .avatar.secondary {
-                width: 4.2rem;
-                height: 4.2rem;
-                font-size: 1.4rem;
-            }
-            .org-item .nombre {
-                font-size: 0.95rem;
-            }
-            .org-item .cargo {
-                font-size: 0.7rem;
-                max-width: 130px;
-            }
-            .org-nivel:last-child::after {
-                left: calc(50% - 6rem);
-                right: calc(50% - 6rem);
-            }
+            .org-item .avatar { width: 4.8rem; height: 4.8rem; font-size: 1.8rem; }
+            .org-item .avatar.secondary { width: 4.2rem; height: 4.2rem; font-size: 1.4rem; }
+            .org-item .nombre { font-size: 0.95rem; }
+            .org-item .cargo { font-size: 0.7rem; max-width: 130px; }
+            .org-nivel:last-child::after { left: calc(50% - 6rem); right: calc(50% - 6rem); }
         }
         @media (min-width: 640px) {
-            .org-item .avatar {
-                width: 5.5rem;
-                height: 5.5rem;
-                font-size: 2rem;
-            }
-            .org-item .avatar.secondary {
-                width: 4.8rem;
-                height: 4.8rem;
-                font-size: 1.5rem;
-            }
-            .org-item .nombre {
-                font-size: 1rem;
-            }
-            .org-item .cargo {
-                font-size: 0.75rem;
-                max-width: 150px;
-            }
-            .org-nivel {
-                gap: 1.5rem;
-            }
-            .org-nivel:last-child::after {
-                left: calc(50% - 7.5rem);
-                right: calc(50% - 7.5rem);
-            }
+            .org-item .avatar { width: 5.5rem; height: 5.5rem; font-size: 2rem; }
+            .org-item .avatar.secondary { width: 4.8rem; height: 4.8rem; font-size: 1.5rem; }
+            .org-item .nombre { font-size: 1rem; }
+            .org-item .cargo { font-size: 0.75rem; max-width: 150px; }
+            .org-nivel { gap: 1.5rem; }
+            .org-nivel:last-child::after { left: calc(50% - 7.5rem); right: calc(50% - 7.5rem); }
         }
         @media (min-width: 768px) {
-            .org-item .avatar {
-                width: 6rem;
-                height: 6rem;
-                font-size: 2.2rem;
-            }
-            .org-item .avatar.secondary {
-                width: 5.2rem;
-                height: 5.2rem;
-                font-size: 1.6rem;
-            }
-            .org-item .nombre {
-                font-size: 1.05rem;
-            }
-            .org-item .cargo {
-                font-size: 0.78rem;
-                max-width: 160px;
-            }
-            .org-nivel {
-                gap: 2.5rem;
-            }
-            .org-nivel:last-child::after {
-                left: calc(50% - 9rem);
-                right: calc(50% - 9rem);
-            }
+            .org-item .avatar { width: 6rem; height: 6rem; font-size: 2.2rem; }
+            .org-item .avatar.secondary { width: 5.2rem; height: 5.2rem; font-size: 1.6rem; }
+            .org-item .nombre { font-size: 1.05rem; }
+            .org-item .cargo { font-size: 0.78rem; max-width: 160px; }
+            .org-nivel { gap: 2.5rem; }
+            .org-nivel:last-child::after { left: calc(50% - 9rem); right: calc(50% - 9rem); }
         }
 
-        /* ===== COLECTIVO MOSAICO - ENCUADRE EJECUTIVO PREMIUM ===== */
+        /* mosaico */
         .mosaico-card {
             background: #fcfcfc;
             border-radius: 1rem;
             padding: 2rem 1.75rem;
-            box-shadow:
-                0 1px 2px rgba(0, 0, 0, 0.03),
-                0 3px 8px rgba(0, 0, 0, 0.04),
-                0 0 0 1px rgba(0, 0, 0, 0.04);
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03), 0 3px 8px rgba(0, 0, 0, 0.04), 0 0 0 1px rgba(0, 0, 0, 0.04);
             border: 1px solid #e5e7eb;
             transition: all 0.3s ease;
             position: relative;
@@ -401,10 +412,7 @@
             z-index: 1;
         }
         .mosaico-card:hover {
-            box-shadow:
-                0 2px 4px rgba(0, 0, 0, 0.04),
-                0 6px 16px rgba(0, 0, 0, 0.06),
-                0 0 0 1px rgba(0, 0, 0, 0.06);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04), 0 6px 16px rgba(0, 0, 0, 0.06), 0 0 0 1px rgba(0, 0, 0, 0.06);
             border-color: #d1d5db;
             transform: translateY(-2px);
         }
@@ -429,30 +437,17 @@
             height: 100%;
             object-fit: cover;
         }
-        .mosaico-content {
-            position: relative;
-            z-index: 2;
-        }
+        .mosaico-content { position: relative; z-index: 2; }
         @media (min-width: 640px) {
-            .mosaico-logo {
-                width: 6.5rem;
-                height: 6.5rem;
-            }
-            .mosaico-card {
-                padding: 2.25rem 2rem;
-            }
+            .mosaico-logo { width: 6.5rem; height: 6.5rem; }
+            .mosaico-card { padding: 2.25rem 2rem; }
         }
         @media (min-width: 768px) {
-            .mosaico-logo {
-                width: 7.5rem;
-                height: 7.5rem;
-            }
-            .mosaico-card {
-                padding: 2.5rem 2.5rem;
-            }
+            .mosaico-logo { width: 7.5rem; height: 7.5rem; }
+            .mosaico-card { padding: 2.5rem 2.5rem; }
         }
 
-        /* ===== TESTIMONIOS (mantenidos exactamente como estaban en diseño) ===== */
+        /* testimonios */
         .testimonial-card {
             background: #ffffff;
             border-radius: 1.5rem;
@@ -482,22 +477,12 @@
             box-shadow: 0 4px 16px rgba(163, 32, 53, 0.08);
         }
         @media (min-width: 640px) {
-            .testimonial-img {
-                width: 5.5rem;
-                height: 5.5rem;
-            }
-            .testimonial-card {
-                padding: 2rem 1.75rem;
-            }
+            .testimonial-img { width: 5.5rem; height: 5.5rem; }
+            .testimonial-card { padding: 2rem 1.75rem; }
         }
         @media (min-width: 768px) {
-            .testimonial-img {
-                width: 6rem;
-                height: 6rem;
-            }
-            .testimonial-card {
-                padding: 2.25rem 2rem;
-            }
+            .testimonial-img { width: 6rem; height: 6rem; }
+            .testimonial-card { padding: 2.25rem 2rem; }
         }
 
         .fade-up {
@@ -509,22 +494,73 @@
             opacity: 1;
             transform: translateY(0);
         }
-        .fade-up-delay-1 {
-            transition-delay: 0.05s;
+        .fade-up-delay-1 { transition-delay: 0.05s; }
+        .fade-up-delay-2 { transition-delay: 0.10s; }
+        .fade-up-delay-3 { transition-delay: 0.15s; }
+        .fade-up-delay-4 { transition-delay: 0.20s; }
+
+        /* ===== NUEVAS REGLAS PARA ESTILO INSTITUCIONAL SOBRIO ===== */
+        /* Cuerpo: Arial como base, pero los menús y el logo usan sus fuentes específicas */
+        body {
+            font-family: Arial, Helvetica, sans-serif;
         }
-        .fade-up-delay-2 {
-            transition-delay: 0.10s;
+        /* Cabecera, banner superior y menú móvil → Inter (moderno pero institucional) */
+        header, #top-banner, #mobile-menu {
+            font-family: 'Inter', sans-serif;
         }
-        .fade-up-delay-3 {
-            transition-delay: 0.15s;
+        /* Contenido de secciones y footer → Arial para texto general */
+        section, footer {
+            font-family: Arial, Helvetica, sans-serif;
         }
-        .fade-up-delay-4 {
-            transition-delay: 0.20s;
+        /* Títulos de secciones y footer → Georgia (clásico, serio) */
+        section h1, section h2, section h3, section h4, section h5, section h6,
+        footer h1, footer h2, footer h3, footer h4, footer h5, footer h6 {
+            font-family: Georgia, 'Times New Roman', serif !important;
+        }
+        /* Dentro de secciones y footer, los elementos con clase .font-serif pasan a Georgia */
+        section .font-serif, footer .font-serif {
+            font-family: Georgia, 'Times New Roman', serif !important;
+        }
+        /* Suavizado de bordes y sombras para quitar el aspecto “demasiado redondeado” típico de IA */
+        .card-premium, .testimonial-card, .mosaico-card {
+            border-radius: 0.75rem !important;
+        }
+        .card-premium, .testimonial-card {
+            box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04) !important;
+        }
+        .mosaico-card {
+            box-shadow: 0 1px 2px rgba(0,0,0,0.03), 0 0 0 1px rgba(0,0,0,0.04) !important;
+        }
+        /* Ajuste de radios para clases comunes */
+        .rounded-2xl {
+            border-radius: 0.75rem !important;
+        }
+        .rounded-xl {
+            border-radius: 0.5rem !important;
+        }
+        /* Mantener los botones redondos */
+        .rounded-full {
+            border-radius: 9999px !important;
         }
     </style>
 </head>
 <body class="bg-gray-50 text-aspire-charcoal font-sans antialiased selection:bg-aspire-red selection:text-white">
 
+    <!-- ===== LOADING PAGE ===== -->
+    <div id="loading-overlay">
+        <div class="spinner-wrapper">
+            <div class="spinner-ring"></div>
+            <span class="spinner-letter">A</span>
+        </div>
+        <p class="loading-message">
+            Cargando<span class="dots"></span>
+        </p>
+        <p id="delay-msg" class="loading-delay-msg">
+            La página se está cargando en segundo plano. <br>Gracias por tu paciencia.
+        </p>
+    </div>
+
+    <!-- ===== BANNER ===== -->
     <div id="top-banner" class="bg-aspire-red text-white py-2.5 px-4 text-center text-xs sm:text-sm font-medium tracking-wide relative z-50">
         <div class="container mx-auto flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-4">
             <span id="banner-text">¡Ya está abierto el plazo de solicitud para el Programa de Líderes Aspire 2026!</span>
@@ -532,11 +568,13 @@
         </div>
     </div>
 
+    <!-- ===== HEADER ===== -->
     <header class="sticky top-0 bg-white/80 backdrop-blur-lg shadow-sm border-b border-white/20 z-40 transition-all duration-300">
         <div class="container mx-auto px-4 lg:px-8 h-20 flex items-center justify-between">
             <a href="#" class="flex flex-col group">
+                <!-- Ambos spans con font-serif para que todo el logo use Playfair -->
                 <span class="text-3xl font-serif font-bold text-aspire-red tracking-tight leading-none group-hover:text-aspire-redDark transition-colors">Aspire</span>
-                <span class="text-[9px] font-bold tracking-[0.35em] text-aspire-slate uppercase pl-0.5 mt-1">Institute</span>
+                <span class="text-[9px] font-serif font-bold tracking-[0.35em] text-aspire-slate uppercase pl-0.5 mt-1">Institute</span>
             </a>
             <nav class="hidden lg:flex items-center space-x-6 xl:space-x-8">
                 <a href="#convocatoria" class="text-sm font-semibold text-aspire-charcoal hover:text-aspire-red transition-colors">Convocatoria</a>
@@ -554,10 +592,12 @@
         </div>
     </header>
 
+    <!-- ===== MENÚ MÓVIL ===== -->
     <div id="menu-overlay" class="fixed inset-0 bg-black/50 z-50 hidden backdrop-blur-sm transition-opacity"></div>
     <div id="mobile-menu" class="fixed top-0 right-0 h-full w-4/5 max-w-sm bg-white shadow-2xl z-50 transform translate-x-full transition-transform duration-300 ease-in-out flex flex-col">
         <div class="p-6 border-b border-gray-100 flex justify-between items-center bg-gray-50/50">
-            <span class="text-xl font-serif font-bold text-aspire-red">Menú</span>
+            <!-- Quitamos font-serif para que use Inter, conforme al menú -->
+            <span class="text-xl font-bold text-aspire-red">Menú</span>
             <button id="close-menu-btn" class="p-2 text-gray-500 hover:text-aspire-red bg-white rounded-full shadow-sm" aria-label="Cerrar menú"><i class="fa-solid fa-xmark text-xl"></i></button>
         </div>
         <div class="p-6 flex flex-col space-y-6 overflow-y-auto">
@@ -574,6 +614,7 @@
         </div>
     </div>
 
+    <!-- ===== HERO ===== -->
     <section class="relative bg-aspire-charcoal overflow-hidden flex items-center min-h-[80vh]">
         <div class="absolute inset-0 z-0">
             <div class="absolute inset-0 bg-gradient-to-r from-black/80 via-black/60 to-transparent z-10"></div>
@@ -582,6 +623,7 @@
         <div class="container mx-auto px-4 lg:px-8 relative z-20 py-16">
             <div class="max-w-3xl">
                 <span class="inline-block bg-aspire-gold/20 text-aspire-gold px-4 py-1 rounded-full text-xs font-bold uppercase tracking-wider mb-4 backdrop-blur-sm border border-aspire-gold/30">Cohorte 3 · 2026</span>
+                <!-- h1 con font-serif que será sobrescrito a Georgia por las reglas CSS -->
                 <h1 class="text-4xl sm:text-5xl lg:text-6xl font-serif font-bold text-white tracking-tight leading-tight mb-6">Líderes con impacto real</h1>
                 <p class="text-lg sm:text-xl text-gray-200 leading-relaxed font-light mb-10 max-w-2xl">Empoderamos a estudiantes universitarios de primera generación para que desarrollen su potencial de liderazgo. Conectamos la ambición con la oportunidad.</p>
                 <div id="countdown-wrapper" class="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-6 mb-8 inline-block shadow-xl">
@@ -598,12 +640,13 @@
                 </div>
                 <div class="flex flex-wrap gap-4">
                     <a href="https://engage.aspireleaders.org/registration" target="_blank" rel="noopener noreferrer" class="bg-aspire-gold hover:bg-aspire-goldHover text-aspire-charcoal px-8 py-4 rounded-sm font-bold uppercase tracking-wider text-sm text-center shadow-lg transition-all inline-block">Aplicar ahora</a>
-                    <a href="https://www.aspireleaders.org/" target="_blank" rel="noopener noreferrer" class="bg-white/10 hover:bg-white/20 text-white border border-white/30 px-8 py-4 rounded-sm font-bold uppercase tracking-wider text-sm text-center transition-all inline-block backdrop-blur-sm">Conoce más</a>
+                    <a href="https://www.aspireleaders.org/" target="_blank" rel="noopener noreferrer" class="bg-white/10 hover:bg-white/20 text-white border border-white/30 px-8 py-4 rounded-sm font-bold uppercase tracking-wider text-sm text-center transition-all inline-block backdrop-blur-sm">Conoce más ></a>
                 </div>
             </div>
         </div>
     </section>
 
+    <!-- ===== IMPACTO ===== -->
     <section class="py-12 bg-white border-b border-gray-100">
         <div class="container mx-auto px-4 lg:px-8">
             <h2 class="text-3xl font-serif font-bold text-aspire-charcoal text-center mb-8">Impacto local</h2>
@@ -615,98 +658,92 @@
         </div>
     </section>
 
-<section id="convocatoria" class="py-14 bg-gray-50">
-  <div class="container mx-auto px-4 lg:px-8">
-
-    <!-- Contenido centrado con párrafos justificados -->
-    <div class="max-w-3xl mx-auto">
-      
-      <div class="text-center">
-        <span class="section-badge">Convocatoria 2026</span>
-        <h3 class="text-3xl md:text-4xl font-serif font-bold text-aspire-charcoal mt-3 mb-4">¿Qué es Aspire?</h3>
-      </div>
-      
-      <p class="text-aspire-slate leading-relaxed mb-4 text-sm text-justify">
-        Aspire es una organización internacional sin fines de lucro fundada en 2017 por docentes de Harvard, con presencia en 195 países. Acompañamos a estudiantes de primera generación y egresados recientes de contextos con desigualdades económicas. En 2026, a través de Mosaico A.C., llega a México.
-      </p>
-      
-      <div class="text-center">
-        <h4 class="text-xl font-serif font-bold text-aspire-charcoal mb-2">Estructura del programa</h4>
-      </div>
-      
-      <p class="text-aspire-slate leading-relaxed mb-4 text-sm text-justify">
-        Programa en línea, gratuito y autofinanciado, impartido en inglés (comprensión lectora). Dura 9 semanas, combina actividades asincrónicas y sesiones en vivo.
-      </p>
-      
-      <div class="text-center">
-        <a href="./plan.html" class="inline-flex items-center gap-2 bg-aspire-red text-white px-6 py-3 rounded-full font-bold text-sm uppercase tracking-wider hover:bg-aspire-redDark transition-colors shadow-md">
-          <i class="fa-solid fa-eye"></i> Ver plan de estudios
-        </a>
-      </div>
-    </div>
-
-    <!-- Tarjeta premium: Elegibilidad + Fechas + CTA (sin cambios) -->
-    <div class="mt-12 card-premium overflow-hidden">
-      <div class="flex flex-col md:flex-row divide-y md:divide-y-0 md:divide-x divide-gray-200">
-        <div class="flex-1 p-6 md:p-8">
-          <div class="flex items-center gap-2 mb-4">
-            <i class="fa-regular fa-circle-check text-aspire-green text-xl"></i>
-            <h4 class="text-xl font-serif font-bold text-aspire-charcoal">Criterios de elegibilidad</h4>
-          </div>
-          <ul class="space-y-4 text-aspire-slate">
-            <li class="flex items-start gap-3">
-              <span class="w-6 h-6 rounded-full bg-aspire-red/10 text-aspire-red flex items-center justify-center text-sm font-bold mt-0.5">1</span>
-              <span><strong class="text-aspire-charcoal">18 – 29 años</strong></span>
-            </li>
-            <li class="flex items-start gap-3">
-              <span class="w-6 h-6 rounded-full bg-aspire-red/10 text-aspire-red flex items-center justify-center text-sm font-bold mt-0.5">2</span>
-              <span><strong class="text-aspire-charcoal">Estudiante universitario o egresado reciente</strong></span>
-            </li>
-            <li class="flex items-start gap-3">
-              <span class="w-6 h-6 rounded-full bg-aspire-red/10 text-aspire-red flex items-center justify-center text-sm font-bold mt-0.5">3</span>
-              <span><strong class="text-aspire-charcoal">Primera generación en universidad o contexto de desigualdad económica</strong></span>
-            </li>
-          </ul>
-          <div class="mt-6 p-4 bg-aspire-gold/10 border-l-4 border-aspire-gold rounded-r-lg">
-            <p class="text-sm font-medium text-aspire-charcoal">
-              <i class="fa-regular fa-circle-check text-aspire-green mr-2"></i>
-              Si cumples estos criterios, <strong>la admisión está garantizada</strong>.
-            </p>
-          </div>
-        </div>
-        <div class="flex-1 p-6 md:p-8 bg-gray-50/50 flex flex-col justify-between">
-          <div>
-            <div class="flex items-center gap-2 mb-4">
-              <i class="fa-regular fa-calendar text-aspire-red text-xl"></i>
-              <h4 class="text-xl font-serif font-bold text-aspire-charcoal">Fechas clave</h4>
+    <!-- ===== CONVOCATORIA ===== -->
+    <section id="convocatoria" class="py-14 bg-gray-50">
+        <div class="container mx-auto px-4 lg:px-8">
+            <div class="max-w-3xl mx-auto">
+                <div class="text-center">
+                    <span class="section-badge">Convocatoria 2026</span>
+                    <h3 class="text-3xl md:text-4xl font-serif font-bold text-aspire-charcoal mt-3 mb-4">¿Qué es Aspire?</h3>
+                </div>
+                <p class="text-aspire-slate leading-relaxed mb-4 text-sm text-justify">
+                    Aspire es una organización internacional sin fines de lucro fundada en 2017 por docentes de Harvard, con presencia en 195 países. Acompañamos a estudiantes de primera generación y egresados recientes de contextos con desigualdades económicas. En 2026, a través de Mosaico A.C., llega a México.
+                </p>
+                <div class="text-center">
+                    <h4 class="text-xl font-serif font-bold text-aspire-charcoal mb-2">Estructura del programa</h4>
+                </div>
+                <p class="text-aspire-slate leading-relaxed mb-4 text-sm text-justify">
+                    Programa en línea, gratuito y autofinanciado, impartido en inglés (comprensión lectora). Dura 9 semanas, combina actividades asincrónicas y sesiones en vivo.
+                </p>
+                <div class="text-center">
+                    <a href="./plan.html" class="inline-flex items-center gap-2 bg-aspire-red text-white px-6 py-3 rounded-full font-bold text-sm uppercase tracking-wider hover:bg-aspire-redDark transition-colors shadow-md">
+                        <i class="fa-solid fa-eye"></i> Ver plan de estudios
+                    </a>
+                </div>
             </div>
-            <div class="space-y-3 text-sm">
-              <div class="flex justify-between border-b border-gray-200 pb-2">
-                <span class="text-aspire-slate">Cierre convocatoria</span>
-                <span class="font-bold text-aspire-red">10 de julio 2026</span>
-              </div>
-              <div class="flex justify-between border-b border-gray-200 pb-2">
-                <span class="text-aspire-slate">Inicio del programa</span>
-                <span class="font-bold">22 de julio 2026</span>
-              </div>
-              <div class="flex justify-between">
-                <span class="text-aspire-slate">Fin del programa</span>
-                <span class="font-bold">28 de septiembre 2026</span>
-              </div>
+
+            <!-- Tarjeta elegibilidad -->
+            <div class="mt-12 card-premium overflow-hidden">
+                <div class="flex flex-col md:flex-row divide-y md:divide-y-0 md:divide-x divide-gray-200">
+                    <div class="flex-1 p-6 md:p-8">
+                        <div class="flex items-center gap-2 mb-4">
+                            <i class="fa-regular fa-circle-check text-aspire-green text-xl"></i>
+                            <h4 class="text-xl font-serif font-bold text-aspire-charcoal">Criterios de elegibilidad</h4>
+                        </div>
+                        <ul class="space-y-4 text-aspire-slate">
+                            <li class="flex items-start gap-3">
+                                <span class="w-6 h-6 rounded-full bg-aspire-red/10 text-aspire-red flex items-center justify-center text-sm font-bold mt-0.5">1</span>
+                                <span><strong class="text-aspire-charcoal">18 – 29 años</strong></span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="w-6 h-6 rounded-full bg-aspire-red/10 text-aspire-red flex items-center justify-center text-sm font-bold mt-0.5">2</span>
+                                <span><strong class="text-aspire-charcoal">Estudiante universitario o egresado reciente</strong></span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="w-6 h-6 rounded-full bg-aspire-red/10 text-aspire-red flex items-center justify-center text-sm font-bold mt-0.5">3</span>
+                                <span><strong class="text-aspire-charcoal">Primera generación en universidad o contexto de desigualdad económica</strong></span>
+                            </li>
+                        </ul>
+                        <div class="mt-6 p-4 bg-aspire-gold/10 border-l-4 border-aspire-gold rounded-r-lg">
+                            <p class="text-sm font-medium text-aspire-charcoal">
+                                <i class="fa-regular fa-circle-check text-aspire-green mr-2"></i>
+                                Si cumples estos criterios, <strong>la admisión está garantizada</strong>.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="flex-1 p-6 md:p-8 bg-gray-50/50 flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center gap-2 mb-4">
+                                <i class="fa-regular fa-calendar text-aspire-red text-xl"></i>
+                                <h4 class="text-xl font-serif font-bold text-aspire-charcoal">Fechas clave</h4>
+                            </div>
+                            <div class="space-y-3 text-sm">
+                                <div class="flex justify-between border-b border-gray-200 pb-2">
+                                    <span class="text-aspire-slate">Cierre convocatoria</span>
+                                    <span class="font-bold text-aspire-red">10 de julio 2026</span>
+                                </div>
+                                <div class="flex justify-between border-b border-gray-200 pb-2">
+                                    <span class="text-aspire-slate">Inicio del programa</span>
+                                    <span class="font-bold">22 de julio 2026</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span class="text-aspire-slate">Fin del programa</span>
+                                    <span class="font-bold">28 de septiembre 2026</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-6">
+                            <a href="https://engage.aspireleaders.org/registration" target="_blank" rel="noopener noreferrer" class="block text-center bg-aspire-red text-white px-6 py-3 rounded-full font-bold text-sm uppercase tracking-wider hover:bg-aspire-redDark transition-colors shadow-md">
+                                Postula ahora en engage.aspireleaders.org
+                            </a>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
-          <div class="mt-6">
-            <a href="https://engage.aspireleaders.org/registration" target="_blank" rel="noopener noreferrer" class="block text-center bg-aspire-red text-white px-6 py-3 rounded-full font-bold text-sm uppercase tracking-wider hover:bg-aspire-redDark transition-colors shadow-md">
-              Postula ahora en engage.aspireleaders.org
-            </a>
-          </div>
         </div>
-      </div>
-    </div>
+    </section>
 
-  </div>
-</section>
-
+    <!-- ===== PRÓXIMAS ===== -->
     <section id="proximas" class="py-14 bg-white border-y border-gray-100">
         <div class="container mx-auto px-4 lg:px-8">
             <div class="text-center max-w-2xl mx-auto mb-10"><span class="section-badge">Convocatorias internas</span><h3 class="text-3xl font-serif font-bold text-aspire-charcoal mt-3">Próximas oportunidades</h3><p class="text-aspire-slate mt-2">Voluntariado, Grants & Awards, y Mentoría para nuestra comunidad.</p></div>
@@ -718,7 +755,7 @@
         </div>
     </section>
 
-    <!-- ===== NOSOTROS - ORGANIGRAMA IDÉNTICO EN TODOS LOS DISPOSITIVOS ===== -->
+    <!-- ===== NOSOTROS ===== -->
     <section id="nosotros" class="py-14 bg-gray-50">
         <div class="container mx-auto px-4 lg:px-8">
             <div class="text-center max-w-3xl mx-auto mb-10">
@@ -755,7 +792,6 @@
                 </div>
             </div>
 
-            <!-- Colectivo Mosaico - Encuadre ejecutivo premium -->
             <div class="mt-12 mosaico-card max-w-3xl mx-auto">
                 <div class="flex flex-col sm:flex-row items-center gap-5 sm:gap-7 mosaico-content">
                     <div class="mosaico-logo">
@@ -772,6 +808,7 @@
         </div>
     </section>
 
+    <!-- ===== ENGLISH CORNER ===== -->
     <section id="english-corner" class="py-14 bg-white border-y border-gray-100">
         <div class="container mx-auto px-4 lg:px-8">
             <div class="text-center max-w-2xl mx-auto mb-10"><span class="section-badge">Práctica de inglés</span><h3 class="text-3xl font-serif font-bold text-aspire-charcoal mt-3">English Corner</h3></div>
@@ -788,6 +825,7 @@
         </div>
     </section>
 
+    <!-- ===== ALUMNI ===== -->
     <section id="alumni" class="py-14 bg-gray-50">
         <div class="container mx-auto px-4 lg:px-8">
             <div class="text-center max-w-3xl mx-auto mb-10"><span class="section-badge">Comunidad global</span><h3 class="text-3xl font-serif font-bold text-aspire-charcoal mt-3">Alumni & ELP</h3><p class="text-aspire-slate mt-2">Más de 100,000 egresados en 195 países. Graduarte es el comienzo.</p></div>
@@ -799,6 +837,7 @@
         </div>
     </section>
 
+    <!-- ===== TESTIMONIOS ===== -->
     <section id="testimonios" class="py-14 bg-white">
         <div class="container mx-auto px-4 lg:px-8">
             <div class="text-center max-w-3xl mx-auto mb-10"><span class="section-badge">Voces de la comunidad</span><h3 class="text-3xl font-serif font-bold text-aspire-charcoal mt-3">Testimonios</h3><p class="text-aspire-slate mt-2">Historias de resiliencia, crecimiento y transformación.</p></div>
@@ -814,11 +853,12 @@
         </div>
     </section>
 
+    <!-- ===== GALERÍA ===== -->
     <section id="galeria" class="py-14 bg-gray-50 border-y border-gray-200">
         <div class="container mx-auto px-4 lg:px-8"><div class="text-center max-w-2xl mx-auto mb-10"><span class="section-badge">Recuerdos</span><h3 class="text-3xl font-serif font-bold text-aspire-charcoal mt-3">Galería de eventos</h3></div><div class="flex overflow-x-auto snap-x gap-4 pb-4 md:grid md:grid-cols-4 md:gap-4 md:pb-0 scrollbar-hide"><div class="snap-center shrink-0 w-[75vw] sm:w-[300px] md:w-auto rounded-xl overflow-hidden shadow-md aspect-video"><img src="./gallery/ev1.jpg" alt="Evento 1" class="w-full h-full object-cover"></div><div class="snap-center shrink-0 w-[75vw] sm:w-[300px] md:w-auto rounded-xl overflow-hidden shadow-md aspect-video"><img src="./gallery/ev2.jpg" alt="Evento 2" class="w-full h-full object-cover"></div><div class="snap-center shrink-0 w-[75vw] sm:w-[300px] md:w-auto rounded-xl overflow-hidden shadow-md aspect-video"><img src="./gallery/ev3.jpg" alt="Evento 3" class="w-full h-full object-cover"></div><div class="snap-center shrink-0 w-[75vw] sm:w-[300px] md:w-auto rounded-xl overflow-hidden shadow-md aspect-video"><img src="./gallery/ev4.jpg" alt="Evento 4" class="w-full h-full object-cover"></div></div></div>
     </section>
 
-    <!-- ===== ALIANZAS MEJORADA - TEXTO SINTETIZADO Y DISEÑO REFINADO ===== -->
+    <!-- ===== ALIANZAS ===== -->
     <section id="alianzas" class="py-14 bg-white">
         <div class="container mx-auto px-4 lg:px-8">
             <div class="text-center max-w-3xl mx-auto mb-10">
@@ -837,6 +877,7 @@
         </div>
     </section>
 
+    <!-- ===== FOOTER ===== -->
     <footer id="contacto" class="bg-aspire-charcoal text-white pt-16 pb-8 border-t border-white/5">
         <div class="container mx-auto px-4 lg:px-8">
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-10 mb-12">
@@ -848,30 +889,60 @@
         </div>
     </footer>
 
+    <!-- ===== SCRIPTS ===== -->
     <script>
         (function() {
             'use strict';
+
+            // ---- LOADING PAGE ----
+            const overlay = document.getElementById('loading-overlay');
+            const delayMsg = document.getElementById('delay-msg');
+
+            const delayTimer = setTimeout(function() {
+                if (!overlay.classList.contains('hidden')) {
+                    delayMsg.classList.add('show');
+                }
+            }, 3000);
+
+            window.addEventListener('load', function() {
+                clearTimeout(delayTimer);
+                overlay.classList.add('hidden');
+                setTimeout(function() {
+                    overlay.style.display = 'none';
+                }, 900);
+            });
+
+            // ---- MENÚ MÓVIL ----
             const menuBtn = document.getElementById('mobile-menu-btn');
             const closeBtn = document.getElementById('close-menu-btn');
             const mobileMenu = document.getElementById('mobile-menu');
-            const overlay = document.getElementById('menu-overlay');
+            const menuOverlay = document.getElementById('menu-overlay');
             const mobileLinks = document.querySelectorAll('.mobile-link');
-            function toggleMenu() { mobileMenu.classList.toggle('translate-x-full');
-                overlay.classList.toggle('hidden'); }
+
+            function toggleMenu() {
+                mobileMenu.classList.toggle('translate-x-full');
+                menuOverlay.classList.toggle('hidden');
+            }
             menuBtn.addEventListener('click', toggleMenu);
             closeBtn.addEventListener('click', toggleMenu);
-            overlay.addEventListener('click', toggleMenu);
+            menuOverlay.addEventListener('click', toggleMenu);
             mobileLinks.forEach(link => link.addEventListener('click', toggleMenu));
+
+            // ---- COUNTDOWN ----
             const countDownDate = new Date("Jul 10, 2026 23:59:59").getTime();
             const bannerText = document.getElementById('banner-text');
             const countdownLabel = document.getElementById('countdown-label');
+
             const timer = setInterval(function() {
                 const now = new Date().getTime();
                 const distance = countDownDate - now;
-                if (distance < 0) { clearInterval(timer);
+                if (distance < 0) {
+                    clearInterval(timer);
                     document.getElementById("countdown").innerHTML = '<span class="text-aspire-red text-xl font-bold">Convocatoria cerrada. Espera próximas fechas.</span>';
                     countdownLabel.textContent = 'Cohorte 3-2026 finalizada';
-                    bannerText.textContent = 'La convocatoria ha cerrado. ¡Sigue nuestras redes para próximas fechas!'; return; }
+                    bannerText.textContent = 'La convocatoria ha cerrado. ¡Sigue nuestras redes para próximas fechas!';
+                    return;
+                }
                 const days = Math.floor(distance / (1000 * 60 * 60 * 24));
                 const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
                 const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
@@ -881,12 +952,36 @@
                 document.getElementById("cd-minutes").innerText = minutes.toString().padStart(2, '0');
                 document.getElementById("cd-seconds").innerText = seconds.toString().padStart(2, '0');
             }, 1000);
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => { anchor.addEventListener('click', function(e) { const href = this.getAttribute('href'); if (href === '#') return;
-                    e.preventDefault(); const target = document.querySelector(href); if (target) { target.scrollIntoView({ behavior: 'smooth', block: 'start' }); } }); });
-            const observer = new IntersectionObserver((entries) => { entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('visible'); } }); }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
-            document.querySelectorAll('.fade-up').forEach(el => { observer.observe(el); });
+
+            // ---- SMOOTH SCROLL ----
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    const href = this.getAttribute('href');
+                    if (href === '#') return;
+                    e.preventDefault();
+                    const target = document.querySelector(href);
+                    if (target) {
+                        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                });
+            });
+
+            // ---- FADE-UP OBSERVER ----
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+            document.querySelectorAll('.fade-up').forEach(el => {
+                observer.observe(el);
+            });
+
         })();
     </script>
+
+    <!-- ===== SCHEMA ===== -->
     <script type="application/ld+json">
         { "@context": "https://schema.org", "@type": "EducationalOrganization", "name": "Aspire Institute México", "alternateName": "Aspire México", "url": "https://www.aspireinstitute.mx/", "logo": "https://www.aspireinstitute.mx/files/heroimg.jpg", "description": "Programa de liderazgo gratuito para estudiantes universitarios de primera generación en México.", "address": { "@type": "PostalAddress", "addressLocality": "Ciudad de México", "addressCountry": "MX" }, "sameAs": ["https://www.instagram.com/aspireinstitute/", "https://www.linkedin.com/company/aspire-institute/"] }
     </script>
