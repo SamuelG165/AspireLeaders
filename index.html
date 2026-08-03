@@ -682,17 +682,16 @@
     <!-- ===== BANNER ===== -->
     <div id="top-banner" class="bg-aspire-red text-white py-2.5 px-4 text-center text-xs sm:text-sm font-medium tracking-wide relative z-50">
         <div class="container mx-auto flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-4">
-            <span id="banner-text">¡Ya está abierto el plazo de solicitud para el Programa de Líderes Aspire 2026!</span>
+            <span id="banner-text">¡Ya está abierto el plazo de solicitud para el Aspire Leadership Program 2026!</span>
             <a href="https://engage.aspireleaders.org/registration" target="_blank" rel="noopener noreferrer" class="bg-aspire-gold text-aspire-charcoal hover:bg-aspire-goldHover px-4 py-1.5 rounded-sm text-xs font-bold uppercase tracking-wider transition-colors shadow-sm inline-block">¡Solicita ahora!</a>
         </div>
     </div>
 
-    <!-- ===== HEADER ===== -->
+<!-- ===== HEADER ===== -->
     <header class="sticky top-0 bg-white/80 backdrop-blur-lg shadow-sm border-b border-white/20 z-40 transition-all duration-300">
         <div class="container mx-auto px-4 lg:px-8 h-20 flex items-center justify-between">
-            <a href="#" class="flex flex-col group">
-                <span class="text-3xl font-serif font-bold text-aspire-red tracking-tight leading-none group-hover:text-aspire-redDark transition-colors">Aspire</span>
-                <span class="text-[9px] font-serif font-bold tracking-[0.35em] text-aspire-slate uppercase pl-0.5 mt-1">Institute</span>
+            <a href="#" class="flex items-center gap-3 group">
+                <img src="./menulogo.png" alt="Aspire Institute" class="h-10 w-auto object-contain group-hover:opacity-90 transition-opacity" />
             </a>
             <nav class="hidden lg:flex items-center space-x-6 xl:space-x-8">
                 <a href="#convocatoria" class="text-sm font-semibold text-aspire-charcoal hover:text-aspire-red transition-colors">Convocatoria</a>
@@ -731,7 +730,7 @@
         </div>
     </div>
 
-    <!-- ===== HERO ===== -->
+<!-- ===== HERO ===== -->
     <section class="relative bg-aspire-charcoal overflow-hidden flex items-center min-h-[80vh]">
         <div class="absolute inset-0 z-0">
             <div class="absolute inset-0 bg-gradient-to-r from-black/80 via-black/60 to-transparent z-10"></div>
@@ -739,9 +738,12 @@
         </div>
         <div class="container mx-auto px-4 lg:px-8 relative z-20 py-16">
             <div class="max-w-3xl">
-                <span class="inline-block bg-aspire-gold/20 text-aspire-gold px-4 py-1 rounded-full text-xs font-bold uppercase tracking-wider mb-4 backdrop-blur-sm border border-aspire-gold/30">Cohorte 3 · 2026</span>
-                <h1 class="text-4xl sm:text-5xl lg:text-6xl font-serif font-bold text-white tracking-tight leading-tight mb-6">Líderes con impacto real</h1>
-                <p class="text-lg sm:text-xl text-gray-200 leading-relaxed font-light mb-10 max-w-2xl">Empoderamos a estudiantes universitarios de primera generación para que desarrollen su potencial de liderazgo. Conectamos la ambición con la oportunidad.</p>
+                <span class="inline-block bg-aspire-gold/20 text-aspire-gold px-4 py-1 rounded-full text-xs font-bold uppercase tracking-wider mb-4 backdrop-blur-sm border border-aspire-gold/30">Cohorte 4 · 2026</span>
+                <h1 class="text-4xl sm:text-5xl lg:text-6xl font-serif font-bold text-white tracking-tight leading-tight mb-6 min-h-[4.5rem] sm:min-h-[5.5rem] lg:min-h-[6.5rem]">
+                    <span class="inline-block" id="typed-text"></span>
+                    <span class="inline-block w-[3px] h-[0.8em] bg-aspire-gold align-middle ml-1 animate-pulse" id="cursor"></span>
+                </h1>
+                <p class="text-lg sm:text-xl text-gray-200 leading-relaxed font-light mb-10 max-w-2xl">Para jóvenes universitarios de primera generación y egresados recientes que vienen de contextos que enfrentan desigualdades económicas — y que tienen todo el potencial para liderar.</p>
                 <div id="countdown-wrapper" class="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-6 mb-8 inline-block shadow-xl">
                     <p id="countdown-label" class="text-aspire-gold text-xs font-bold uppercase tracking-widest mb-3">Cierre Cohort 4: 16 de octubre 2026</p>
                     <div class="flex gap-4 sm:gap-6 text-center" id="countdown">
@@ -761,6 +763,79 @@
             </div>
         </div>
     </section>
+
+<script>
+    // ===== MÁQUINA DE ESCRIBIR =====
+    document.addEventListener('DOMContentLoaded', function() {
+        const typedTextEl = document.getElementById('typed-text');
+        const cursorEl = document.getElementById('cursor');
+        
+        const phrases = [
+            'Líderes con impacto real',
+            'Agentes de cambio',
+            'Semillero de líderes'
+        ];
+        
+        let phraseIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+        let isWaiting = false; // Bandera para evitar ejecuciones múltiples
+        
+        // Velocidades fijas sin acumulación
+        const TYPING_SPEED = 150;
+        const DELETE_SPEED = 70;
+        const PAUSE_BEFORE_DELETE = 1800;
+        const PAUSE_BEFORE_TYPE = 600;
+        
+        function typeEffect() {
+            // Evitar ejecución si ya hay un timeout en curso
+            if (isWaiting) return;
+            
+            const currentPhrase = phrases[phraseIndex];
+            
+            if (isDeleting) {
+                // Borrar caracteres
+                typedTextEl.textContent = currentPhrase.substring(0, charIndex - 1);
+                charIndex--;
+                
+                if (charIndex === 0) {
+                    // Terminó de borrar
+                    isDeleting = false;
+                    phraseIndex = (phraseIndex + 1) % phrases.length;
+                    isWaiting = true;
+                    setTimeout(() => {
+                        isWaiting = false;
+                        typeEffect();
+                    }, PAUSE_BEFORE_TYPE);
+                } else {
+                    // Seguir borrando
+                    setTimeout(typeEffect, DELETE_SPEED);
+                }
+            } else {
+                // Escribir caracteres
+                typedTextEl.textContent = currentPhrase.substring(0, charIndex + 1);
+                charIndex++;
+                
+                if (charIndex === currentPhrase.length) {
+                    // Terminó de escribir
+                    isWaiting = true;
+                    setTimeout(() => {
+                        isDeleting = true;
+                        isWaiting = false;
+                        typeEffect();
+                    }, PAUSE_BEFORE_DELETE);
+                } else {
+                    // Seguir escribiendo
+                    const randomDelay = TYPING_SPEED + Math.random() * 60;
+                    setTimeout(typeEffect, randomDelay);
+                }
+            }
+        }
+        
+        // Iniciar el efecto después de un breve delay
+        setTimeout(typeEffect, 1000);
+    });
+</script>
 
     <!-- ===== IMPACTO ===== -->
     <section class="py-12 bg-white border-b border-gray-100">
@@ -783,7 +858,7 @@
                     <h3 class="text-3xl md:text-4xl font-serif font-bold text-aspire-charcoal mt-3 mb-4">¿Qué es Aspire?</h3>
                 </div>
                 <p class="text-aspire-slate leading-relaxed mb-4 text-sm text-justify">
-                    Aspire es una organización internacional sin fines de lucro fundada en 2017 por docentes de Harvard, con presencia en 195 países. Acompañamos a estudiantes de primera generación y egresados recientes de contextos con desigualdades económicas. En 2026, a través de Mosaico A.C., llega a México.
+                    Aspire Institute es una organización internacional sin fines de lucro fundada en 2017 por docentes de Harvard Business School. Con presencia en 195 países, nuestro programa de liderazgo es completamente gratuito, 100% en línea y está diseñado para acompañar a jóvenes universitarios de primera generación y egresados recientes que provienen de contextos que enfrentan desigualdades económicas. En México llegamos a través del Colectivo Mosaico A.C.
                 </p>
                 <div class="text-center">
                     <h4 class="text-xl font-serif font-bold text-aspire-charcoal mb-2">Estructura del programa</h4>
@@ -859,7 +934,7 @@
         </div>
     </section>
 
-    <!-- ===== PRÓXIMAS ===== -->
+<!-- ===== PRÓXIMAS ===== -->
     <section id="proximas" class="py-14 bg-white border-y border-gray-100">
         <div class="container mx-auto px-4 lg:px-8">
             <div class="text-center max-w-2xl mx-auto mb-10">
@@ -875,17 +950,19 @@
                     </div>
                     <h4 class="text-xl font-bold font-serif text-aspire-charcoal mb-2">Embajador/a Aspire</h4>
                     <p class="text-sm text-aspire-slate flex-grow">
+                        <strong class="text-aspire-charcoal">Exclusivo para estudiantes del programa Aspire.</strong> 
                         Sé la cara de Aspire en tu comunidad. Organiza eventos informativos, colabora en redes sociales,
-                        participa en sesiones de formación y ayuda a expandir nuestra misión. <br><br>
+                        participa en sesiones de formación y ayuda a expandir nuestra misión.
                     </p>
                     <div class="mt-4 space-y-3">
                         <div class="flex items-center gap-2">
                             <span class="inline-block w-2 h-2 rounded-full bg-aspire-red"></span>
                             <span class="text-xs font-bold text-aspire-red uppercase tracking-wider">Próxima apertura</span>
                         </div>
-                        <a href="mailto:mexicoprograms@aspireleaders.org" 
-                           class="inline-block w-full text-center bg-aspire-red hover:bg-aspire-red/80 text-white font-semibold py-2 px-4 rounded-lg transition text-sm">
-                            <i class="fa-regular fa-envelope mr-2"></i> Envíanos tu interés
+                        <a href="https://wa.me/525521872664?text=Hola!%20Estoy%20interesado%20en%20ser%20embajador/a%20Aspire" 
+                           target="_blank"
+                           class="inline-block w-full text-center bg-[#25D366] hover:bg-[#1DA851] text-white font-semibold py-2 px-4 rounded-lg transition text-sm">
+                            <i class="fa-brands fa-whatsapp mr-2"></i> Envíanos tu interés por WhatsApp
                         </a>
                     </div>
                 </div>
@@ -893,7 +970,7 @@
         </div>
     </section>
 
-    <!-- ===== NOSOTROS ===== -->
+<!-- ===== NOSOTROS ===== -->
     <section id="nosotros" class="py-14 bg-gray-50">
         <div class="container mx-auto px-4 lg:px-8">
             <div class="text-center max-w-3xl mx-auto mb-8">
@@ -939,19 +1016,24 @@
                         <div class="org-item">
                             <div class="avatar"><i class="fa-solid fa-user-tie"></i></div>
                             <span class="nombre">Ana Flores</span>
-                            <span class="cargo">Directora Nacional</span>
+                            <span class="cargo">Country Director</span>
                         </div>
                     </div>
                     <div class="org-nivel">
                         <div class="org-item">
                             <div class="avatar gold"><i class="fa-solid fa-user-group"></i></div>
+                            <span class="nombre">Desiree Gaitán</span>
+                            <span class="cargo">Outreach, Retention, and Partnerships Coordinator</span>
+                        </div>
+                        <div class="org-item">
+                            <div class="avatar gold"><i class="fa-solid fa-user-cog"></i></div>
                             <span class="nombre">Alma García</span>
-                            <span class="cargo">Coordinadora de Voluntariados y Comunicación</span>
+                            <span class="cargo">Volunteer and Communications Coordinator</span>
                         </div>
                         <div class="org-item">
                             <div class="avatar gold"><i class="fa-solid fa-user-cog"></i></div>
                             <span class="nombre">Alina Aksiyote</span>
-                            <span class="cargo">Administradora</span>
+                            <span class="cargo">Operations Coordinator</span>
                         </div>
                     </div>
                     <div class="org-nivel">
@@ -1001,11 +1083,13 @@
                         <h4 class="text-xl font-serif font-bold text-aspire-charcoal">ELP Pathways</h4>
                     </div>
                     <p class="text-sm text-aspire-slate flex-grow leading-relaxed">
-                        Acceso a recursos, mentorías y microbecas en tres rutas: <strong>desarrollo profesional</strong> y <strong>educación superior</strong>. Flexible y autodirigido.
+                        Acceso a recursos, mentorías, microbecas, internships y más.
                     </p>
                     <div class="flex flex-wrap gap-2 mt-4">
-                        <span class="bg-aspire-red/10 text-aspire-red px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider">Profesional</span>
-                        <span class="bg-blue-100 text-blue-600 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider">Académico</span>
+                        <span class="bg-aspire-red/10 text-aspire-red px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider">Career Development</span>
+                        <span class="bg-blue-100 text-blue-600 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider">Entrepreneurship</span>´
+                        <span class="bg-green-100 text-green-600 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider">Higher Education</span>
+                        <span class="bg-yellow-100 text-yellow-600 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider">Research</span>
                     </div>
                 </div>
 
@@ -1032,13 +1116,17 @@
                     </div>
                 </div>
 
-                <!-- Tarjeta Grants & Awards -->
+<!-- Tarjeta Grants & Awards -->
                 <div class="snap-center shrink-0 w-[80vw] sm:w-[300px] md:w-auto card-premium p-6 flex flex-col card-hover">
                     <div class="card-top-line green"></div>
                     <div class="flex items-center gap-3 mb-3 mt-2">
                         <i class="fa-solid fa-gem text-2xl text-aspire-red"></i>
                         <h4 class="text-xl font-serif font-bold text-aspire-charcoal">Grants & Awards</h4>
                     </div>
+                    <p class="text-xs text-aspire-slate mb-3 font-medium">
+                        <i class="fa-solid fa-graduation-cap text-green-600 mr-1"></i>
+                        Beneficios exclusivos para graduados/as del Aspire Leadership Program
+                    </p>
                     <ul class="text-sm text-aspire-slate space-y-2 flex-grow">
                         <li>
                             <i class="fa-solid fa-book-open-reader text-purple-600 w-5"></i>
@@ -1049,12 +1137,6 @@
                             Community Action Award: hasta $2500 USD
                         </li>
                     </ul>
-                    <div class="mt-4 p-3 bg-green-50 border-l-4 border-green-600 rounded-r-lg">
-                        <p class="text-xs font-medium text-aspire-charcoal">
-                            <i class="fa-solid fa-graduation-cap text-green-600 mr-1"></i>
-                            Exclusivo para graduados del ALP
-                        </p>
-                    </div>
                 </div>
             </div>
         </div>
@@ -1333,9 +1415,9 @@
                     <p class="text-gray-400 text-sm leading-relaxed mb-4">
                         Dudas sobre postulaciones, fondos semilla o colaboración institucional.
                     </p>
-                    <a href="mailto:mexico@aspireleaders.org" 
+                    <a href="mailto:mexicoprograms@aspireleaders.org" 
                        class="inline-flex items-center justify-center gap-2 bg-aspire-red hover:bg-aspire-redDark text-white text-sm font-bold uppercase tracking-wider px-6 py-3 rounded transition-colors shadow-lg w-full sm:w-auto">
-                        <i class="fa-solid fa-envelope"></i> mexico@aspireleaders.org
+                        <i class="fa-solid fa-envelope"></i> mexicoprograms@aspireleaders.org
                     </a>
                     <p class="text-xs text-gray-400 mt-3">Respuesta en 48 horas hábiles.</p>
                 </div>
@@ -1426,7 +1508,7 @@
                 if (distance < 0) {
                     clearInterval(timer);
                     document.getElementById("countdown").innerHTML = '<span class="text-aspire-red text-xl font-bold">Convocatoria cerrada. Espera próximas fechas.</span>';
-                    countdownLabel.textContent = 'Cohorte 3-2026 finalizada';
+                    countdownLabel.textContent = 'Cohorte 4-2026 finalizada';
                     bannerText.textContent = 'La convocatoria ha cerrado. ¡Sigue nuestras redes para próximas fechas!';
                     return;
                 }
