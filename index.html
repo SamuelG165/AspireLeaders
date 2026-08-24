@@ -223,6 +223,32 @@
             .ally-circle { width: 6rem; height: 6rem; }
         }
 
+/* === Estilo ejecutivo para logos rectangulares === */
+.ally-logo {
+    width: 100%;
+    height: 100px; /* ajusta según prefieras */
+    background-color: #f3f4f6;
+    border-radius: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    filter: grayscale(100%);
+    border: 1px solid #e5e7eb;
+}
+.ally-logo:hover {
+    filter: grayscale(0%);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    border-color: #a32035;
+}
+.ally-logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    padding: 0.5rem;
+}
+
         /* organigrama */
         .organigrama-wrapper {
             display: flex;
@@ -725,85 +751,61 @@
         .cal-modal-body {
             clear: both;
         }
-        /* Grid de calendario */
-        .cal-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 0.75rem;
-        }
-        .cal-item {
+        /* Estilos para el nuevo calendario agrupado */
+        .cal-grupo {
             display: flex;
-            align-items: center;
-            gap: 1rem;
-            background: #fafafa;
-            border-radius: 0.75rem;
-            padding: 0.75rem 1rem;
-            border-left: 4px solid #a32035;
-            transition: background 0.2s, transform 0.15s;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+            flex-wrap: wrap;
+            align-items: baseline;
+            padding: 0.6rem 0.8rem;
+            border-bottom: 1px solid #f0f0f0;
+            gap: 0.3rem 0.6rem;
         }
-        .cal-item:hover {
-            background: #f1f1f1;
-            transform: translateX(4px);
+        .cal-grupo:last-child {
+            border-bottom: none;
         }
-        .cal-item .cal-fecha {
+        .cal-mes-titulo {
             font-weight: 700;
             color: #333132;
-            font-size: 1.1rem;
-            min-width: 100px;
-            flex-shrink: 0;
+            min-width: 90px;
+            font-size: 1rem;
         }
-        .cal-item .cal-mes {
-            font-weight: 600;
+        .cal-fechas {
             color: #4b5563;
-            font-size: 0.85rem;
-            min-width: 80px;
-            flex-shrink: 0;
-            text-transform: uppercase;
-            letter-spacing: 0.03em;
+            font-size: 0.95rem;
         }
-        .cal-item .cal-modalidad {
+        .cal-modalidad-tag {
             display: inline-flex;
             align-items: center;
             gap: 0.4rem;
             background: #e5e7eb;
-            padding: 0.25rem 0.7rem;
+            padding: 0.15rem 0.7rem;
             border-radius: 9999px;
-            font-size: 0.7rem;
+            font-size: 0.65rem;
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 0.03em;
             color: #4b5563;
             margin-left: auto;
-            flex-shrink: 0;
         }
-        .cal-item .cal-modalidad.online {
+        .cal-modalidad-tag.online {
             background: #dbeafe;
             color: #1e40af;
         }
-        .cal-item .cal-modalidad.presencial {
+        .cal-modalidad-tag.presencial {
             background: #fef3c7;
             color: #92400e;
         }
-        .cal-item .cal-modalidad.ambos {
+        .cal-modalidad-tag.ambos {
             background: #d1fae5;
             color: #065f46;
         }
-        .cal-item .cal-modalidad i {
-            font-size: 0.75rem;
-        }
-        @media (min-width: 480px) {
-            .cal-item .cal-fecha { font-size: 1.2rem; min-width: 120px; }
-            .cal-item .cal-mes { font-size: 0.95rem; min-width: 90px; }
+        .cal-modalidad-tag i {
+            font-size: 0.7rem;
         }
         @media (min-width: 640px) {
-            .cal-grid { grid-template-columns: 1fr 1fr; }
-            .cal-item { flex-wrap: wrap; }
-            .cal-item .cal-modalidad { margin-left: 0; }
-        }
-        @media (min-width: 768px) {
-            .cal-grid { grid-template-columns: 1fr 1fr; }
-            .cal-item { padding: 0.85rem 1.2rem; }
+            .cal-grupo { padding: 0.7rem 1rem; }
+            .cal-mes-titulo { min-width: 100px; font-size: 1.05rem; }
+            .cal-fechas { font-size: 1rem; }
         }
         .cal-titulo {
             font-family: Georgia, 'Times New Roman', serif;
@@ -814,17 +816,6 @@
             color: #4b5563;
             font-size: 0.9rem;
             margin-bottom: 1.25rem;
-        }
-        .cal-badge-mes {
-            display: inline-block;
-            background: #a32035;
-            color: white;
-            font-size: 0.65rem;
-            font-weight: 700;
-            padding: 0.2rem 0.8rem;
-            border-radius: 9999px;
-            letter-spacing: 0.05em;
-            text-transform: uppercase;
         }
     </style>
 </head>
@@ -1002,7 +993,8 @@
     });
 </script>
 
-    <!-- ===== IMPACTO ===== -->
+    <!-- ===== IMPACTO LOCAL (comentado) ===== -->
+    <!--
     <section class="py-12 bg-white border-b border-gray-100">
         <div class="container mx-auto px-4 lg:px-8">
             <h2 class="text-3xl font-serif font-bold text-aspire-charcoal text-center mb-8">Impacto local</h2>
@@ -1013,91 +1005,95 @@
             </div>
         </div>
     </section>
+    -->
 
-    <!-- ===== CONVOCATORIA ===== -->
-    <section id="convocatoria" class="py-14 bg-gray-50">
-        <div class="container mx-auto px-4 lg:px-8">
-            <div class="max-w-3xl mx-auto">
-                <div class="text-center">
-                    <span class="section-badge">Convocatoria 2026</span>
-                    <h3 class="text-3xl md:text-4xl font-serif font-bold text-aspire-charcoal mt-3 mb-4">¿Qué es Aspire?</h3>
-                </div>
-                <p class="text-aspire-slate leading-relaxed mb-4 text-sm text-justify">
-                    Aspire Institute es una organización internacional sin fines de lucro fundada en 2017 por docentes de Harvard Business School. Con presencia en 195 países, nuestro programa de liderazgo es completamente gratuito, 100% en línea y está diseñado para acompañar a jóvenes universitarios de primera generación y egresados recientes que provienen de contextos que enfrentan desigualdades económicas. En México llegamos a través del Colectivo Mosaico A.C.
-                </p>
-                <div class="text-center">
-                    <h4 class="text-xl font-serif font-bold text-aspire-charcoal mb-2">Estructura del programa</h4>
-                </div>
-                <p class="text-aspire-slate leading-relaxed mb-4 text-sm text-justify">
-                    Programa en línea, gratuito y a tu propio ritmo, impartido en inglés (comprensión lectora). Dura 9 semanas, combina actividades asincrónicas y sesiones en vivo.
-                </p>
-                <div class="text-center">
-                    <a href="./plan.html" class="inline-flex items-center gap-2 bg-aspire-red text-white px-6 py-3 rounded-full font-bold text-sm uppercase tracking-wider hover:bg-aspire-redDark transition-colors shadow-md">
-                        <i class="fa-solid fa-eye"></i> Ver plan de estudios
-                    </a>
-                </div>
+<!-- ===== CONVOCATORIA ===== -->
+<section id="convocatoria" class="py-14 bg-gray-50">
+    <div class="container mx-auto px-4 lg:px-8">
+        <div class="max-w-3xl mx-auto">
+            <div class="text-center">
+                <span class="section-badge">Convocatoria 2026</span>
+                <h3 class="text-3xl md:text-4xl font-serif font-bold text-aspire-charcoal mt-3 mb-4">¿Qué es Aspire?</h3>
             </div>
+            <p class="text-aspire-slate leading-relaxed mb-4 text-sm text-justify">
+                Aspire Institute es una organización internacional sin fines de lucro fundada en 2017 por docentes de Harvard Business School. Con presencia en 195 países, nuestro programa de liderazgo es completamente gratuito, 100% en línea y está diseñado para acompañar a jóvenes universitarios de primera generación y egresados recientes que provienen de contextos que enfrentan desigualdades económicas. En México llegamos a través del Colectivo Mosaico A.C.
+            </p>
+            <div class="text-center">
+                <h4 class="text-xl font-serif font-bold text-aspire-charcoal mb-2">Estructura del programa</h4>
+            </div>
+            <p class="text-aspire-slate leading-relaxed mb-4 text-sm text-justify">
+                Programa en línea, gratuito y a tu propio ritmo, impartido en inglés (comprensión lectora). Dura 9 semanas, combina actividades asincrónicas y sesiones en vivo.
+            </p>
+            <div class="text-center">
+                <a href="./plan.html" class="inline-flex items-center gap-2 bg-aspire-red text-white px-6 py-3 rounded-full font-bold text-sm uppercase tracking-wider hover:bg-aspire-redDark transition-colors shadow-md">
+                    <i class="fa-solid fa-eye"></i> Ver plan de estudios
+                </a>
+            </div>
+        </div>
 
-            <!-- Tarjeta elegibilidad -->
-            <div class="mt-12 card-premium overflow-hidden">
-                <div class="flex flex-col md:flex-row divide-y md:divide-y-0 md:divide-x divide-gray-200">
-                    <div class="flex-1 p-6 md:p-8">
+        <!-- Tarjeta elegibilidad -->
+        <div class="mt-12 card-premium overflow-hidden">
+            <div class="flex flex-col md:flex-row divide-y md:divide-y-0 md:divide-x divide-gray-200">
+                <div class="flex-1 p-6 md:p-8">
+                    <div class="flex items-center gap-2 mb-4">
+                        <i class="fa-regular fa-circle-check text-aspire-green text-xl"></i>
+                        <h4 class="text-xl font-serif font-bold text-aspire-charcoal">Criterios de elegibilidad</h4>
+                    </div>
+                    <ul class="space-y-4 text-aspire-slate">
+                        <li class="flex items-start gap-3">
+                            <span class="w-6 h-6 rounded-full bg-aspire-red/10 text-aspire-red flex items-center justify-center text-sm font-bold mt-0.5">1</span>
+                            <span><strong class="text-aspire-charcoal">18 – 29 años</strong></span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="w-6 h-6 rounded-full bg-aspire-red/10 text-aspire-red flex items-center justify-center text-sm font-bold mt-0.5">2</span>
+                            <span><strong class="text-aspire-charcoal">Estudiante universitario o egresado reciente</strong></span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="w-6 h-6 rounded-full bg-aspire-red/10 text-aspire-red flex items-center justify-center text-sm font-bold mt-0.5">3</span>
+                            <span><strong class="text-aspire-charcoal">Sean la primera generación en ir a la universidad o provenir de países que enfrentan contextos de desigualdad económica</strong></span>
+                        </li>
+                    </ul>
+                    <div class="mt-6 p-4 bg-aspire-gold/10 border-l-4 border-aspire-gold rounded-r-lg">
+                        <p class="text-sm font-medium text-aspire-charcoal">
+                            <i class="fa-regular fa-circle-check text-aspire-green mr-2"></i>
+                            Si cumples estos criterios, <strong>la admisión está garantizada</strong>.
+                        </p>
+                    </div>
+                </div>
+                <div class="flex-1 p-6 md:p-8 bg-gray-50/50 flex flex-col justify-between">
+                    <div>
                         <div class="flex items-center gap-2 mb-4">
-                            <i class="fa-regular fa-circle-check text-aspire-green text-xl"></i>
-                            <h4 class="text-xl font-serif font-bold text-aspire-charcoal">Criterios de elegibilidad</h4>
+                            <i class="fa-regular fa-calendar text-aspire-red text-xl"></i>
+                            <h4 class="text-xl font-serif font-bold text-aspire-charcoal">Fechas clave</h4>
                         </div>
-                        <ul class="space-y-4 text-aspire-slate">
-                            <li class="flex items-start gap-3">
-                                <span class="w-6 h-6 rounded-full bg-aspire-red/10 text-aspire-red flex items-center justify-center text-sm font-bold mt-0.5">1</span>
-                                <span><strong class="text-aspire-charcoal">18 – 29 años</strong></span>
-                            </li>
-                            <li class="flex items-start gap-3">
-                                <span class="w-6 h-6 rounded-full bg-aspire-red/10 text-aspire-red flex items-center justify-center text-sm font-bold mt-0.5">2</span>
-                                <span><strong class="text-aspire-charcoal">Estudiante universitario o egresado reciente</strong></span>
-                            </li>
-                            <li class="flex items-start gap-3">
-                                <span class="w-6 h-6 rounded-full bg-aspire-red/10 text-aspire-red flex items-center justify-center text-sm font-bold mt-0.5">3</span>
-                                <span><strong class="text-aspire-charcoal">Sean la primera generación en ir a la universidad o provenir de países que enfrentan contextos de desigualdad económica</strong></span>
-                            </li>
-                        </ul>
-                        <div class="mt-6 p-4 bg-aspire-gold/10 border-l-4 border-aspire-gold rounded-r-lg">
-                            <p class="text-sm font-medium text-aspire-charcoal">
-                                <i class="fa-regular fa-circle-check text-aspire-green mr-2"></i>
-                                Si cumples estos criterios, <strong>la admisión está garantizada</strong>.
-                            </p>
+                        <div class="space-y-3 text-sm">
+                            <div class="flex justify-between border-b border-gray-200 pb-2">
+                                <span class="text-aspire-slate">Cierre convocatoria</span>
+                                <span class="font-bold text-aspire-red">16 de octubre 2026</span>
+                            </div>
+                            <div class="flex justify-between border-b border-gray-200 pb-2">
+                                <span class="text-aspire-slate">Inicio del programa</span>
+                                <span class="font-bold">21 de octubre 2026</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-aspire-slate">Fin del programa</span>
+                                <span class="font-bold">01 de diciembre 2026</span>
+                            </div>
                         </div>
                     </div>
-                    <div class="flex-1 p-6 md:p-8 bg-gray-50/50 flex flex-col justify-between">
-                        <div>
-                            <div class="flex items-center gap-2 mb-4">
-                                <i class="fa-regular fa-calendar text-aspire-red text-xl"></i>
-                                <h4 class="text-xl font-serif font-bold text-aspire-charcoal">Fechas clave</h4>
-                            </div>
-                            <div class="space-y-3 text-sm">
-                                <div class="flex justify-between border-b border-gray-200 pb-2">
-                                    <span class="text-aspire-slate">Cierre convocatoria</span>
-                                    <span class="font-bold text-aspire-red">16 de octubre 2026</span>
-                                </div>
-                                <div class="flex justify-between border-b border-gray-200 pb-2">
-                                    <span class="text-aspire-slate">Inicio del programa</span>
-                                    <span class="font-bold">21 de octubre 2026</span>
-                                </div>
-                                <div class="flex justify-between">
-                                    <span class="text-aspire-slate">Fin del programa</span>
-                                    <span class="font-bold">01 de diciembre 2026</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="mt-6">
-                            <a rel="noopener noreferrer" class="block text-center bg-aspire-red text-white px-6 py-3 rounded-full font-bold text-sm uppercase tracking-wider hover:bg-aspire-redDark transition-colors shadow-md">
-                                Postula ahora
-                            </a>
-                        </div>
+                    <div class="mt-6">
+                        <!-- Botón actualizado con el enlace solicitado -->
+                        <a href="https://engage.aspireleaders.org/registration"
+                           rel="noopener noreferrer"
+                           class="block text-center bg-aspire-red text-white px-6 py-3 rounded-full font-bold text-sm uppercase tracking-wider hover:bg-aspire-redDark transition-colors shadow-md">
+                            Postula ahora
+                        </a>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
 <!-- ===== PRÓXIMAS ===== -->
     <section id="proximas" class="py-14 bg-white border-y border-gray-100">
@@ -1239,7 +1235,7 @@
         </div>
     </section>
 
-    <!-- ===== MODAL CALENDARIO ENGLISH CORNER ===== -->
+    <!-- ===== MODAL CALENDARIO ENGLISH CORNER (agrupado por mes) ===== -->
     <div id="modal-calendario" class="cal-modal-overlay">
         <div class="cal-modal-content">
             <button id="cerrar-calendario" class="cal-modal-close" aria-label="Cerrar calendario">
@@ -1248,21 +1244,67 @@
             <div class="cal-modal-body">
                 <h4 class="text-2xl font-serif font-bold text-aspire-charcoal text-center mb-1">Calendario de sesiones</h4>
                 <p class="text-center text-aspire-slate text-sm mb-5">English Corner · 2026</p>
-                <div class="cal-grid">
-                    <!-- Datos extraídos de la imagen -->
-                    <div class="cal-item"><span class="cal-fecha">27/03/2026</span><span class="cal-mes">Marzo</span><span class="cal-modalidad ambos"><i class="fa-regular fa-circle-check"></i> Online / Presencial</span></div>
-                    <div class="cal-item"><span class="cal-fecha">24/04/2026</span><span class="cal-mes">Abril</span><span class="cal-modalidad ambos"><i class="fa-regular fa-circle-check"></i> Online / Presencial</span></div>
-                    <div class="cal-item"><span class="cal-fecha">29/05/2026</span><span class="cal-mes">Mayo</span><span class="cal-modalidad ambos"><i class="fa-regular fa-circle-check"></i> Online / Presencial</span></div>
-                    <div class="cal-item"><span class="cal-fecha">26/06/2026</span><span class="cal-mes">Junio</span><span class="cal-modalidad ambos"><i class="fa-regular fa-circle-check"></i> Online / Presencial</span></div>
-                    <div class="cal-item"><span class="cal-fecha">17/07/2026</span><span class="cal-mes">Julio</span><span class="cal-modalidad online"><i class="fa-solid fa-wifi"></i> Online</span></div>
-                    <div class="cal-item"><span class="cal-fecha">18/07/2026</span><span class="cal-mes">Julio</span><span class="cal-modalidad presencial"><i class="fa-solid fa-users"></i> Presencial</span></div>
-                    <div class="cal-item"><span class="cal-fecha">31/07/2026</span><span class="cal-mes">Agosto</span><span class="cal-modalidad ambos"><i class="fa-regular fa-circle-check"></i> Online / Presencial</span></div>
-                    <div class="cal-item"><span class="cal-fecha">28/08/2026</span><span class="cal-mes">Septiembre</span><span class="cal-modalidad ambos"><i class="fa-regular fa-circle-check"></i> Online / Presencial</span></div>
-                    <div class="cal-item"><span class="cal-fecha">11/09/2026</span><span class="cal-mes">Octubre</span><span class="cal-modalidad ambos"><i class="fa-regular fa-circle-check"></i> Online / Presencial</span></div>
-                    <div class="cal-item"><span class="cal-fecha">25/09/2026</span><span class="cal-mes">Noviembre</span><span class="cal-modalidad ambos"><i class="fa-regular fa-circle-check"></i> Online / Presencial</span></div>
-                    <div class="cal-item"><span class="cal-fecha">30/10/2026</span><span class="cal-mes">Diciembre</span><span class="cal-modalidad ambos"><i class="fa-regular fa-circle-check"></i> Online / Presencial</span></div>
-                    <div class="cal-item"><span class="cal-fecha">20/11/2026</span><span class="cal-mes">Noviembre</span><span class="cal-modalidad ambos"><i class="fa-regular fa-circle-check"></i> Online / Presencial</span></div>
-                    <div class="cal-item"><span class="cal-fecha">11/12/2026</span><span class="cal-mes">Diciembre</span><span class="cal-modalidad ambos"><i class="fa-regular fa-circle-check"></i> Online / Presencial</span></div>
+                <div class="cal-grupos">
+                    <!-- Marzo -->
+                    <div class="cal-grupo">
+                        <span class="cal-mes-titulo">Marzo</span>
+                        <span class="cal-fechas">27 de marzo</span>
+                        <span class="cal-modalidad-tag ambos"><i class="fa-regular fa-circle-check"></i> Online / Presencial</span>
+                    </div>
+                    <!-- Abril -->
+                    <div class="cal-grupo">
+                        <span class="cal-mes-titulo">Abril</span>
+                        <span class="cal-fechas">24 de abril</span>
+                        <span class="cal-modalidad-tag ambos"><i class="fa-regular fa-circle-check"></i> Online / Presencial</span>
+                    </div>
+                    <!-- Mayo -->
+                    <div class="cal-grupo">
+                        <span class="cal-mes-titulo">Mayo</span>
+                        <span class="cal-fechas">29 de mayo</span>
+                        <span class="cal-modalidad-tag ambos"><i class="fa-regular fa-circle-check"></i> Online / Presencial</span>
+                    </div>
+                    <!-- Junio -->
+                    <div class="cal-grupo">
+                        <span class="cal-mes-titulo">Junio</span>
+                        <span class="cal-fechas">26 de junio</span>
+                        <span class="cal-modalidad-tag ambos"><i class="fa-regular fa-circle-check"></i> Online / Presencial</span>
+                    </div>
+                    <!-- Julio (17, 18 y 31) -->
+                    <div class="cal-grupo">
+                        <span class="cal-mes-titulo">Julio</span>
+                        <span class="cal-fechas">17, 18 y 31 de julio</span>
+                        <span class="cal-modalidad-tag ambos"><i class="fa-regular fa-circle-check"></i> Online / Presencial</span>
+                    </div>
+                    <!-- Agosto -->
+                    <div class="cal-grupo">
+                        <span class="cal-mes-titulo">Agosto</span>
+                        <span class="cal-fechas">28 de agosto</span>
+                        <span class="cal-modalidad-tag ambos"><i class="fa-regular fa-circle-check"></i> Online / Presencial</span>
+                    </div>
+                    <!-- Septiembre (11 y 25) -->
+                    <div class="cal-grupo">
+                        <span class="cal-mes-titulo">Septiembre</span>
+                        <span class="cal-fechas">11 y 25 de septiembre</span>
+                        <span class="cal-modalidad-tag ambos"><i class="fa-regular fa-circle-check"></i> Online / Presencial</span>
+                    </div>
+                    <!-- Octubre -->
+                    <div class="cal-grupo">
+                        <span class="cal-mes-titulo">Octubre</span>
+                        <span class="cal-fechas">30 de octubre</span>
+                        <span class="cal-modalidad-tag ambos"><i class="fa-regular fa-circle-check"></i> Online / Presencial</span>
+                    </div>
+                    <!-- Noviembre -->
+                    <div class="cal-grupo">
+                        <span class="cal-mes-titulo">Noviembre</span>
+                        <span class="cal-fechas">20 de noviembre</span>
+                        <span class="cal-modalidad-tag ambos"><i class="fa-regular fa-circle-check"></i> Online / Presencial</span>
+                    </div>
+                    <!-- Diciembre -->
+                    <div class="cal-grupo">
+                        <span class="cal-mes-titulo">Diciembre</span>
+                        <span class="cal-fechas">11 de diciembre</span>
+                        <span class="cal-modalidad-tag ambos"><i class="fa-regular fa-circle-check"></i> Online / Presencial</span>
+                    </div>
                 </div>
                 <p class="text-xs text-aspire-slate text-center mt-5 border-t border-gray-100 pt-4">* Las sesiones pueden estar sujetas a cambios. Consulta los canales oficiales para confirmar.</p>
             </div>
@@ -1273,7 +1315,7 @@
     <section id="alumni" class="py-14 bg-gray-50">
         <div class="container mx-auto px-4 lg:px-8">
             <div class="text-center max-w-3xl mx-auto mb-10">
-                <span class="section-badge">Comunidad global</span>
+                <span class="section-badge">Comunidad de egresad@s</span>
                 <h3 class="text-3xl font-serif font-bold text-aspire-charcoal mt-3">Alumni & ELP</h3>
                 <p class="text-aspire-slate mt-2">Comunidad de egresad@s. Graduarte es solo el comienzo.</p>
             </div>
@@ -1621,24 +1663,82 @@
         });
     </script>
 
-    <!-- ===== ALIANZAS ===== -->
-    <section id="alianzas" class="py-14 bg-white">
-        <div class="container mx-auto px-4 lg:px-8">
-            <div class="text-center max-w-3xl mx-auto mb-10">
-                <span class="section-badge">Aliados</span>
-                <h3 class="text-3xl font-serif font-bold text-aspire-charcoal mt-3">Aliados estratégicos</h3>
-                <p class="text-aspire-slate mt-3 text-sm md:text-base leading-relaxed max-w-xl mx-auto">
-                    Construimos puentes con <strong class="text-aspire-charcoal">universidades, organizaciones estudiantiles y creadores de contenido</strong> que comparten nuestra visión de un liderazgo más diverso e incluyente en todo México.
-                </p>
-            </div>
-            <div class="flex overflow-x-auto snap-x gap-8 pb-4 md:justify-center scrollbar-hide">
-                <div class="snap-center shrink-0 flex flex-col items-center gap-2 w-24"><div class="ally-circle flex items-center justify-center"><img src="./comppliances/propulsion.jfif" alt="Propulsión UNAM" class="w-full h-full object-cover"></div><span class="text-xs font-bold text-aspire-charcoal text-center">Propulsión UNAM</span><div class="flex gap-2"><a href="https://www.instagram.com/propulsionunam/" target="_blank" rel="noopener noreferrer" class="text-aspire-slate hover:text-aspire-red transition-colors"><i class="fa-brands fa-instagram"></i></a><a href="https://mx.linkedin.com/company/propulsi%C3%B3n-unam" target="_blank" rel="noopener noreferrer" class="text-aspire-slate hover:text-aspire-red transition-colors"><i class="fa-brands fa-linkedin-in"></i></a></div></div>
-                <div class="snap-center shrink-0 flex flex-col items-center gap-2 w-24"><div class="ally-circle flex items-center justify-center"><img src="./comppliances/unamaerodesign.png" alt="AeroDesign" class="w-full h-full object-cover"></div><span class="text-xs font-bold text-aspire-charcoal text-center">UNAM AeroDesign</span><div class="flex gap-2"><a href="https://www.instagram.com/unamaerodesign/" target="_blank" rel="noopener noreferrer" class="text-aspire-slate hover:text-aspire-red transition-colors"><i class="fa-brands fa-instagram"></i></a></div></div>
-                <div class="snap-center shrink-0 flex flex-col items-center gap-2 w-24"><div class="ally-circle flex items-center justify-center"><img src="./comppliances/codapo.jpg" alt="AeroDesign" class="w-full h-full object-cover"></div><span class="text-xs font-bold text-aspire-charcoal text-center">Fundación CODAPO</span><div class="flex gap-2"></div></div>
-                <div class="snap-center shrink-0 flex flex-col items-center gap-2 w-24"><div class="ally-circle flex items-center justify-center text-2xl text-gray-400"><i class="fa-solid fa-university"></i></div><span class="text-xs font-bold text-aspire-charcoal text-center">Universidades</span></div>
-            </div>
+<!-- ===== ALIANZAS ===== -->
+<section id="alianzas" class="py-14 bg-white">
+    <div class="container mx-auto px-4 lg:px-8">
+        <div class="text-center max-w-3xl mx-auto mb-10">
+            <span class="section-badge">Aliados</span>
+            <h3 class="text-3xl font-serif font-bold text-aspire-charcoal mt-3">Aliados estratégicos</h3>
+            <p class="text-aspire-slate mt-3 text-sm md:text-base leading-relaxed max-w-xl mx-auto">
+                Construimos puentes con <strong class="text-aspire-charcoal">universidades, organizaciones estudiantiles y creadores de contenido</strong> que comparten nuestra visión de un liderazgo más diverso e incluyente en todo México.
+            </p>
         </div>
-    </section>
+
+        <!-- Contenedor con scroll horizontal en móvil y wrap en desktop -->
+        <div class="flex flex-nowrap md:flex-wrap overflow-x-auto md:overflow-visible snap-x snap-mandatory gap-6 pb-4 md:justify-center scrollbar-hide">
+
+            <!-- 1. Propulsión UNAM -->
+            <div class="snap-center shrink-0 w-36 flex flex-col items-center gap-2">
+                <div class="ally-logo">
+                    <img src="./comppliances/propulsion.jfif" alt="Propulsión UNAM">
+                </div>
+                <span class="text-xs font-bold text-aspire-charcoal text-center">Propulsión UNAM</span>
+                <div class="flex gap-2">
+                    <a href="https://www.instagram.com/propulsionunam/" target="_blank" rel="noopener noreferrer" class="text-aspire-slate hover:text-aspire-red transition-colors"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="https://mx.linkedin.com/company/propulsi%C3%B3n-unam" target="_blank" rel="noopener noreferrer" class="text-aspire-slate hover:text-aspire-red transition-colors"><i class="fa-brands fa-linkedin-in"></i></a>
+                </div>
+            </div>
+
+            <!-- 2. UNAM AeroDesign -->
+            <div class="snap-center shrink-0 w-36 flex flex-col items-center gap-2">
+                <div class="ally-logo">
+                    <img src="./comppliances/unamaerodesign.png" alt="UNAM AeroDesign">
+                </div>
+                <span class="text-xs font-bold text-aspire-charcoal text-center">UNAM AeroDesign</span>
+                <div class="flex gap-2">
+                    <a href="https://www.instagram.com/unamaerodesign/" target="_blank" rel="noopener noreferrer" class="text-aspire-slate hover:text-aspire-red transition-colors"><i class="fa-brands fa-instagram"></i></a>
+                </div>
+            </div>
+
+            <!-- 3. Fundación CODAPO -->
+            <div class="snap-center shrink-0 w-36 flex flex-col items-center gap-2">
+                <div class="ally-logo">
+                    <img src="./comppliances/codapo.jpg" alt="Fundación CODAPO">
+                </div>
+                <span class="text-xs font-bold text-aspire-charcoal text-center">Fundación CODAPO</span>
+                <div class="flex gap-2"></div>
+            </div>
+
+            <!-- 4. COPELAM -->
+            <div class="snap-center shrink-0 w-36 flex flex-col items-center gap-2">
+                <div class="ally-logo">
+                    <img src="./comppliances/copelam.jpg" alt="COPELAM">
+                </div>
+                <span class="text-xs font-bold text-aspire-charcoal text-center">COPELAM</span>
+                <div class="flex gap-2"></div>
+            </div>
+
+            <!-- 5. ComSoc (nuevo aliado) -->
+            <div class="snap-center shrink-0 w-36 flex flex-col items-center gap-2">
+                <div class="ally-logo">
+                    <img src="./comppliances/comsoc.jpg" alt="ComSoc">
+                </div>
+                <span class="text-xs font-bold text-aspire-charcoal text-center">ComSoc</span>
+                <div class="flex gap-2"></div>
+            </div>
+
+            <!-- 6. Universidades (placeholder) -->
+            <div class="snap-center shrink-0 w-36 flex flex-col items-center gap-2">
+                <div class="ally-logo flex items-center justify-center text-4xl text-gray-400">
+                    <i class="fa-solid fa-university"></i>
+                </div>
+                <span class="text-xs font-bold text-aspire-charcoal text-center">Universidades</span>
+                <div class="flex gap-2"></div>
+            </div>
+
+        </div>
+    </div>
+</section>
 
     <!-- ===== FOOTER ===== -->
     <footer id="contacto" class="bg-aspire-charcoal text-white pt-16 pb-8 border-t border-white/5">
@@ -1649,9 +1749,10 @@
                     <p class="text-gray-400 text-sm leading-relaxed mb-4">
                         Dudas sobre postulaciones, fondos semilla o colaboración institucional.
                     </p>
+                    <!-- Botón de correo con ajuste responsive -->
                     <a href="mailto:mexicoprograms@aspireleaders.org" 
-                       class="inline-flex items-center justify-center gap-2 bg-aspire-red hover:bg-aspire-redDark text-white text-sm font-bold uppercase tracking-wider px-6 py-3 rounded transition-colors shadow-lg w-full sm:w-auto">
-                        <i class="fa-solid fa-envelope"></i> mexicoprograms@aspireleaders.org
+                       class="inline-flex items-center justify-center gap-2 bg-aspire-red hover:bg-aspire-redDark text-white text-xs sm:text-sm font-bold uppercase tracking-wider px-4 sm:px-6 py-3 rounded transition-colors shadow-lg w-full break-all whitespace-normal max-w-full">
+                        <i class="fa-solid fa-envelope flex-shrink-0"></i> mexicoprograms@aspireleaders.org
                     </a>
                     <p class="text-xs text-gray-400 mt-3">Respuesta en 48 horas hábiles.</p>
                 </div>
